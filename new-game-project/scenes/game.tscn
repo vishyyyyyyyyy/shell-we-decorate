@@ -1,0 +1,289 @@
+[gd_scene load_steps=35 format=3 uid="uid://cv2qwtrm4jmin"]
+
+[ext_resource type="Script" uid="uid://buswxx3owarpg" path="res://node_2d.gd" id="1_264po"]
+[ext_resource type="Texture2D" uid="uid://m5atieeely02" path="res://images/Rectangle 2.png" id="2_1kice"]
+[ext_resource type="Texture2D" uid="uid://cmgo0k8381xke" path="res://images/crab (1).png" id="3_5newe"]
+[ext_resource type="Texture2D" uid="uid://qyptooa6c08a" path="res://images/crab (2).png" id="4_37s47"]
+[ext_resource type="Texture2D" uid="uid://c1pa2pjeot1vw" path="res://images/crab.png" id="5_bt5mj"]
+[ext_resource type="Texture2D" uid="uid://c1py1bsflsno2" path="res://images/Group 2.png" id="6_e1j6l"]
+[ext_resource type="Texture2D" uid="uid://c2vtkocc826il" path="res://images/Group 3 (2).png" id="7_pl11u"]
+[ext_resource type="Texture2D" uid="uid://coxf5g15x4osl" path="res://images/Rectangle 14.png" id="8_bhx41"]
+[ext_resource type="Texture2D" uid="uid://duqkakud0ft74" path="res://images/Rectangle 8.png" id="9_qnb83"]
+[ext_resource type="Texture2D" uid="uid://b7q7aobsfw0d4" path="res://images/pearl.png" id="10_sww3w"]
+[ext_resource type="Texture2D" uid="uid://bexolf6j4hpxl" path="res://images/play.png" id="11_suyxu"]
+[ext_resource type="Texture2D" uid="uid://d4vbpp3fvonr" path="res://images/pause.png" id="12_sgl2t"]
+[ext_resource type="Texture2D" uid="uid://dn81rl75o0s8x" path="res://images/music (1).png" id="14_wljb1"]
+[ext_resource type="Texture2D" uid="uid://dfp3ic3nuompd" path="res://images/Vector 6.png" id="15_v2yb1"]
+[ext_resource type="Texture2D" uid="uid://8nb3jx1vyms5" path="res://images/Vector 7.png" id="16_js0lu"]
+[ext_resource type="Texture2D" uid="uid://btbeb6bvk2ksr" path="res://images/Vector 8.png" id="17_gxtfn"]
+[ext_resource type="Texture2D" uid="uid://e5l4vcwhaf7q" path="res://images/shop.png" id="18_twgab"]
+[ext_resource type="Texture2D" uid="uid://pha5fsgrw0by" path="res://images/bubble (1).png" id="19_02fa5"]
+[ext_resource type="Texture2D" uid="uid://b5nqj1tayey0h" path="res://images/ribbon.png" id="20_7025r"]
+[ext_resource type="Texture2D" uid="uid://c2rw7r7y0g74n" path="res://images/seashell (1).png" id="21_m4url"]
+[ext_resource type="Texture2D" uid="uid://ctg44tylgvyyo" path="res://images/seashell.png" id="22_8ool0"]
+[ext_resource type="Texture2D" uid="uid://dwyx444cjlawa" path="res://images/Star 3.png" id="23_pr1ej"]
+[ext_resource type="Texture2D" uid="uid://bwqw8ox8raxxt" path="res://images/Star 4.png" id="24_05nbr"]
+[ext_resource type="Texture2D" uid="uid://dnv5nf3okru2c" path="res://images/starfish (1).png" id="26_oaba0"]
+[ext_resource type="Texture2D" uid="uid://c0xlogs3pc4li" path="res://images/starfish.png" id="27_458eo"]
+[ext_resource type="FontFile" uid="uid://5y3ni8ow54ex" path="res://fonts/Lalezar-Regular.ttf" id="29_sgl2t"]
+[ext_resource type="Texture2D" uid="uid://cft7bwpml22jh" path="res://images/infobox.png" id="30_qouja"]
+[ext_resource type="Script" uid="uid://ccolowypgnt26" path="res://scenes/continue.gd" id="31_wljb1"]
+[ext_resource type="Texture2D" uid="uid://b7l18dapm7rc2" path="res://images/button.png" id="32_js0lu"]
+[ext_resource type="Texture2D" uid="uid://df1dv0qbebkjr" path="res://images/button (1).png" id="32_v2yb1"]
+[ext_resource type="Texture2D" uid="uid://cth1rexphird3" path="res://images/barnacle2.png" id="37_ms3bu"]
+[ext_resource type="Texture2D" uid="uid://djv2q6ytflqbp" path="res://images/barnacle.png" id="38_7ixpq"]
+[ext_resource type="Texture2D" uid="uid://dk0024h6o14ms" path="res://images/bubble.png" id="39_bk1p3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_js0lu"]
+size = Vector2(197, 65)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_264po")
+
+[node name="background" type="Sprite2D" parent="."]
+position = Vector2(576.54, 346)
+scale = Vector2(0.586491, 0.586491)
+texture = ExtResource("2_1kice")
+
+[node name="Crab(1)" type="Sprite2D" parent="."]
+position = Vector2(566.621, 520.937)
+scale = Vector2(0.660176, 0.660176)
+texture = ExtResource("3_5newe")
+
+[node name="Crab(2)" type="Sprite2D" parent="."]
+position = Vector2(566.621, 520.937)
+scale = Vector2(0.660176, 0.660176)
+texture = ExtResource("4_37s47")
+
+[node name="Crab" type="Sprite2D" parent="."]
+position = Vector2(566.621, 520.937)
+scale = Vector2(0.660176, 0.660176)
+texture = ExtResource("5_bt5mj")
+
+[node name="wave" type="Sprite2D" parent="."]
+modulate = Color(0.121569, 0.678431, 0.819608, 1)
+position = Vector2(558, -88)
+scale = Vector2(0.631846, 0.631846)
+texture = ExtResource("6_e1j6l")
+
+[node name="stand" type="Node" parent="."]
+
+[node name="stand" type="Sprite2D" parent="stand"]
+position = Vector2(584.969, 410.875)
+scale = Vector2(0.183568, 0.183568)
+texture = ExtResource("7_pl11u")
+
+[node name="Ribbon2" type="Sprite2D" parent="stand"]
+position = Vector2(182, 362)
+scale = Vector2(0.212399, 0.212399)
+texture = ExtResource("20_7025r")
+
+[node name="Ribbon" type="Sprite2D" parent="stand"]
+position = Vector2(986, 155)
+scale = Vector2(0.200535, 0.200535)
+texture = ExtResource("20_7025r")
+
+[node name="Seashell(1)" type="Sprite2D" parent="stand"]
+position = Vector2(111, 440)
+rotation = -0.0383127
+scale = Vector2(0.0940494, 0.0940494)
+texture = ExtResource("21_m4url")
+
+[node name="Seashell" type="Sprite2D" parent="stand"]
+position = Vector2(1076, 355)
+rotation = -0.976214
+scale = Vector2(0.0845285, 0.0845285)
+texture = ExtResource("22_8ool0")
+
+[node name="Star3" type="Sprite2D" parent="stand"]
+position = Vector2(1003, 433)
+rotation = 0.435967
+scale = Vector2(0.307252, 0.307252)
+texture = ExtResource("23_pr1ej")
+
+[node name="Star4" type="Sprite2D" parent="stand"]
+position = Vector2(94, 318)
+rotation = 0.526214
+scale = Vector2(0.234459, 0.234459)
+texture = ExtResource("24_05nbr")
+
+[node name="Starfish(1)" type="Sprite2D" parent="stand"]
+position = Vector2(994, 271)
+scale = Vector2(0.157356, 0.157356)
+texture = ExtResource("26_oaba0")
+
+[node name="Starfish" type="Sprite2D" parent="stand"]
+position = Vector2(175, 225)
+scale = Vector2(0.132948, 0.132948)
+texture = ExtResource("27_458eo")
+
+[node name="Barnacle2" type="Sprite2D" parent="stand"]
+position = Vector2(1092, 201)
+rotation = 0.469288
+scale = Vector2(0.218771, 0.218771)
+texture = ExtResource("37_ms3bu")
+
+[node name="Barnacle" type="Sprite2D" parent="stand"]
+position = Vector2(77, 161)
+rotation = -1.27647
+scale = Vector2(0.21699, 0.21699)
+texture = ExtResource("38_7ixpq")
+
+[node name="Rectangle14" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(213, 569)
+scale = Vector2(0.18, 0.18)
+texture = ExtResource("8_bhx41")
+
+[node name="Rectangle15" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(573, 569)
+scale = Vector2(0.18, 0.18)
+texture = ExtResource("8_bhx41")
+
+[node name="Rectangle16" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(965, 569)
+scale = Vector2(0.18, 0.18)
+texture = ExtResource("8_bhx41")
+
+[node name="Rectangle8" type="Sprite2D" parent="."]
+position = Vector2(118, 64)
+scale = Vector2(0.14491, 0.14491)
+texture = ExtResource("9_qnb83")
+
+[node name="Pearl" type="Sprite2D" parent="."]
+position = Vector2(-60, 172)
+scale = Vector2(0.131746, 0.131746)
+texture = ExtResource("10_sww3w")
+
+[node name="Play" type="Sprite2D" parent="."]
+position = Vector2(1319, 92)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("11_suyxu")
+
+[node name="Pause" type="Sprite2D" parent="."]
+position = Vector2(1094, 61)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("12_sgl2t")
+
+[node name="Shop" type="Sprite2D" parent="."]
+position = Vector2(982, 62)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("18_twgab")
+
+[node name="Music" type="Sprite2D" parent="."]
+position = Vector2(869, 65)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("14_wljb1")
+
+[node name="Vector6" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(209, 564)
+scale = Vector2(0.109271, 0.109271)
+texture = ExtResource("15_v2yb1")
+
+[node name="Vector7" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(570, 568)
+scale = Vector2(0.119863, 0.119863)
+texture = ExtResource("16_js0lu")
+
+[node name="Vector8" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(957, 568)
+scale = Vector2(0.096658, 0.0966581)
+texture = ExtResource("17_gxtfn")
+
+[node name="Bubble(1)" type="Sprite2D" parent="."]
+position = Vector2(832, 331)
+scale = Vector2(0.214694, 0.214694)
+texture = ExtResource("19_02fa5")
+
+[node name="Vector9" type="Sprite2D" parent="."]
+position = Vector2(833, 305)
+scale = Vector2(0.096658, 0.0966581)
+texture = ExtResource("17_gxtfn")
+
+[node name="Bubble" type="Sprite2D" parent="."]
+position = Vector2(2517.5, 746.5)
+texture = ExtResource("39_bk1p3")
+
+[node name="timerlabel" type="Label" parent="."]
+offset_left = 66.0
+offset_top = 27.0
+offset_right = 164.0
+offset_bottom = 106.0
+theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
+theme_override_fonts/font = ExtResource("29_sgl2t")
+theme_override_font_sizes/font_size = 50
+text = "0:00"
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Infobox" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(581, 383)
+scale = Vector2(0.197853, 0.197853)
+texture = ExtResource("30_qouja")
+
+[node name="label2" type="Label" parent="."]
+z_index = 2
+offset_left = 387.0
+offset_top = 278.0
+offset_right = 780.0
+offset_bottom = 563.0
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
+theme_override_fonts/font = ExtResource("29_sgl2t")
+theme_override_font_sizes/font_size = 28
+text = "Hello, little shell artist! Decorate shells for your crabby customers.
+Mix colors, patterns, and tiny decorations to make each shell perfect.
+The ocean is counting on you!"
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="label" type="Label" parent="."]
+z_index = 2
+offset_left = 423.0
+offset_top = 176.0
+offset_right = 718.0
+offset_bottom = 290.0
+theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
+theme_override_fonts/font = ExtResource("29_sgl2t")
+theme_override_font_sizes/font_size = 68
+text = "Welcome "
+horizontal_alignment = 1
+
+[node name="Area2D" type="Area2D" parent="."]
+z_index = 1
+position = Vector2(-8, 32)
+script = ExtResource("31_wljb1")
+hover = ExtResource("32_js0lu")
+normal = ExtResource("32_v2yb1")
+
+[node name="Button" type="Sprite2D" parent="Area2D"]
+position = Vector2(565, 561)
+scale = Vector2(0.208204, 0.208204)
+texture = ExtResource("32_v2yb1")
+
+[node name="Label" type="Label" parent="Area2D/Button"]
+offset_left = -231.0
+offset_top = -143.788
+offset_right = 201.0
+offset_bottom = 170.212
+theme_override_colors/font_color = Color(0.996078, 0.996078, 0.839216, 1)
+theme_override_fonts/font = ExtResource("29_sgl2t")
+theme_override_font_sizes/font_size = 200
+text = "Start"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(565.5, 560.5)
+shape = SubResource("RectangleShape2D_js0lu")
+
+[connection signal="input_event" from="Area2D" to="Area2D" method="_on_input_event"]
+[connection signal="mouse_entered" from="Area2D" to="Area2D" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="Area2D" method="_on_mouse_exited"]

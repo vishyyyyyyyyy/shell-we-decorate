@@ -13,7 +13,13 @@ config_version=5
 config/name="New Game Project"
 run/main_scene="uid://bvn4ip4vc63yj"
 config/features=PackedStringArray("4.4", "GL Compatibility")
+boot_splash/fullsize=false
+boot_splash/image="uid://m5atieeely02"
 config/icon="res://icon.svg"
+
+[autoload]
+
+Global="*res://scripts/global.gd"
 
 [display]
 
