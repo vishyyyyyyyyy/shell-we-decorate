@@ -1,0 +1,134 @@
+[gd_scene load_steps=15 format=3 uid="uid://bvn4ip4vc63yj"]
+
+[ext_resource type="Texture2D" uid="uid://m5atieeely02" path="res://images/Rectangle 2.png" id="1_g3eks"]
+[ext_resource type="Texture2D" uid="uid://c1py1bsflsno2" path="res://images/Group 2.png" id="2_v86rl"]
+[ext_resource type="Texture2D" uid="uid://bj7nefsh1y23u" path="res://images/fih.png" id="3_13sgg"]
+[ext_resource type="Texture2D" uid="uid://ujkvsyg634t1" path="res://images/Vector 11.png" id="3_ufwb2"]
+[ext_resource type="FontFile" uid="uid://5y3ni8ow54ex" path="res://fonts/Lalezar-Regular.ttf" id="4_i6lef"]
+[ext_resource type="Texture2D" uid="uid://dk0024h6o14ms" path="res://images/bubble.png" id="5_70i5f"]
+[ext_resource type="Texture2D" uid="uid://df1dv0qbebkjr" path="res://images/button (1).png" id="6_mj5lg"]
+[ext_resource type="Texture2D" uid="uid://dnv5nf3okru2c" path="res://images/starfish (1).png" id="8_6cdou"]
+[ext_resource type="Texture2D" uid="uid://ctg44tylgvyyo" path="res://images/seashell.png" id="9_i42df"]
+[ext_resource type="Texture2D" uid="uid://dwyx444cjlawa" path="res://images/Star 3.png" id="10_7jp70"]
+[ext_resource type="Texture2D" uid="uid://co2syp0pf7tea" path="res://images/Vector 13.png" id="11_mxgkd"]
+[ext_resource type="Texture2D" uid="uid://8w5gmg87an5p" path="res://images/Vector 17.png" id="12_g6gyw"]
+[ext_resource type="Texture2D" uid="uid://bfuxgc6ua45yu" path="res://images/Vector 10.png" id="13_i42df"]
+[ext_resource type="Texture2D" uid="uid://qyptooa6c08a" path="res://images/crab (2).png" id="14_7jp70"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="background" type="Sprite2D" parent="."]
+position = Vector2(576.54, 346)
+scale = Vector2(0.586491, 0.586491)
+texture = ExtResource("1_g3eks")
+metadata/_edit_lock_ = true
+
+[node name="wave" type="Sprite2D" parent="."]
+modulate = Color(0.113725, 0.678431, 0.815686, 1)
+position = Vector2(558, -88)
+scale = Vector2(0.631846, 0.631846)
+texture = ExtResource("2_v86rl")
+metadata/_edit_lock_ = true
+
+[node name="Vector11" type="Sprite2D" parent="."]
+position = Vector2(1081, 578)
+scale = Vector2(0.171082, 0.171082)
+texture = ExtResource("3_ufwb2")
+
+[node name="Fih" type="Sprite2D" parent="."]
+position = Vector2(595, 293)
+scale = Vector2(0.208883, 0.208883)
+texture = ExtResource("3_13sgg")
+
+[node name="Label" type="Label" parent="Fih"]
+offset_left = -885.665
+offset_top = -272.881
+offset_right = 357.335
+offset_bottom = 672.119
+theme_override_colors/font_color = Color(0.847059, 0.415686, 0.419608, 1)
+theme_override_fonts/font = ExtResource("4_i6lef")
+theme_override_font_sizes/font_size = 300
+text = "Shell We
+Decorate?"
+horizontal_alignment = 1
+
+[node name="Bubble" type="Sprite2D" parent="."]
+position = Vector2(179, 358)
+scale = Vector2(0.178144, 0.178144)
+texture = ExtResource("5_70i5f")
+
+[node name="Bubble3" type="Sprite2D" parent="."]
+position = Vector2(168, 236)
+scale = Vector2(0.323511, 0.323512)
+texture = ExtResource("5_70i5f")
+
+[node name="Bubble2" type="Sprite2D" parent="."]
+position = Vector2(226, 300)
+scale = Vector2(0.250745, 0.250745)
+texture = ExtResource("5_70i5f")
+
+[node name="Bubble5" type="Sprite2D" parent="."]
+position = Vector2(1004, 467)
+scale = Vector2(0.134744, 0.134744)
+texture = ExtResource("5_70i5f")
+
+[node name="Bubble4" type="Sprite2D" parent="."]
+position = Vector2(966.978, 518.031)
+scale = Vector2(0.155312, 0.155312)
+texture = ExtResource("5_70i5f")
+
+[node name="Button(1)" type="Sprite2D" parent="."]
+position = Vector2(565, 561)
+scale = Vector2(0.208204, 0.208204)
+texture = ExtResource("6_mj5lg")
+
+[node name="Label" type="Label" parent="Button(1)"]
+offset_left = -231.0
+offset_top = -143.788
+offset_right = 201.0
+offset_bottom = 170.212
+theme_override_colors/font_color = Color(0.996078, 0.996078, 0.839216, 1)
+theme_override_fonts/font = ExtResource("4_i6lef")
+theme_override_font_sizes/font_size = 200
+text = "Play"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Starfish(1)" type="Sprite2D" parent="."]
+position = Vector2(1116, 569)
+scale = Vector2(0.0740805, 0.0740805)
+texture = ExtResource("8_6cdou")
+
+[node name="Seashell" type="Sprite2D" parent="."]
+position = Vector2(92, 594)
+scale = Vector2(0.202869, 0.202869)
+texture = ExtResource("9_i42df")
+
+[node name="Star3" type="Sprite2D" parent="."]
+position = Vector2(34, 550)
+rotation = -0.523599
+scale = Vector2(0.23855, 0.23855)
+texture = ExtResource("10_7jp70")
+
+[node name="Vector13" type="Sprite2D" parent="."]
+position = Vector2(121, 630)
+rotation = 0.785398
+scale = Vector2(0.0861872, 0.0861872)
+texture = ExtResource("11_mxgkd")
+
+[node name="Vector17" type="Sprite2D" parent="."]
+position = Vector2(1030, 596)
+scale = Vector2(0.0972927, 0.0972927)
+texture = ExtResource("12_g6gyw")
+
+[node name="Vector10" type="Sprite2D" parent="."]
+position = Vector2(724, 174)
+rotation = 0.785398
+scale = Vector2(0.158858, 0.158858)
+texture = ExtResource("13_i42df")
+
+[node name="Crab(2)" type="Sprite2D" parent="."]
+position = Vector2(677, 236)
+rotation = 0.261799
+scale = Vector2(0.163038, 0.163038)
+texture = ExtResource("14_7jp70")

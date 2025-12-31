@@ -1,0 +1,61 @@
+[gd_scene load_steps=11 format=3 uid="uid://cv2qwtrm4jmin"]
+
+[ext_resource type="Script" uid="uid://buswxx3owarpg" path="res://node_2d.gd" id="1_l4lvs"]
+[ext_resource type="Texture2D" uid="uid://m5atieeely02" path="res://images/Rectangle 2.png" id="2_dubn7"]
+[ext_resource type="Texture2D" uid="uid://c1py1bsflsno2" path="res://images/Group 2.png" id="3_08kqv"]
+[ext_resource type="Texture2D" uid="uid://c2vtkocc826il" path="res://images/Group 3 (2).png" id="4_f6ptj"]
+[ext_resource type="Texture2D" uid="uid://coxf5g15x4osl" path="res://images/Rectangle 14.png" id="5_hsdmi"]
+[ext_resource type="Texture2D" uid="uid://duqkakud0ft74" path="res://images/Rectangle 8.png" id="6_ifa78"]
+[ext_resource type="Texture2D" uid="uid://b7q7aobsfw0d4" path="res://images/pearl.png" id="7_xtx0q"]
+[ext_resource type="Texture2D" uid="uid://bexolf6j4hpxl" path="res://images/play.png" id="8_3kg8w"]
+[ext_resource type="Texture2D" uid="uid://d4vbpp3fvonr" path="res://images/pause.png" id="9_x63s8"]
+[ext_resource type="Texture2D" uid="uid://xw1pc6ujk0e0" path="res://images/home.png" id="10_0q20i"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_l4lvs")
+
+[node name="background" type="Sprite2D" parent="."]
+position = Vector2(576.54, 346)
+scale = Vector2(0.586491, 0.586491)
+texture = ExtResource("2_dubn7")
+
+[node name="wave" type="Sprite2D" parent="."]
+modulate = Color(0.121569, 0.678431, 0.819608, 1)
+position = Vector2(558, -88)
+scale = Vector2(0.631846, 0.631846)
+texture = ExtResource("3_08kqv")
+
+[node name="stand" type="Sprite2D" parent="."]
+position = Vector2(584.969, 410.875)
+scale = Vector2(0.183568, 0.183568)
+texture = ExtResource("4_f6ptj")
+
+[node name="Rectangle14" type="Sprite2D" parent="."]
+position = Vector2(222, 547)
+scale = Vector2(0.152231, 0.152231)
+texture = ExtResource("5_hsdmi")
+
+[node name="Rectangle8" type="Sprite2D" parent="."]
+position = Vector2(118, 64)
+scale = Vector2(0.14491, 0.14491)
+texture = ExtResource("6_ifa78")
+
+[node name="Pearl" type="Sprite2D" parent="."]
+position = Vector2(60, 66)
+scale = Vector2(0.131746, 0.131746)
+texture = ExtResource("7_xtx0q")
+
+[node name="Play" type="Sprite2D" parent="."]
+position = Vector2(1319, 92)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("8_3kg8w")
+
+[node name="Pause" type="Sprite2D" parent="."]
+position = Vector2(1080, 73)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("9_x63s8")
+
+[node name="Home" type="Sprite2D" parent="."]
+position = Vector2(966, 72)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("10_0q20i")
