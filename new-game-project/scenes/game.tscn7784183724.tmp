@@ -1,6 +1,6 @@
-[gd_scene load_steps=49 format=3 uid="uid://cv2qwtrm4jmin"]
+[gd_scene load_steps=44 format=3 uid="uid://cv2qwtrm4jmin"]
 
-[ext_resource type="Script" uid="uid://buswxx3owarpg" path="res://scripts/game.gd" id="1_264po"]
+[ext_resource type="Script" uid="uid://buswxx3owarpg" path="res://node_2d.gd" id="1_264po"]
 [ext_resource type="Texture2D" uid="uid://m5atieeely02" path="res://images/Rectangle 2.png" id="2_1kice"]
 [ext_resource type="Texture2D" uid="uid://cmgo0k8381xke" path="res://images/crab (1).png" id="3_5newe"]
 [ext_resource type="Texture2D" uid="uid://qyptooa6c08a" path="res://images/crab (2).png" id="4_37s47"]
@@ -37,13 +37,21 @@
 [ext_resource type="Script" uid="uid://dfa7f4osxb2vn" path="res://scripts/openshop.gd" id="37_02fa5"]
 [ext_resource type="Texture2D" uid="uid://cth1rexphird3" path="res://images/barnacle2.png" id="37_ms3bu"]
 [ext_resource type="Texture2D" uid="uid://djv2q6ytflqbp" path="res://images/barnacle.png" id="38_7ixpq"]
-[ext_resource type="Texture2D" uid="uid://c0b5rkly8gj4m" path="res://images/pink.png" id="38_m4url"]
-[ext_resource type="Texture2D" uid="uid://dlpndnfto8fu1" path="res://images/yellow.png" id="39_8ool0"]
-[ext_resource type="Texture2D" uid="uid://drc21qrkqkrbh" path="res://images/purple.png" id="40_pr1ej"]
-[ext_resource type="Texture2D" uid="uid://bglcs4hdibe1i" path="res://images/Star 5.png" id="41_8ool0"]
 
 [sub_resource type="Animation" id="Animation_gxtfn"]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../Crab/shell3:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(561, 284)]
+}
 
 [sub_resource type="Animation" id="Animation_js0lu"]
 resource_name = "crabenter"
@@ -137,52 +145,11 @@ tracks/4/keys = {
 "values": [false]
 }
 
-[sub_resource type="Animation" id="Animation_8ool0"]
-resource_name = "fadeday"
-length = 3.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../../Crab/CanvasModulate:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(0.2757, 0.2757, 0.2757, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../../orderrequest/CanvasModulate:color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(0.27451, 0.27451, 0.27451, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../CanvasModulate:color")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(0.27451, 0.27451, 0.27451, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_02fa5"]
 _data = {
 &"RESET": SubResource("Animation_gxtfn"),
 &"crabenter": SubResource("Animation_js0lu"),
-&"crableave": SubResource("Animation_twgab"),
-&"fadeday": SubResource("Animation_8ool0")
+&"crableave": SubResource("Animation_twgab")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gxtfn"]
@@ -198,7 +165,7 @@ happy = ExtResource("35_gxtfn")
 sad = ExtResource("6_twgab")
 
 [node name="background" type="Sprite2D" parent="."]
-position = Vector2(574, 339)
+position = Vector2(590, 339)
 scale = Vector2(0.586491, 0.586491)
 texture = ExtResource("2_1kice")
 
@@ -209,8 +176,6 @@ scale = Vector2(0.631846, 0.631846)
 texture = ExtResource("6_e1j6l")
 
 [node name="Crab" type="CanvasLayer" parent="."]
-
-[node name="CanvasModulate" type="CanvasModulate" parent="Crab"]
 
 [node name="shell1" type="Sprite2D" parent="Crab"]
 visible = false
@@ -244,8 +209,6 @@ libraries = {
 }
 
 [node name="orderrequest" type="CanvasLayer" parent="."]
-
-[node name="CanvasModulate" type="CanvasModulate" parent="orderrequest"]
 
 [node name="orderbubble" type="Sprite2D" parent="orderrequest"]
 visible = false
@@ -299,8 +262,6 @@ scale = Vector2(0.150397, 0.150397)
 texture = ExtResource("10_sww3w")
 
 [node name="stand" type="CanvasLayer" parent="."]
-
-[node name="CanvasModulate" type="CanvasModulate" parent="stand"]
 
 [node name="stand" type="Sprite2D" parent="stand"]
 position = Vector2(584.969, 410.875)
@@ -448,9 +409,9 @@ scale = Vector2(0.15, 0.15)
 texture = ExtResource("14_wljb1")
 
 [node name="timerlabel" type="Label" parent="."]
-offset_left = 60.0
+offset_left = 68.0
 offset_top = 27.0
-offset_right = 158.0
+offset_right = 166.0
 offset_bottom = 106.0
 theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
 theme_override_fonts/font = ExtResource("29_sgl2t")
@@ -479,7 +440,8 @@ size_flags_stretch_ratio = 0.0
 theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
 theme_override_fonts/font = ExtResource("29_sgl2t")
 theme_override_font_sizes/font_size = 28
-text = "Hello, little shell artist! Decorate and paint shells for your crabby customers. Make as many sales as you can in 30 days.
+text = "Hello, little shell artist! Decorate shells for your crabby customers.
+Mix colors, patterns, and tiny decorations to make each shell perfect.
 The ocean is counting on you!"
 vertical_alignment = 1
 autowrap_mode = 2
@@ -528,19 +490,17 @@ position = Vector2(565.5, 560.5)
 shape = SubResource("RectangleShape2D_js0lu")
 
 [node name="end day" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="Infobox" type="Sprite2D" parent="end day"]
 z_index = 1
 position = Vector2(581, 335)
 scale = Vector2(0.197853, 0.197853)
 texture = ExtResource("30_qouja")
-metadata/_edit_lock_ = true
 
 [node name="label2" type="Label" parent="end day"]
 z_index = 2
 anchors_preset = -1
-anchor_right = 0.250868
+anchor_right = 0.0364583
 anchor_bottom = 0.132716
 offset_left = 315.0
 offset_top = 214.0
@@ -553,12 +513,13 @@ theme_override_fonts/font = ExtResource("29_sgl2t")
 theme_override_font_sizes/font_size = 40
 text = "Shells Sold: "
 vertical_alignment = 1
+autowrap_mode = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="label3" type="Label" parent="end day"]
 z_index = 2
 anchors_preset = -1
-anchor_right = 0.309896
+anchor_right = 0.0789931
 anchor_bottom = 0.132716
 offset_left = 315.0
 offset_top = 326.0
@@ -571,16 +532,16 @@ theme_override_fonts/font = ExtResource("29_sgl2t")
 theme_override_font_sizes/font_size = 40
 text = "Pearls Earned: "
 vertical_alignment = 1
+autowrap_mode = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="label" type="Label" parent="end day"]
 z_index = 2
 anchors_preset = -1
-anchor_left = -0.135417
 anchor_right = -0.135417
-offset_left = 607.0
+offset_left = 471.0
 offset_top = 104.0
-offset_right = 902.0
+offset_right = 766.0
 offset_bottom = 218.0
 theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
 theme_override_fonts/font = ExtResource("29_sgl2t")
@@ -588,19 +549,17 @@ theme_override_font_sizes/font_size = 68
 text = "Day: "
 metadata/_edit_use_anchors_ = true
 
-[node name="newday" type="Area2D" parent="end day"]
+[node name="Area2D" type="Area2D" parent="end day"]
 z_index = 1
 position = Vector2(184, -48)
 script = ExtResource("33_twgab")
-hover = ExtResource("32_js0lu")
-normal = ExtResource("32_v2yb1")
 
-[node name="Button" type="Sprite2D" parent="end day/newday"]
+[node name="Button" type="Sprite2D" parent="end day/Area2D"]
 position = Vector2(565, 561)
 scale = Vector2(0.208204, 0.208204)
 texture = ExtResource("32_v2yb1")
 
-[node name="Label" type="Label" parent="end day/newday/Button"]
+[node name="Label" type="Label" parent="end day/Area2D/Button"]
 offset_left = -346.272
 offset_top = -143.788
 offset_right = 386.728
@@ -613,117 +572,21 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="end day/newday"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="end day/Area2D"]
 position = Vector2(565.5, 560.5)
 shape = SubResource("RectangleShape2D_js0lu")
-disabled = true
 
-[node name="panel" type="Sprite2D" parent="end day"]
-z_index = 2
-position = Vector2(372, 200)
-scale = Vector2(0.188882, 0.188882)
-texture = ExtResource("38_m4url")
-
-[node name="Label" type="Label" parent="end day/panel"]
-z_index = 3
-anchors_preset = -1
-anchor_left = -1.1759
-anchor_top = -0.771915
-anchor_right = -1.76511
-anchor_bottom = -1.15772
-offset_left = 862.973
-offset_top = 942.386
-offset_right = 1595.97
-offset_bottom = 1441.37
-theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
-theme_override_fonts/font = ExtResource("29_sgl2t")
-theme_override_font_sizes/font_size = 130
-text = "100"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="Pearl2" type="Sprite2D" parent="end day/panel"]
-z_index = 1
-position = Vector2(142.946, 450.016)
-scale = Vector2(0.391821, 0.391821)
-texture = ExtResource("10_sww3w")
-
-[node name="panel2" type="Sprite2D" parent="end day"]
-z_index = 2
-position = Vector2(572, 200)
-scale = Vector2(0.188882, 0.188882)
-texture = ExtResource("39_8ool0")
-
-[node name="Label" type="Label" parent="end day/panel2"]
-z_index = 3
-anchors_preset = -1
-anchor_left = -1.90214
-anchor_top = -1.15699
-anchor_right = -2.56035
-anchor_bottom = -1.54278
-offset_left = 1559.21
-offset_top = 1230.81
-offset_right = 2354.2
-offset_bottom = 1729.79
-theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
-theme_override_fonts/font = ExtResource("29_sgl2t")
-theme_override_font_sizes/font_size = 130
-text = "100"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="Pearl2" type="Sprite2D" parent="end day/panel2"]
-z_index = 1
-position = Vector2(153.535, 444.721)
-scale = Vector2(0.391821, 0.391821)
-texture = ExtResource("10_sww3w")
-
-[node name="panel3" type="Sprite2D" parent="end day"]
-z_index = 2
-position = Vector2(772, 200)
-scale = Vector2(0.188882, 0.188882)
-texture = ExtResource("40_pr1ej")
-
-[node name="Label" type="Label" parent="end day/panel3"]
-z_index = 3
-anchors_preset = -1
-anchor_left = -2.56067
-anchor_top = -1.54469
-anchor_right = -3.21889
-anchor_bottom = -1.93049
-offset_left = 2155.79
-offset_top = 1530.53
-offset_right = 2950.79
-offset_bottom = 2029.51
-theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
-theme_override_fonts/font = ExtResource("29_sgl2t")
-theme_override_font_sizes/font_size = 130
-text = "100"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="Pearl2" type="Sprite2D" parent="end day/panel3"]
-z_index = 1
-position = Vector2(142.946, 444.721)
-scale = Vector2(0.391821, 0.391821)
-texture = ExtResource("10_sww3w")
-
-[node name="shop" type="Area2D" parent="end day"]
+[node name="Area2D2" type="Area2D" parent="end day"]
 z_index = 1
 position = Vector2(-152, -48)
 script = ExtResource("37_02fa5")
-hover = ExtResource("32_js0lu")
-normal = ExtResource("32_v2yb1")
 
-[node name="Button" type="Sprite2D" parent="end day/shop"]
+[node name="Button" type="Sprite2D" parent="end day/Area2D2"]
 position = Vector2(565, 561)
 scale = Vector2(0.208204, 0.208204)
 texture = ExtResource("32_v2yb1")
 
-[node name="Label" type="Label" parent="end day/shop/Button"]
+[node name="Label" type="Label" parent="end day/Area2D2/Button"]
 offset_left = -384.696
 offset_top = -143.788
 offset_right = 348.304
@@ -736,164 +599,69 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="end day/shop"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="end day/Area2D2"]
 position = Vector2(565.5, 560.5)
 shape = SubResource("RectangleShape2D_js0lu")
-disabled = true
+
+[node name="panel" type="Sprite2D" parent="end day"]
+z_index = 1
+position = Vector2(372, 200)
+scale = Vector2(0.188882, 0.188882)
+texture = ExtResource("8_bhx41")
+
+[node name="Label" type="Label" parent="end day"]
+z_index = 3
+anchors_preset = -1
+anchor_right = -0.506944
+anchor_bottom = -0.385802
+offset_left = 278.0
+offset_top = 250.0
+offset_right = 1011.0
+offset_bottom = 564.0
+theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
+theme_override_fonts/font = ExtResource("29_sgl2t")
+theme_override_font_sizes/font_size = 40
+text = "30"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="panel2" type="Sprite2D" parent="end day"]
+z_index = 1
+position = Vector2(572, 200)
+scale = Vector2(0.188882, 0.188882)
+texture = ExtResource("8_bhx41")
+
+[node name="panel3" type="Sprite2D" parent="end day"]
+z_index = 1
+position = Vector2(772, 200)
+scale = Vector2(0.188882, 0.188882)
+texture = ExtResource("8_bhx41")
 
 [node name="panel4" type="Sprite2D" parent="end day"]
 z_index = 1
-position = Vector2(372, 375)
+position = Vector2(372, 368)
 scale = Vector2(0.188882, 0.188882)
 texture = ExtResource("8_bhx41")
-
-[node name="Label" type="Label" parent="end day/panel4"]
-z_index = 3
-anchors_preset = -1
-anchor_left = -0.586806
-anchor_top = -0.385802
-anchor_right = -0.586806
-anchor_bottom = -0.385802
-offset_left = 88.0985
-offset_top = 489.871
-offset_right = 821.099
-offset_bottom = 988.852
-theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
-theme_override_fonts/font = ExtResource("29_sgl2t")
-theme_override_font_sizes/font_size = 130
-text = "200"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="Pearl2" type="Sprite2D" parent="end day/panel4"]
-z_index = 1
-position = Vector2(153.534, 428.838)
-scale = Vector2(0.391821, 0.391821)
-texture = ExtResource("10_sww3w")
-
-[node name="Barnacle2" type="Sprite2D" parent="end day/panel4"]
-z_index = 2
-position = Vector2(-185.301, -57.8563)
-rotation = -0.348931
-scale = Vector2(0.905608, 0.905608)
-texture = ExtResource("37_ms3bu")
-
-[node name="Barnacle" type="Sprite2D" parent="end day/panel4"]
-z_index = 2
-position = Vector2(180.006, 90.0032)
-rotation = 0.440032
-scale = Vector2(0.966212, 0.966212)
-texture = ExtResource("38_7ixpq")
 
 [node name="panel5" type="Sprite2D" parent="end day"]
 z_index = 1
-position = Vector2(573, 375)
+position = Vector2(572, 368)
 scale = Vector2(0.188882, 0.188882)
 texture = ExtResource("8_bhx41")
-
-[node name="Label" type="Label" parent="end day/panel5"]
-z_index = 3
-anchors_preset = -1
-anchor_left = -0.586806
-anchor_top = -0.385802
-anchor_right = -0.586806
-anchor_bottom = -0.385802
-offset_left = 88.0985
-offset_top = 489.871
-offset_right = 821.099
-offset_bottom = 988.852
-theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
-theme_override_fonts/font = ExtResource("29_sgl2t")
-theme_override_font_sizes/font_size = 130
-text = "300"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="Pearl2" type="Sprite2D" parent="end day/panel5"]
-z_index = 1
-position = Vector2(153.534, 428.838)
-scale = Vector2(0.391821, 0.391821)
-texture = ExtResource("10_sww3w")
-
-[node name="Star4" type="Sprite2D" parent="end day/panel5"]
-z_index = 1
-position = Vector2(52.9431, -158.829)
-rotation = 0.514866
-scale = Vector2(0.84709, 0.84709)
-texture = ExtResource("24_05nbr")
-
-[node name="Star5" type="Sprite2D" parent="end day/panel5"]
-z_index = 1
-position = Vector2(222.361, 90.0032)
-rotation = -0.995454
-scale = Vector2(1.00534, 1.00534)
-texture = ExtResource("41_8ool0")
-
-[node name="Star3" type="Sprite2D" parent="end day/panel5"]
-z_index = 2
-position = Vector2(-180.007, 52.943)
-scale = Vector2(1.29327, 1.29327)
-texture = ExtResource("23_pr1ej")
 
 [node name="panel6" type="Sprite2D" parent="end day"]
 z_index = 1
-position = Vector2(773, 375)
+position = Vector2(772, 368)
 scale = Vector2(0.188882, 0.188882)
 texture = ExtResource("8_bhx41")
-
-[node name="Label" type="Label" parent="end day/panel6"]
-z_index = 3
-anchors_preset = -1
-anchor_left = -0.586806
-anchor_top = -0.385802
-anchor_right = -0.586806
-anchor_bottom = -0.385802
-offset_left = 88.0985
-offset_top = 489.871
-offset_right = 821.099
-offset_bottom = 988.852
-theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
-theme_override_fonts/font = ExtResource("29_sgl2t")
-theme_override_font_sizes/font_size = 130
-text = "400"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="Pearl2" type="Sprite2D" parent="end day/panel6"]
-z_index = 1
-position = Vector2(142.945, 428.838)
-scale = Vector2(0.391821, 0.391821)
-texture = ExtResource("10_sww3w")
-
-[node name="Ribbon" type="Sprite2D" parent="end day/panel6"]
-z_index = 1
-position = Vector2(-10.5886, 31.7659)
-scale = Vector2(1.23156, 1.23156)
-texture = ExtResource("20_7025r")
-
-[node name="pearllabel" type="Label" parent="end day"]
-offset_left = 92.0
-offset_top = 27.0
-offset_right = 190.0
-offset_bottom = 106.0
-theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
-theme_override_fonts/font = ExtResource("29_sgl2t")
-theme_override_font_sizes/font_size = 50
-
-[node name="Pearl" type="Sprite2D" parent="end day"]
-position = Vector2(68, 59)
-scale = Vector2(0.137302, 0.137302)
-texture = ExtResource("10_sww3w")
 
 [connection signal="input_event" from="info/Area2D" to="info/Area2D" method="_on_input_event"]
 [connection signal="mouse_entered" from="info/Area2D" to="info/Area2D" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="info/Area2D" to="info/Area2D" method="_on_mouse_exited"]
-[connection signal="input_event" from="end day/newday" to="end day/newday" method="_on_input_event"]
-[connection signal="mouse_entered" from="end day/newday" to="end day/newday" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="end day/newday" to="end day/newday" method="_on_mouse_exited"]
-[connection signal="input_event" from="end day/shop" to="end day/shop" method="_on_input_event"]
-[connection signal="mouse_entered" from="end day/shop" to="end day/shop" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="end day/shop" to="end day/shop" method="_on_mouse_exited"]
+[connection signal="input_event" from="end day/Area2D" to="end day/Area2D" method="_on_input_event"]
+[connection signal="mouse_entered" from="end day/Area2D" to="end day/Area2D" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="end day/Area2D" to="end day/Area2D" method="_on_mouse_exited"]
+[connection signal="input_event" from="end day/Area2D2" to="end day/Area2D2" method="_on_input_event"]
+[connection signal="mouse_entered" from="end day/Area2D2" to="end day/Area2D2" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="end day/Area2D2" to="end day/Area2D2" method="_on_mouse_exited"]

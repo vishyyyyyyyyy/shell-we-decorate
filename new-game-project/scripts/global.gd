@@ -1,6 +1,5 @@
 extends Node
 
-var pearls := 0
 var upgrades = {
 	"extra_colors": false,
 	"starfish": false,
@@ -9,6 +8,9 @@ var upgrades = {
 }
 
 var day := 0
+var shells_sold := 0
+var pearls_earned := 0
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
