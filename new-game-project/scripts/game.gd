@@ -10,6 +10,7 @@ var order_failed := false
 
 
 
+
 @onready var timerlabel = $timerlabel
 
 @export var crab_textures: Array[Texture2D]
@@ -32,12 +33,16 @@ var order_completed := true
 
 var current_order = {
 	"shape": "", 
+	"color": "",
 }
 
 func _ready() -> void:
 	$info.visible=true
 	$info/Area2D.visible=true
 	$Crab/Crab.visible = false
+	#end_day()
+	$"end day/shop".shop.connect(shop)
+	$"end day/newday".newday.connect(new_day)
 	$info/Area2D.start.connect(start)
 	$stand/customizepanel.shell_selected.connect(_on_shell_selected)
 
@@ -92,24 +97,72 @@ func end_day():
 	$AnimationPlayer.play("fadeday")
 	await $AnimationPlayer.animation_finished
 	await get_tree().create_timer(1.0).timeout
+	$"end day/pearllabel".visible=true
+	Global.pearls_earned = Global.pearls_earned + Global.daily_pearls
+	$"end day/pearllabel".text = str(Global.pearls_earned)
+	$"end day/Pearl".visible=true
 	$timerlabel.visible=false
+	$"end day/newday".visible=true
+	$"end day/shop".visible=true
+	$"end day/label2".visible=true
+	$"end day/label3".visible=true
+	$"end day/label".visible=true
 	$"end day/newday".visible=true
 	$"end day/shop".visible=true
 	$"end day/newday/CollisionShape2D".disabled=false
 	$"end day/shop/CollisionShape2D".disabled=false
 	$"end day".visible=true
 	$info.visible=true
-	$"end day/label2".text = "Shells Sold: " + str(Global.shells_sold)
+	$"end day/label2".text = "Shells Sold: " + str(Global.daily_shells)
 	$"end day/label".text = "Day: " + str(Global.day)
-	$"end day/label3".text = "Pearls Earned: " + str(Global.pearls_earned)
+	$"end day/label3".text = "Pearls Earned: " + str(Global.daily_pearls)
 	$info/Area2D/CollisionShape2D.disabled = false
 	timerlabel.text = "00:00"
 	
 	
+func shop():
+	$"end day/shop".visible=false
+	$"end day/label2".visible=false
+	$"end day/label3".visible=false
+	$"end day/label".visible=false
+	$"end day/shop".visible=false
+	$"end day/shop/CollisionShape2D".disabled=true
+	$"end day/panel4".visible=true
+	$"end day/panel5".visible=true
+	$"end day/panel6".visible=true
+	$"end day/panel".visible=true
+	$"end day/panel2".visible=true
+	$"end day/panel3".visible=true
+	$"end day/panelselect/CollisionShape2D".disabled=false
+	$"end day/panelselect/CollisionShape2D2".disabled=false
+	$"end day/panelselect/CollisionShape2D3".disabled=false
+	$"end day/panelselect/CollisionShape2D4".disabled=false
+	$"end day/panelselect/CollisionShape2D5".disabled=false
+	$"end day/panelselect/CollisionShape2D6".disabled=false
+	if Global.updgrades["purple"] == true:
+		$"end day/panelselect/CollisionShape2D".disabled=true
+	if Global.updgrades["yellow"] == true:
+		$"end day/panelselect/CollisionShape2D2".disabled=false
+	if Global.updgrades["pink"] == true:
+		$"end day/panelselect/CollisionShape2D3".disabled=false
+	if Global.updgrades["barnacle"] == true:
+		$"end day/panelselect/CollisionShape2D4".disabled=false
+	if Global.updgrades["starfish"] == true:
+		$"end day/panelselect/CollisionShape2D5".disabled=false
+	if Global.updgrades["bow"] == true:
+		$"end day/panelselect/CollisionShape2D6".disabled=false
 	
+		
 	#respawn_crab()
 
-
+func new_day():
+	Global.day +=1 
+	$AnimationPlayer.play("fadeinday")
+	await $AnimationPlayer.animation_finished
+	day_active = true
+	respawn_crab()
+	
+	
 func respawn_crab():
 	crab_present = false
 	order_completed = true
@@ -149,21 +202,54 @@ func crab_order():
 	$orderrequest/orderbubble.visible = true
 	var shapes = ["shell1", "shell2", "shell3"] 
 	current_order["shape"] = shapes.pick_random()
-	
-	
-	if current_order["shape"] == "shell1":
+	var color_extras = []
+	current_order["color"] = build_color_pool().pick_random()
+
+	if current_order["shape"] == "shell1" :
 		$orderrequest/ordershell1.visible=true
-	elif current_order["shape"] == "shell2":
+		if current_order["color"]== "purple":
+			$orderrequest/ordershell1/purple.visible=true
+		elif current_order["color"]== "yellow":
+			$orderrequest/ordershell1/yellow.visible=true
+		elif current_order["color"] == "pink":
+			$orderrequest/ordershell1/pink.visible=true
+	if current_order["shape"] == "shell2":
 		$orderrequest/ordershell2.visible=true
-	elif current_order["shape"] == "shell3":
+		if current_order["color"]== "purple":
+			$orderrequest/ordershell2/purple.visible=true
+		elif current_order["color"]== "yellow":
+			$orderrequest/ordershell2/yellow.visible=true
+		elif current_order["color"] == "pink":
+			$orderrequest/ordershell2/pink.visible=true
+	if current_order["shape"] == "shell3":
 		$orderrequest/ordershell3.visible=true
+		if current_order["color"]== "purple":
+			$orderrequest/ordershell3/purple.visible=true
+		elif current_order["color"]== "yellow":
+			$orderrequest/ordershell3/yellow.visible=true
+		elif current_order["color"] == "pink":
+			$orderrequest/ordershell3/pink.visible=true
 	
 	print("New order:", current_order)
+
+func build_color_pool() -> Array:
+	var pool := ["none", "none"]
+
+	if Global.upgrades["purple"]:
+		pool.append("purple")
+	if Global.upgrades["yellow"]:
+		pool.append("yellow")
+	if Global.upgrades["pink"]:
+		pool.append("pink")
+
+	return pool
+
 
 func _on_shell_selected(shell_id: int) -> void:
 	for i in range(shells.size()):
 		shells[i].visible = (i == shell_id)
-	
+		#if Global.updgrades["purple"] == true:
+			#pass
 	check_order(shell_id)
 
 func check_order(shell_id: int) -> void:
@@ -177,14 +263,22 @@ func check_order(shell_id: int) -> void:
 	$orderrequest/ordershell3.visible=false
 	$orderrequest/ordershell2.visible=false
 	$orderrequest/ordershell1.visible=false
-	
+	$orderrequest/ordershell1/purple.visible=false
+	$orderrequest/ordershell1/yellow.visible=false
+	$orderrequest/ordershell1/pink.visible=false
+	$orderrequest/ordershell2/purple.visible=false
+	$orderrequest/ordershell2/yellow.visible=false
+	$orderrequest/ordershell2/pink.visible=false
+	$orderrequest/ordershell3/purple.visible=false
+	$orderrequest/ordershell3/yellow.visible=false
+	$orderrequest/ordershell3/pink.visible=false
 
 	if selected_shell_shape == order_shape:
 		print("happy")
 		if order_failed:
 			$orderrequest/pearls.visible=true
 			$orderrequest/Pearl.visible=true
-			Global.pearls_earned += 5
+			Global.daily_pearls += 5
 			$orderrequest/pearls.text = "5"
 			order_failed = false
 		else:
@@ -194,13 +288,13 @@ func check_order(shell_id: int) -> void:
 			$orderrequest/pearls.visible=true
 			$orderrequest/Pearl.visible=true
 			face.visible = false
-			Global.pearls_earned += 10
+			Global.daily_pearls += 10
 			$orderrequest/pearls.text = "10"
 		await get_tree().create_timer(2).timeout
 		$orderrequest/pearls.visible=false
 		$orderrequest/Pearl.visible=false
 		$orderrequest/orderbubble.visible=false
-		Global.shells_sold +=1
+		Global.daily_shells +=1
 		$AnimationPlayer.play("crableave")
 		await $AnimationPlayer.animation_finished
 		on_crab_finished()

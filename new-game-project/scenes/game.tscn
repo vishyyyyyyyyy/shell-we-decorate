@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://cv2qwtrm4jmin"]
+[gd_scene load_steps=61 format=3 uid="uid://cv2qwtrm4jmin"]
 
 [ext_resource type="Script" uid="uid://buswxx3owarpg" path="res://scripts/game.gd" id="1_264po"]
 [ext_resource type="Texture2D" uid="uid://m5atieeely02" path="res://images/Rectangle 2.png" id="2_1kice"]
@@ -13,15 +13,23 @@
 [ext_resource type="Texture2D" uid="uid://b7q7aobsfw0d4" path="res://images/pearl.png" id="10_sww3w"]
 [ext_resource type="Texture2D" uid="uid://bexolf6j4hpxl" path="res://images/play.png" id="11_suyxu"]
 [ext_resource type="Texture2D" uid="uid://d4vbpp3fvonr" path="res://images/pause.png" id="12_sgl2t"]
+[ext_resource type="Texture2D" uid="uid://y5ndc8g00cp0" path="res://images/Vector 15.png" id="13_h3rex"]
+[ext_resource type="Texture2D" uid="uid://cw8jc2glu4o62" path="res://images/Vector 12.png" id="14_fedci"]
 [ext_resource type="Texture2D" uid="uid://dn81rl75o0s8x" path="res://images/music (1).png" id="14_wljb1"]
+[ext_resource type="Texture2D" uid="uid://ujkvsyg634t1" path="res://images/Vector 11.png" id="15_8qswn"]
 [ext_resource type="Texture2D" uid="uid://dfp3ic3nuompd" path="res://images/Vector 6.png" id="15_v2yb1"]
 [ext_resource type="Texture2D" uid="uid://8nb3jx1vyms5" path="res://images/Vector 7.png" id="16_js0lu"]
+[ext_resource type="Texture2D" uid="uid://dye4wwqqh3h2" path="res://images/Vector 16.png" id="16_rm0al"]
 [ext_resource type="Texture2D" uid="uid://btbeb6bvk2ksr" path="res://images/Vector 8.png" id="17_gxtfn"]
-[ext_resource type="Texture2D" uid="uid://e5l4vcwhaf7q" path="res://images/shop.png" id="18_twgab"]
+[ext_resource type="Texture2D" uid="uid://co2syp0pf7tea" path="res://images/Vector 13.png" id="17_i4re6"]
+[ext_resource type="Texture2D" uid="uid://btq40c4did0uy" path="res://images/Vector 9.png" id="18_pf7vy"]
 [ext_resource type="Texture2D" uid="uid://pha5fsgrw0by" path="res://images/bubble (1).png" id="19_02fa5"]
+[ext_resource type="Texture2D" uid="uid://8w5gmg87an5p" path="res://images/Vector 17.png" id="19_rm0al"]
 [ext_resource type="Texture2D" uid="uid://b5nqj1tayey0h" path="res://images/ribbon.png" id="20_7025r"]
+[ext_resource type="Texture2D" uid="uid://dbx4yx2lxu7l0" path="res://images/Vector 14.png" id="20_i4re6"]
 [ext_resource type="Script" uid="uid://cdxiyj58ekc10" path="res://scripts/customizepanel.gd" id="20_js0lu"]
 [ext_resource type="Texture2D" uid="uid://c2rw7r7y0g74n" path="res://images/seashell (1).png" id="21_m4url"]
+[ext_resource type="Texture2D" uid="uid://bfuxgc6ua45yu" path="res://images/Vector 10.png" id="21_pf7vy"]
 [ext_resource type="Texture2D" uid="uid://ctg44tylgvyyo" path="res://images/seashell.png" id="22_8ool0"]
 [ext_resource type="Texture2D" uid="uid://dwyx444cjlawa" path="res://images/Star 3.png" id="23_pr1ej"]
 [ext_resource type="Texture2D" uid="uid://bwqw8ox8raxxt" path="res://images/Star 4.png" id="24_05nbr"]
@@ -38,6 +46,7 @@
 [ext_resource type="Texture2D" uid="uid://cth1rexphird3" path="res://images/barnacle2.png" id="37_ms3bu"]
 [ext_resource type="Texture2D" uid="uid://djv2q6ytflqbp" path="res://images/barnacle.png" id="38_7ixpq"]
 [ext_resource type="Texture2D" uid="uid://c0b5rkly8gj4m" path="res://images/pink.png" id="38_m4url"]
+[ext_resource type="Script" uid="uid://dyoskw0j7lfmc" path="res://scripts/panelselect.gd" id="38_pr1ej"]
 [ext_resource type="Texture2D" uid="uid://dlpndnfto8fu1" path="res://images/yellow.png" id="39_8ool0"]
 [ext_resource type="Texture2D" uid="uid://drc21qrkqkrbh" path="res://images/purple.png" id="40_pr1ej"]
 [ext_resource type="Texture2D" uid="uid://bglcs4hdibe1i" path="res://images/Star 5.png" id="41_8ool0"]
@@ -177,19 +186,66 @@ tracks/2/keys = {
 "values": [Color(1, 1, 1, 1), Color(0.27451, 0.27451, 0.27451, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_pr1ej"]
+resource_name = "fadeinday"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../Crab/CanvasModulate:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.2757, 0.2757, 0.2757, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../orderrequest/CanvasModulate:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.27451, 0.27451, 0.27451, 1), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../CanvasModulate:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.27451, 0.27451, 0.27451, 1), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_02fa5"]
 _data = {
 &"RESET": SubResource("Animation_gxtfn"),
 &"crabenter": SubResource("Animation_js0lu"),
 &"crableave": SubResource("Animation_twgab"),
-&"fadeday": SubResource("Animation_8ool0")
+&"fadeday": SubResource("Animation_8ool0"),
+&"fadeinday": SubResource("Animation_pr1ej")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gxtfn"]
 size = Vector2(1363.58, 1107.34)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pr1ej"]
+size = Vector2(633.332, 626.667)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_js0lu"]
 size = Vector2(197, 65)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ool0"]
+size = Vector2(149, 122)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_264po")
@@ -246,6 +302,7 @@ libraries = {
 [node name="orderrequest" type="CanvasLayer" parent="."]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="orderrequest"]
+visible = false
 
 [node name="orderbubble" type="Sprite2D" parent="orderrequest"]
 visible = false
@@ -260,11 +317,23 @@ position = Vector2(842, 307)
 scale = Vector2(0.109271, 0.109271)
 texture = ExtResource("15_v2yb1")
 
-[node name="ordershell3" type="Sprite2D" parent="orderrequest"]
+[node name="purple" type="Sprite2D" parent="orderrequest/ordershell1"]
 visible = false
-position = Vector2(833, 305)
-scale = Vector2(0.096658, 0.0966581)
-texture = ExtResource("17_gxtfn")
+z_index = 1
+scale = Vector2(1, 1)
+texture = ExtResource("13_h3rex")
+
+[node name="yellow" type="Sprite2D" parent="orderrequest/ordershell1"]
+visible = false
+z_index = 1
+scale = Vector2(1, 1)
+texture = ExtResource("14_fedci")
+
+[node name="pink" type="Sprite2D" parent="orderrequest/ordershell1"]
+visible = false
+z_index = 1
+scale = Vector2(1, 1)
+texture = ExtResource("15_8qswn")
 
 [node name="ordershell2" type="Sprite2D" parent="orderrequest"]
 visible = false
@@ -272,6 +341,48 @@ z_index = 1
 position = Vector2(842, 313)
 scale = Vector2(0.109232, 0.109232)
 texture = ExtResource("16_js0lu")
+
+[node name="purple" type="Sprite2D" parent="orderrequest/ordershell2"]
+visible = false
+z_index = 1
+scale = Vector2(1, 1)
+texture = ExtResource("16_rm0al")
+
+[node name="yellow" type="Sprite2D" parent="orderrequest/ordershell2"]
+visible = false
+z_index = 1
+scale = Vector2(1, 1)
+texture = ExtResource("17_i4re6")
+
+[node name="pink" type="Sprite2D" parent="orderrequest/ordershell2"]
+visible = false
+z_index = 1
+scale = Vector2(1, 1)
+texture = ExtResource("18_pf7vy")
+
+[node name="ordershell3" type="Sprite2D" parent="orderrequest"]
+visible = false
+position = Vector2(833, 305)
+scale = Vector2(0.096658, 0.0966581)
+texture = ExtResource("17_gxtfn")
+
+[node name="purple" type="Sprite2D" parent="orderrequest/ordershell3"]
+visible = false
+z_index = 1
+scale = Vector2(1, 1)
+texture = ExtResource("19_rm0al")
+
+[node name="yellow" type="Sprite2D" parent="orderrequest/ordershell3"]
+visible = false
+z_index = 1
+scale = Vector2(1, 1)
+texture = ExtResource("20_i4re6")
+
+[node name="pink" type="Sprite2D" parent="orderrequest/ordershell3"]
+visible = false
+z_index = 1
+scale = Vector2(1, 1)
+texture = ExtResource("21_pf7vy")
 
 [node name="face" type="Sprite2D" parent="orderrequest"]
 visible = false
@@ -374,17 +485,56 @@ position = Vector2(36.6062, 45.7573)
 scale = Vector2(1.64728, 1.64728)
 texture = ExtResource("8_bhx41")
 
+[node name="customizeshell1" type="Sprite2D" parent="stand/customizepanel/panel"]
+z_index = 1
+position = Vector2(-22.2222, -27.7776)
+scale = Vector2(0.607061, 0.607061)
+texture = ExtResource("15_v2yb1")
+
+[node name="purple" type="Sprite2D" parent="stand/customizepanel/panel"]
+visible = false
+z_index = 1
+position = Vector2(-11.1111, 0.000244141)
+scale = Vector2(1.02435, 1.02435)
+texture = ExtResource("40_pr1ej")
+
 [node name="panel2" type="Sprite2D" parent="stand/customizepanel"]
 z_index = 1
 position = Vector2(3331.17, 45.7573)
 scale = Vector2(1.64728, 1.64728)
 texture = ExtResource("8_bhx41")
 
+[node name="customizeshell2" type="Sprite2D" parent="stand/customizepanel/panel2"]
+z_index = 1
+position = Vector2(-16.668, -5.55518)
+scale = Vector2(0.665906, 0.665906)
+texture = ExtResource("16_js0lu")
+
+[node name="yellow" type="Sprite2D" parent="stand/customizepanel/panel2"]
+visible = false
+z_index = 1
+position = Vector2(16.6653, 0.000244141)
+scale = Vector2(1.02435, 1.02435)
+texture = ExtResource("39_8ool0")
+
 [node name="panel3" type="Sprite2D" parent="stand/customizepanel"]
 z_index = 1
 position = Vector2(6918.58, 45.7573)
 scale = Vector2(1.64728, 1.64728)
 texture = ExtResource("8_bhx41")
+
+[node name="customizeshell3" type="Sprite2D" parent="stand/customizepanel/panel3"]
+z_index = 1
+position = Vector2(-44.4448, -5.55518)
+scale = Vector2(0.536989, 0.53699)
+texture = ExtResource("17_gxtfn")
+
+[node name="pink" type="Sprite2D" parent="stand/customizepanel/panel3"]
+visible = false
+z_index = 1
+position = Vector2(16.666, 0.000244141)
+scale = Vector2(1.02435, 1.02435)
+texture = ExtResource("38_m4url")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="stand/customizepanel"]
 z_index = 1
@@ -404,31 +554,13 @@ position = Vector2(6918.58, 45.7579)
 shape = SubResource("RectangleShape2D_gxtfn")
 disabled = true
 
-[node name="customizeshell1" type="Sprite2D" parent="stand"]
-z_index = 1
-position = Vector2(209, 564)
-scale = Vector2(0.109271, 0.109271)
-texture = ExtResource("15_v2yb1")
-
-[node name="customizeshell2" type="Sprite2D" parent="stand"]
-z_index = 1
-position = Vector2(570, 568)
-scale = Vector2(0.119863, 0.119863)
-texture = ExtResource("16_js0lu")
-
-[node name="customizeshell3" type="Sprite2D" parent="stand"]
-z_index = 1
-position = Vector2(957, 568)
-scale = Vector2(0.096658, 0.0966581)
-texture = ExtResource("17_gxtfn")
-
 [node name="Rectangle8" type="Sprite2D" parent="."]
 position = Vector2(118, 64)
 scale = Vector2(0.14491, 0.14491)
 texture = ExtResource("9_qnb83")
 
 [node name="Play" type="Sprite2D" parent="."]
-position = Vector2(1319, 92)
+position = Vector2(1287, 76)
 scale = Vector2(0.15, 0.15)
 texture = ExtResource("11_suyxu")
 
@@ -437,10 +569,23 @@ position = Vector2(1094, 61)
 scale = Vector2(0.15, 0.15)
 texture = ExtResource("12_sgl2t")
 
-[node name="Shop" type="Sprite2D" parent="."]
-position = Vector2(1315, -20)
+[node name="musicarea" type="Area2D" parent="."]
+position = Vector2(981, 61)
 scale = Vector2(0.15, 0.15)
-texture = ExtResource("18_twgab")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="musicarea"]
+z_index = 1
+position = Vector2(-3.33447, 6.10352e-05)
+shape = SubResource("RectangleShape2D_pr1ej")
+
+[node name="pause" type="Area2D" parent="."]
+position = Vector2(981, 61)
+scale = Vector2(0.15, 0.15)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pause"]
+z_index = 1
+position = Vector2(756.665, 6.10352e-05)
+shape = SubResource("RectangleShape2D_pr1ej")
 
 [node name="Music" type="Sprite2D" parent="."]
 position = Vector2(981, 61)
@@ -618,99 +763,6 @@ position = Vector2(565.5, 560.5)
 shape = SubResource("RectangleShape2D_js0lu")
 disabled = true
 
-[node name="panel" type="Sprite2D" parent="end day"]
-z_index = 2
-position = Vector2(372, 200)
-scale = Vector2(0.188882, 0.188882)
-texture = ExtResource("38_m4url")
-
-[node name="Label" type="Label" parent="end day/panel"]
-z_index = 3
-anchors_preset = -1
-anchor_left = -1.1759
-anchor_top = -0.771915
-anchor_right = -1.76511
-anchor_bottom = -1.15772
-offset_left = 862.973
-offset_top = 942.386
-offset_right = 1595.97
-offset_bottom = 1441.37
-theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
-theme_override_fonts/font = ExtResource("29_sgl2t")
-theme_override_font_sizes/font_size = 130
-text = "100"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="Pearl2" type="Sprite2D" parent="end day/panel"]
-z_index = 1
-position = Vector2(142.946, 450.016)
-scale = Vector2(0.391821, 0.391821)
-texture = ExtResource("10_sww3w")
-
-[node name="panel2" type="Sprite2D" parent="end day"]
-z_index = 2
-position = Vector2(572, 200)
-scale = Vector2(0.188882, 0.188882)
-texture = ExtResource("39_8ool0")
-
-[node name="Label" type="Label" parent="end day/panel2"]
-z_index = 3
-anchors_preset = -1
-anchor_left = -1.90214
-anchor_top = -1.15699
-anchor_right = -2.56035
-anchor_bottom = -1.54278
-offset_left = 1559.21
-offset_top = 1230.81
-offset_right = 2354.2
-offset_bottom = 1729.79
-theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
-theme_override_fonts/font = ExtResource("29_sgl2t")
-theme_override_font_sizes/font_size = 130
-text = "100"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="Pearl2" type="Sprite2D" parent="end day/panel2"]
-z_index = 1
-position = Vector2(153.535, 444.721)
-scale = Vector2(0.391821, 0.391821)
-texture = ExtResource("10_sww3w")
-
-[node name="panel3" type="Sprite2D" parent="end day"]
-z_index = 2
-position = Vector2(772, 200)
-scale = Vector2(0.188882, 0.188882)
-texture = ExtResource("40_pr1ej")
-
-[node name="Label" type="Label" parent="end day/panel3"]
-z_index = 3
-anchors_preset = -1
-anchor_left = -2.56067
-anchor_top = -1.54469
-anchor_right = -3.21889
-anchor_bottom = -1.93049
-offset_left = 2155.79
-offset_top = 1530.53
-offset_right = 2950.79
-offset_bottom = 2029.51
-theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
-theme_override_fonts/font = ExtResource("29_sgl2t")
-theme_override_font_sizes/font_size = 130
-text = "100"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="Pearl2" type="Sprite2D" parent="end day/panel3"]
-z_index = 1
-position = Vector2(142.946, 444.721)
-scale = Vector2(0.391821, 0.391821)
-texture = ExtResource("10_sww3w")
-
 [node name="shop" type="Area2D" parent="end day"]
 z_index = 1
 position = Vector2(-152, -48)
@@ -741,7 +793,143 @@ position = Vector2(565.5, 560.5)
 shape = SubResource("RectangleShape2D_js0lu")
 disabled = true
 
+[node name="panelselect" type="Area2D" parent="end day"]
+script = ExtResource("38_pr1ej")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="end day/panelselect"]
+z_index = 3
+position = Vector2(370.5, 209)
+shape = SubResource("RectangleShape2D_8ool0")
+disabled = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="end day/panelselect"]
+z_index = 3
+position = Vector2(570.5, 209)
+shape = SubResource("RectangleShape2D_8ool0")
+disabled = true
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="end day/panelselect"]
+z_index = 3
+position = Vector2(773.5, 209)
+shape = SubResource("RectangleShape2D_8ool0")
+disabled = true
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="end day/panelselect"]
+z_index = 3
+position = Vector2(371.5, 376)
+shape = SubResource("RectangleShape2D_8ool0")
+disabled = true
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="end day/panelselect"]
+z_index = 3
+position = Vector2(572.5, 376)
+shape = SubResource("RectangleShape2D_8ool0")
+disabled = true
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="end day/panelselect"]
+z_index = 3
+position = Vector2(771.5, 376)
+shape = SubResource("RectangleShape2D_8ool0")
+disabled = true
+
+[node name="panel" type="Sprite2D" parent="end day"]
+visible = false
+z_index = 1
+position = Vector2(372, 207)
+scale = Vector2(0.188882, 0.188882)
+texture = ExtResource("40_pr1ej")
+
+[node name="Label" type="Label" parent="end day/panel"]
+z_index = 3
+anchors_preset = -1
+anchor_left = -0.586806
+anchor_top = -0.385802
+anchor_right = -0.586806
+anchor_bottom = -0.385802
+offset_left = 88.0985
+offset_top = 489.871
+offset_right = 821.099
+offset_bottom = 988.852
+theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
+theme_override_fonts/font = ExtResource("29_sgl2t")
+theme_override_font_sizes/font_size = 130
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Pearl" type="Sprite2D" parent="end day/panel"]
+z_index = 1
+position = Vector2(153.534, 428.838)
+scale = Vector2(0.391821, 0.391821)
+texture = ExtResource("10_sww3w")
+
+[node name="panel2" type="Sprite2D" parent="end day"]
+visible = false
+z_index = 1
+position = Vector2(573, 207)
+scale = Vector2(0.188882, 0.188882)
+texture = ExtResource("39_8ool0")
+
+[node name="Label" type="Label" parent="end day/panel2"]
+z_index = 3
+anchors_preset = -1
+anchor_left = -0.586806
+anchor_top = -0.385802
+anchor_right = -0.586806
+anchor_bottom = -0.385802
+offset_left = 88.0985
+offset_top = 489.871
+offset_right = 821.099
+offset_bottom = 988.852
+theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
+theme_override_fonts/font = ExtResource("29_sgl2t")
+theme_override_font_sizes/font_size = 130
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Pearl" type="Sprite2D" parent="end day/panel2"]
+z_index = 1
+position = Vector2(153.534, 428.838)
+scale = Vector2(0.391821, 0.391821)
+texture = ExtResource("10_sww3w")
+
+[node name="panel3" type="Sprite2D" parent="end day"]
+visible = false
+z_index = 1
+position = Vector2(773, 207)
+scale = Vector2(0.188882, 0.188882)
+texture = ExtResource("38_m4url")
+
+[node name="Label" type="Label" parent="end day/panel3"]
+z_index = 3
+anchors_preset = -1
+anchor_left = -0.586806
+anchor_top = -0.385802
+anchor_right = -0.586806
+anchor_bottom = -0.385802
+offset_left = 88.0985
+offset_top = 489.871
+offset_right = 821.099
+offset_bottom = 988.852
+theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
+theme_override_fonts/font = ExtResource("29_sgl2t")
+theme_override_font_sizes/font_size = 130
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Pearl" type="Sprite2D" parent="end day/panel3"]
+z_index = 1
+position = Vector2(142.945, 428.838)
+scale = Vector2(0.391821, 0.391821)
+texture = ExtResource("10_sww3w")
+
 [node name="panel4" type="Sprite2D" parent="end day"]
+visible = false
 z_index = 1
 position = Vector2(372, 375)
 scale = Vector2(0.188882, 0.188882)
@@ -766,7 +954,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Pearl2" type="Sprite2D" parent="end day/panel4"]
+[node name="Pearl" type="Sprite2D" parent="end day/panel4"]
 z_index = 1
 position = Vector2(153.534, 428.838)
 scale = Vector2(0.391821, 0.391821)
@@ -787,6 +975,7 @@ scale = Vector2(0.966212, 0.966212)
 texture = ExtResource("38_7ixpq")
 
 [node name="panel5" type="Sprite2D" parent="end day"]
+visible = false
 z_index = 1
 position = Vector2(573, 375)
 scale = Vector2(0.188882, 0.188882)
@@ -811,7 +1000,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Pearl2" type="Sprite2D" parent="end day/panel5"]
+[node name="Pearl" type="Sprite2D" parent="end day/panel5"]
 z_index = 1
 position = Vector2(153.534, 428.838)
 scale = Vector2(0.391821, 0.391821)
@@ -838,6 +1027,7 @@ scale = Vector2(1.29327, 1.29327)
 texture = ExtResource("23_pr1ej")
 
 [node name="panel6" type="Sprite2D" parent="end day"]
+visible = false
 z_index = 1
 position = Vector2(773, 375)
 scale = Vector2(0.188882, 0.188882)
@@ -862,7 +1052,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Pearl2" type="Sprite2D" parent="end day/panel6"]
+[node name="Pearl" type="Sprite2D" parent="end day/panel6"]
 z_index = 1
 position = Vector2(142.945, 428.838)
 scale = Vector2(0.391821, 0.391821)
@@ -875,6 +1065,7 @@ scale = Vector2(1.23156, 1.23156)
 texture = ExtResource("20_7025r")
 
 [node name="pearllabel" type="Label" parent="end day"]
+visible = false
 offset_left = 92.0
 offset_top = 27.0
 offset_right = 190.0
@@ -882,8 +1073,10 @@ offset_bottom = 106.0
 theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
 theme_override_fonts/font = ExtResource("29_sgl2t")
 theme_override_font_sizes/font_size = 50
+text = "0"
 
 [node name="Pearl" type="Sprite2D" parent="end day"]
+visible = false
 position = Vector2(68, 59)
 scale = Vector2(0.137302, 0.137302)
 texture = ExtResource("10_sww3w")
