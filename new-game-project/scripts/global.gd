@@ -1,9 +1,9 @@
 extends Node
 
 var upgrades = {
-	"purple": false,
-	"yellow": false,
-	"pink": false,
+	"purple": true,
+	"yellow": true,
+	"pink": true,
 	"starfish": false,
 	"barnacle": false,
 	"bow": false

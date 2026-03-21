@@ -145,114 +145,6 @@ tracks/4/keys = {
 "update": 1,
 "values": [false]
 }
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("../../Crab/purple1:position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(543, 341), Vector2(543, 901)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("../../Crab/yellow1:position")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(543, 341), Vector2(543, 901)]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("../../Crab/pink1:position")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(543, 341), Vector2(543, 901)]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("../../Crab/purple2:position")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(551, 345), Vector2(551, 905)]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("../../Crab/yellow2:position")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(551, 345), Vector2(551, 905)]
-}
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("../../Crab/pink2:position")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(551, 345), Vector2(551, 905)]
-}
-tracks/11/type = "value"
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/path = NodePath("../../Crab/purple3:position")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(561, 284), Vector2(561, 844)]
-}
-tracks/12/type = "value"
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/path = NodePath("../../Crab/yellow3:position")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(561, 284), Vector2(561, 844)]
-}
-tracks/13/type = "value"
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/path = NodePath("../../Crab/pink3:position")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(561, 284), Vector2(561, 844)]
-}
 
 [sub_resource type="Animation" id="Animation_8ool0"]
 resource_name = "fadeday"
@@ -394,63 +286,6 @@ visible = false
 position = Vector2(561, 284)
 scale = Vector2(0.404822, 0.404822)
 texture = ExtResource("17_gxtfn")
-
-[node name="purple1" type="Sprite2D" parent="Crab"]
-visible = false
-position = Vector2(543, 341)
-scale = Vector2(0.43543, 0.43543)
-texture = ExtResource("13_h3rex")
-
-[node name="purple2" type="Sprite2D" parent="Crab"]
-visible = false
-position = Vector2(551, 345)
-rotation = 1.22973
-scale = Vector2(0.506849, 0.506849)
-texture = ExtResource("16_rm0al")
-
-[node name="purple3" type="Sprite2D" parent="Crab"]
-visible = false
-position = Vector2(561, 284)
-scale = Vector2(0.404822, 0.404822)
-texture = ExtResource("19_rm0al")
-
-[node name="yellow1" type="Sprite2D" parent="Crab"]
-visible = false
-position = Vector2(543, 341)
-scale = Vector2(0.43543, 0.43543)
-texture = ExtResource("14_fedci")
-
-[node name="yellow2" type="Sprite2D" parent="Crab"]
-visible = false
-position = Vector2(551, 345)
-rotation = 1.22973
-scale = Vector2(0.506849, 0.506849)
-texture = ExtResource("17_i4re6")
-
-[node name="yellow3" type="Sprite2D" parent="Crab"]
-visible = false
-position = Vector2(561, 284)
-scale = Vector2(0.404822, 0.404822)
-texture = ExtResource("20_i4re6")
-
-[node name="pink1" type="Sprite2D" parent="Crab"]
-visible = false
-position = Vector2(543, 341)
-scale = Vector2(0.43543, 0.43543)
-texture = ExtResource("15_8qswn")
-
-[node name="pink2" type="Sprite2D" parent="Crab"]
-visible = false
-position = Vector2(551, 345)
-rotation = 1.22973
-scale = Vector2(0.506849, 0.506849)
-texture = ExtResource("18_pf7vy")
-
-[node name="pink3" type="Sprite2D" parent="Crab"]
-visible = false
-position = Vector2(561, 284)
-scale = Vector2(0.404822, 0.404822)
-texture = ExtResource("21_pf7vy")
 
 [node name="Crab" type="Sprite2D" parent="Crab"]
 visible = false
@@ -705,24 +540,6 @@ shape = SubResource("RectangleShape2D_gxtfn")
 disabled = true
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="stand/customizepanel"]
-z_index = 1
-position = Vector2(6918.58, 45.7579)
-shape = SubResource("RectangleShape2D_gxtfn")
-disabled = true
-
-[node name="purplecoll" type="CollisionShape2D" parent="stand/customizepanel"]
-z_index = 1
-position = Vector2(36.6025, 45.7579)
-shape = SubResource("RectangleShape2D_gxtfn")
-disabled = true
-
-[node name="yellowcoll" type="CollisionShape2D" parent="stand/customizepanel"]
-z_index = 1
-position = Vector2(3257.96, 45.7579)
-shape = SubResource("RectangleShape2D_gxtfn")
-disabled = true
-
-[node name="pinkcoll" type="CollisionShape2D" parent="stand/customizepanel"]
 z_index = 1
 position = Vector2(6918.58, 45.7579)
 shape = SubResource("RectangleShape2D_gxtfn")

@@ -8,8 +8,9 @@ var current_hour := 0
 var day_active := false
 var order_failed := false
 
+var selected_shell_id := 0
 
-
+var selected_color = "none"
 
 @onready var timerlabel = $timerlabel
 
@@ -36,7 +37,18 @@ var current_order = {
 	"color": "",
 }
 
+
+@onready var purplepanel = $stand/customizepanel/panel/purple
+@onready var yellowpanel = $stand/customizepanel/panel2/yellow
+@onready var pinkpanel = $stand/customizepanel/panel3/pink
+
+@onready var purple_shells = [$Crab/purple1, $Crab/purple2, $Crab/purple3]
+@onready var yellow_shells = [$Crab/yellow1, $Crab/yellow2, $Crab/yellow3]
+@onready var pink_shells = [$Crab/pink1, $Crab/pink2, $Crab/pink3]
+
+
 func _ready() -> void:
+	#purplepanel.visible = Global.upgrades["purple"]
 	$info.visible=true
 	$info/Area2D.visible=true
 	$Crab/Crab.visible = false
@@ -45,6 +57,7 @@ func _ready() -> void:
 	$"end day/newday".newday.connect(new_day)
 	$info/Area2D.start.connect(start)
 	$stand/customizepanel.shell_selected.connect(_on_shell_selected)
+	$stand/customizepanel.color_selected.connect(_on_color_selected)
 
 
 func _process(delta: float) -> void:
@@ -64,6 +77,8 @@ func _process(delta: float) -> void:
 
 
 func start():
+	$AnimationPlayer.play("fadeinday")
+	await $AnimationPlayer.animation_finished
 	day_active = true
 	$stand/customizepanel/CollisionShape2D2.disabled=false
 	$stand/customizepanel/CollisionShape2D.disabled=false
@@ -73,6 +88,16 @@ func start():
 
 
 func on_crab_finished():
+	$stand/customizepanel/panel/purple.visible=false
+	$stand/customizepanel/panel2/yellow.visible=false
+	$stand/customizepanel/panel3/pink.visible=false
+	for item in purple_shells:
+		item.visible = false
+	for item in yellow_shells:
+		item.visible = false
+	for item in pink_shells:
+		item.visible = false
+	reset_ui()
 	crab_present = false
 	order_completed = true
 
@@ -83,17 +108,17 @@ func on_crab_finished():
 	await get_tree().create_timer(0.8).timeout
 
 	# ONLY spawn another crab if the day is still going
-	if current_hour < 24:
+	if current_hour < 23 and crab_present == false:
 		spawn_crab()
 
 
 
 func end_day():
 	day_active = false
+	crab_present=false
 	
 	time_passed = 0.0
 	current_hour = 0
-	Global.day += 1
 	$AnimationPlayer.play("fadeday")
 	await $AnimationPlayer.animation_finished
 	await get_tree().create_timer(1.0).timeout
@@ -116,7 +141,6 @@ func end_day():
 	$"end day/label2".text = "Shells Sold: " + str(Global.daily_shells)
 	$"end day/label".text = "Day: " + str(Global.day)
 	$"end day/label3".text = "Pearls Earned: " + str(Global.daily_pearls)
-	$info/Area2D/CollisionShape2D.disabled = false
 	timerlabel.text = "00:00"
 	
 	
@@ -139,23 +163,26 @@ func shop():
 	$"end day/panelselect/CollisionShape2D4".disabled=false
 	$"end day/panelselect/CollisionShape2D5".disabled=false
 	$"end day/panelselect/CollisionShape2D6".disabled=false
-	if Global.updgrades["purple"] == true:
-		$"end day/panelselect/CollisionShape2D".disabled=true
-	if Global.updgrades["yellow"] == true:
-		$"end day/panelselect/CollisionShape2D2".disabled=false
-	if Global.updgrades["pink"] == true:
-		$"end day/panelselect/CollisionShape2D3".disabled=false
-	if Global.updgrades["barnacle"] == true:
-		$"end day/panelselect/CollisionShape2D4".disabled=false
-	if Global.updgrades["starfish"] == true:
-		$"end day/panelselect/CollisionShape2D5".disabled=false
-	if Global.updgrades["bow"] == true:
-		$"end day/panelselect/CollisionShape2D6".disabled=false
 	
-		
-	#respawn_crab()
+	
+	#shop upgrades disable/enable!
+	$"end day/panelselect/CollisionShape2D".disabled = Global.upgrades["purple"]
+	$"end day/panelselect/CollisionShape2D2".disabled = Global.upgrades["yellow"]
+	$"end day/panelselect/CollisionShape2D3".disabled = Global.upgrades["pink"]
+	$"end day/panelselect/CollisionShape2D4".disabled = Global.upgrades["barnacle"]
+	$"end day/panelselect/CollisionShape2D5".disabled = Global.upgrades["starfish"]
+	$"end day/panelselect/CollisionShape2D6".disabled = Global.upgrades["bow"]
+
+	
 
 func new_day():
+	
+	$"end day/panelselect/CollisionShape2D".disabled=true
+	$"end day/panelselect/CollisionShape2D2".disabled=true
+	$"end day/panelselect/CollisionShape2D3".disabled=true
+	$"end day/panelselect/CollisionShape2D4".disabled=true
+	$"end day/panelselect/CollisionShape2D5".disabled=true
+	$"end day/panelselect/CollisionShape2D6".disabled=true
 	Global.day +=1 
 	$AnimationPlayer.play("fadeinday")
 	await $AnimationPlayer.animation_finished
@@ -175,6 +202,8 @@ func respawn_crab():
 	spawn_crab()
 
 func spawn_crab():
+	selected_shell_id = -1
+	selected_color = "none" #reset the collors
 	$AnimationPlayer.play("crabenter")
 	print("SPAWNING CRAB")
 	if crab_textures.is_empty():
@@ -202,7 +231,6 @@ func crab_order():
 	$orderrequest/orderbubble.visible = true
 	var shapes = ["shell1", "shell2", "shell3"] 
 	current_order["shape"] = shapes.pick_random()
-	var color_extras = []
 	current_order["color"] = build_color_pool().pick_random()
 
 	if current_order["shape"] == "shell1" :
@@ -245,19 +273,95 @@ func build_color_pool() -> Array:
 	return pool
 
 
-func _on_shell_selected(shell_id: int) -> void:
+func _on_shell_selected(shell_id):
+
+	selected_shell_id = shell_id
+
 	for i in range(shells.size()):
 		shells[i].visible = (i == shell_id)
-		#if Global.updgrades["purple"] == true:
-			#pass
-	check_order(shell_id)
 
-func check_order(shell_id: int) -> void:
+	var colors = $stand/customizepanel.get_unlocked_colors()
+
+	if current_order["color"] == "none" or colors.size() == 0:
+		check_order()
+	else:
+		$stand/customizepanel.selecting_color = true
+		
+		#enable colors
+		$stand/customizepanel/purplecoll.disabled = not Global.upgrades["purple"]
+		$stand/customizepanel/yellowcoll.disabled = not Global.upgrades["yellow"]
+		$stand/customizepanel/pinkcoll.disabled = not Global.upgrades["pink"]
+		
+		
+		reset_ui()
+		# show the color panlelll
+		
+		purplepanel.visible = Global.upgrades["purple"]
+		yellowpanel.visible = Global.upgrades["yellow"]
+		pinkpanel.visible = Global.upgrades["pink"]
+		
+func _on_color_selected(color):
+	
+	#disable color
+	$stand/customizepanel/purplecoll.disabled = true
+	$stand/customizepanel/yellowcoll.disabled = true
+	$stand/customizepanel/pinkcoll.disabled = true
+		
+	#enable shell
+	$stand/customizepanel/CollisionShape2D.disabled = true
+	$stand/customizepanel/CollisionShape2D2.disabled = true
+	$stand/customizepanel/CollisionShape2D3.disabled = true
+
+	selected_color = color
+	apply_color()
+	$stand/customizepanel.selecting_color = false
+	check_order()
+
+func reset_ui():
+	# hide colors
+	purplepanel.visible = false
+	yellowpanel.visible = false
+	pinkpanel.visible = false
+
+	# show shells
+	$stand/customizepanel/panel/customizeshell1.visible = true
+	$stand/customizepanel/panel2/customizeshell2.visible = true
+	$stand/customizepanel/panel3/customizeshell3.visible = true
+
+	
+func apply_color():
+	# hide prev colors first!!
+	for item in purple_shells:
+		item.visible = false
+	for item in yellow_shells:
+		item.visible = false
+	for item in pink_shells:
+		item.visible = false
+
+
+	if selected_shell_id < 0 or selected_shell_id >= 3:
+		return
+
+	if selected_color == "purple":
+		purple_shells[selected_shell_id].visible = true
+
+	elif selected_color == "yellow":
+		yellow_shells[selected_shell_id].visible = true
+
+	elif selected_color == "pink":
+		pink_shells[selected_shell_id].visible = true
+
+	
+func check_order() -> void:
+	
+	if selected_shell_id < 0 or selected_shell_id >= shells.size():
+		return
+	
 	$stand/customizepanel/CollisionShape2D2.disabled=true
 	$stand/customizepanel/CollisionShape2D.disabled=true
 	$stand/customizepanel/CollisionShape2D3.disabled=true
 	
-	var selected_shell_shape = shells[shell_id].name
+	var selected_shell_shape = shells[selected_shell_id].name
 	var order_shape = current_order["shape"]
 	
 	$orderrequest/ordershell3.visible=false
@@ -273,9 +377,16 @@ func check_order(shell_id: int) -> void:
 	$orderrequest/ordershell3/yellow.visible=false
 	$orderrequest/ordershell3/pink.visible=false
 
-	if selected_shell_shape == order_shape:
+	var order_color = current_order["color"]
+
+	var color_match = (order_color == "none" or selected_color == order_color)
+
+	if selected_shell_shape == order_shape and color_match:
 		print("happy")
 		if order_failed:
+			$stand/customizepanel/panel/purple.visible=false
+			$stand/customizepanel/panel2/yellow.visible=false
+			$stand/customizepanel/panel3/pink.visible=false
 			$orderrequest/pearls.visible=true
 			$orderrequest/Pearl.visible=true
 			Global.daily_pearls += 5
@@ -291,6 +402,9 @@ func check_order(shell_id: int) -> void:
 			Global.daily_pearls += 10
 			$orderrequest/pearls.text = "10"
 		await get_tree().create_timer(2).timeout
+		$stand/customizepanel/panel/purple.visible=false
+		$stand/customizepanel/panel2/yellow.visible=false
+		$stand/customizepanel/panel3/pink.visible=false
 		$orderrequest/pearls.visible=false
 		$orderrequest/Pearl.visible=false
 		$orderrequest/orderbubble.visible=false
@@ -307,6 +421,10 @@ func check_order(shell_id: int) -> void:
 		face.visible = true
 		face.texture = sad
 		await get_tree().create_timer(2).timeout
+		$stand/customizepanel/panel/purple.visible=false
+		$stand/customizepanel/panel2/yellow.visible=false
+		$stand/customizepanel/panel3/pink.visible=false
+		reset_ui()
 		face.visible = false
 		$orderrequest/orderbubble.visible = true
 
@@ -316,6 +434,7 @@ func check_order(shell_id: int) -> void:
 			$orderrequest/ordershell2.visible = true
 		elif order_shape == "shell3":
 			$orderrequest/ordershell3.visible = true
+			
 			
 		$stand/customizepanel/CollisionShape2D2.disabled = false
 		$stand/customizepanel/CollisionShape2D.disabled = false
