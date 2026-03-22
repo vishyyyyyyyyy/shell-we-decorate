@@ -296,7 +296,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_pr1ej"]
 resource_name = "fadeinday"
-length = 3.0
+length = 2.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -304,7 +304,7 @@ tracks/0/path = NodePath("../../Crab/CanvasModulate:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 3),
+"times": PackedFloat32Array(0, 2.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0.2757, 0.2757, 0.2757, 1), Color(1, 1, 1, 1)]
@@ -316,7 +316,7 @@ tracks/1/path = NodePath("../../orderrequest/CanvasModulate:color")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 3),
+"times": PackedFloat32Array(0, 2.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0.27451, 0.27451, 0.27451, 1), Color(1, 1, 1, 1)]
@@ -328,7 +328,7 @@ tracks/2/path = NodePath("../CanvasModulate:color")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 3),
+"times": PackedFloat32Array(0, 2.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0.27451, 0.27451, 0.27451, 1), Color(1, 1, 1, 1)]
@@ -375,6 +375,7 @@ texture = ExtResource("6_e1j6l")
 [node name="Crab" type="CanvasLayer" parent="."]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Crab"]
+color = Color(0.2757, 0.2757, 0.2757, 1)
 
 [node name="shell1" type="Sprite2D" parent="Crab"]
 visible = false
@@ -467,6 +468,7 @@ libraries = {
 
 [node name="CanvasModulate" type="CanvasModulate" parent="orderrequest"]
 visible = false
+color = Color(0.27451, 0.27451, 0.27451, 1)
 
 [node name="orderbubble" type="Sprite2D" parent="orderrequest"]
 visible = false
@@ -567,6 +569,7 @@ texture = ExtResource("10_sww3w")
 [node name="stand" type="CanvasLayer" parent="."]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="stand"]
+color = Color(0.27451, 0.27451, 0.27451, 1)
 
 [node name="stand" type="Sprite2D" parent="stand"]
 position = Vector2(584.969, 410.875)
@@ -1026,7 +1029,7 @@ offset_bottom = 988.852
 theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
 theme_override_fonts/font = ExtResource("29_sgl2t")
 theme_override_font_sizes/font_size = 130
-text = "100"
+text = "150"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
@@ -1058,7 +1061,7 @@ offset_bottom = 988.852
 theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
 theme_override_fonts/font = ExtResource("29_sgl2t")
 theme_override_font_sizes/font_size = 130
-text = "100"
+text = "150"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
@@ -1090,7 +1093,7 @@ offset_bottom = 988.852
 theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
 theme_override_fonts/font = ExtResource("29_sgl2t")
 theme_override_font_sizes/font_size = 130
-text = "100"
+text = "150"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
@@ -1220,7 +1223,7 @@ offset_bottom = 988.852
 theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
 theme_override_fonts/font = ExtResource("29_sgl2t")
 theme_override_font_sizes/font_size = 130
-text = "400"
+text = "500"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
@@ -1249,7 +1252,6 @@ theme_override_font_sizes/font_size = 50
 text = "0"
 
 [node name="Pearl" type="Sprite2D" parent="end day"]
-visible = false
 position = Vector2(68, 59)
 scale = Vector2(0.137302, 0.137302)
 texture = ExtResource("10_sww3w")
