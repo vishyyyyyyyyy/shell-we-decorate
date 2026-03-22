@@ -35,6 +35,9 @@ var order_completed := true
 var current_order = {
 	"shape": "", 
 	"color": "",
+	"stars": -1,
+	"bow": false,
+	"barnacle": -1
 }
 
 
@@ -225,12 +228,9 @@ func crab_order():
 	$stand/customizepanel/CollisionShape2D.disabled=false
 	$stand/customizepanel/CollisionShape2D3.disabled=false
 	
-	$Crab/shell1.position.x = 543.0
-	$Crab/shell1.position.y = 341
-	$Crab/shell2.position.x = 551
-	$Crab/shell2.position.y = 345
-	$Crab/shell3.position.x = 561
-	$Crab/shell3.position.y = 300
+	$Crab/shell1.position = Vector2(543.0,341)
+	$Crab/shell2.position = Vector2(551, 345)
+	$Crab/shell3.position = Vector2(561, 300)
 	$orderrequest/orderbubble.visible = true
 	var shapes = ["shell1", "shell2", "shell3"] 
 	current_order["shape"] = shapes.pick_random()
@@ -238,6 +238,25 @@ func crab_order():
 
 	if current_order["shape"] == "shell1" :
 		$orderrequest/ordershell1.visible=true
+		#shell1 crab upgrade posiition
+		$Crab/Barnacle2.position = Vector2(352, 280) 
+		$Crab/Barnacle2.rotation = -60.2 
+		$Crab/Barnacle2.scale = Vector2(0.18, 0.18)
+		$Crab/Barnacle.position = Vector2(662.0, 270.0)
+		$Crab/Barnacle.scale = Vector2(0.24, 0.24)
+		$Crab/Barnacle.rotation = 28
+		$Crab/Ribbon.position = Vector2(403.0, 130.0)
+		$Crab/Ribbon.scale = Vector2(0.38, 0.38)
+		$Crab/Ribbon.rotation = 1.3
+		$Crab/Star3.position = Vector2(429, 360.0)
+		$Crab/Star3.scale = Vector2(0.31, 0.31)
+		$Crab/Star3.rotation = -106.9
+		$Crab/Star4.position = Vector2(476, 221.0)
+		$Crab/Star4.scale = Vector2(0.15, 0.15)
+		$Crab/Star4.rotation = 28.1
+		$Crab/Star5.position = Vector2(565.0,305.0)
+		$Crab/Star5.scale = Vector2(0.21,0.21)
+		$Crab/Star5.rotation = 0
 		if current_order["color"]== "purple":
 			$orderrequest/ordershell1/purple.visible=true
 		elif current_order["color"]== "yellow":
@@ -246,6 +265,25 @@ func crab_order():
 			$orderrequest/ordershell1/pink.visible=true
 	if current_order["shape"] == "shell2":
 		$orderrequest/ordershell2.visible=true
+		#shell2 crab upgrade posiition
+		$Crab/Barnacle2.position = Vector2(302, 264.0) 
+		$Crab/Barnacle2.scale = Vector2(0.18, 0.18)
+		$Crab/Barnacle2.rotation = -60.2
+		$Crab/Barnacle.position = Vector2(688.0, 138.0)
+		$Crab/Barnacle.scale = Vector2(0.24,0.24)
+		$Crab/Barnacle.rotation = 34
+		$Crab/Ribbon.position = Vector2(428.0, 156.0)
+		$Crab/Ribbon.scale = Vector2(0.45, 0.45)
+		$Crab/Ribbon.rotation = -16.2
+		$Crab/Star3.position = Vector2(706.0, 358.0)
+		$Crab/Star3.scale = Vector2(0.37, 0.37)
+		$Crab/Star3.rotation = -106.9
+		$Crab/Star4.position = Vector2(376, 325.0)
+		$Crab/Star4.scale = Vector2(0.25, 0.25)
+		$Crab/Star4.rotation = 28.1
+		$Crab/Star5.position = Vector2(596.0,191.0)
+		$Crab/Star5.scale = Vector2(0.21, 0.21)
+		$Crab/Star5.rotation = 0
 		if current_order["color"]== "purple":
 			$orderrequest/ordershell2/purple.visible=true
 		elif current_order["color"]== "yellow":
@@ -254,6 +292,25 @@ func crab_order():
 			$orderrequest/ordershell2/pink.visible=true
 	if current_order["shape"] == "shell3":
 		$orderrequest/ordershell3.visible=true
+		#shell3 crab upgrade posiition
+		$Crab/Barnacle2.position = Vector2(496.0,337) 
+		$Crab/Barnacle2.scale = Vector2(0.18, 0.18)
+		$Crab/Barnacle2.rotation =-51.4
+		$Crab/Barnacle.position = Vector2(688.0, 99.0)
+		$Crab/Barnacle.scale = Vector2(0.24, 0.24)
+		$Crab/Barnacle.rotation = 38.8
+		$Crab/Ribbon.position = Vector2(408.0, 160.0)
+		$Crab/Ribbon.scale = Vector2(0.26, 0.26)
+		$Crab/Ribbon.rotation =11.9
+		$Crab/Star3.position = Vector2(706.0, 358.0)
+		$Crab/Star3.scale = Vector2(0.2, 0.2)
+		$Crab/Star3.rotation = -38.4
+		$Crab/Star4.position = Vector2(408.0, 373.0)
+		$Crab/Star4.scale = Vector2(0.25,0.25)
+		$Crab/Star4.rotation = 14.8
+		$Crab/Star5.position = Vector2(595,178)
+		$Crab/Star5.rotation = 0
+		$Crab/Star5.scale = Vector2(0.1,0.1)
 		if current_order["color"]== "purple":
 			$orderrequest/ordershell3/purple.visible=true
 		elif current_order["color"]== "yellow":
