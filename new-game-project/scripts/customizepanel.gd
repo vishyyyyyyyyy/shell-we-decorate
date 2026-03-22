@@ -41,7 +41,9 @@ func _input_event(viewport, event, shape_idx):
 			var color_index = shape_idx - 3
 
 			if color_index >= 0 and color_index < colors.size():
+				print(color_index)
 				emit_signal("color_selected", colors[color_index])
+				
 
 		else:
 			if shape_idx >= 0 and shape_idx < 3:

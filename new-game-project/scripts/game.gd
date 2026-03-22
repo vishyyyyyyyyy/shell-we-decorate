@@ -46,7 +46,6 @@ var current_order = {
 @onready var yellow_shells = [$Crab/yellow1, $Crab/yellow2, $Crab/yellow3]
 @onready var pink_shells = [$Crab/pink1, $Crab/pink2, $Crab/pink3]
 
-
 func _ready() -> void:
 	#purplepanel.visible = Global.upgrades["purple"]
 	$info.visible=true
@@ -119,6 +118,7 @@ func end_day():
 	
 	time_passed = 0.0
 	current_hour = 0
+	$AnimationPlayer.play("crableave")
 	$AnimationPlayer.play("fadeday")
 	await $AnimationPlayer.animation_finished
 	await get_tree().create_timer(1.0).timeout
@@ -176,7 +176,6 @@ func shop():
 	
 
 func new_day():
-	
 	$"end day/panelselect/CollisionShape2D".disabled=true
 	$"end day/panelselect/CollisionShape2D2".disabled=true
 	$"end day/panelselect/CollisionShape2D3".disabled=true
@@ -274,6 +273,9 @@ func build_color_pool() -> Array:
 
 
 func _on_shell_selected(shell_id):
+	$stand/customizepanel/CollisionShape2D.disabled = true
+	$stand/customizepanel/CollisionShape2D2.disabled = true
+	$stand/customizepanel/CollisionShape2D3.disabled = true
 
 	selected_shell_id = shell_id
 
@@ -293,24 +295,18 @@ func _on_shell_selected(shell_id):
 		$stand/customizepanel/pinkcoll.disabled = not Global.upgrades["pink"]
 		
 		
-		reset_ui()
-		# show the color panlelll
+		#reset_ui()
+		## show the color panlelll
 		
 		purplepanel.visible = Global.upgrades["purple"]
 		yellowpanel.visible = Global.upgrades["yellow"]
 		pinkpanel.visible = Global.upgrades["pink"]
 		
 func _on_color_selected(color):
-	
-	#disable color
+
 	$stand/customizepanel/purplecoll.disabled = true
 	$stand/customizepanel/yellowcoll.disabled = true
 	$stand/customizepanel/pinkcoll.disabled = true
-		
-	#enable shell
-	$stand/customizepanel/CollisionShape2D.disabled = true
-	$stand/customizepanel/CollisionShape2D2.disabled = true
-	$stand/customizepanel/CollisionShape2D3.disabled = true
 
 	selected_color = color
 	apply_color()
@@ -330,6 +326,11 @@ func reset_ui():
 
 	
 func apply_color():
+	for i in range(shells.size()):
+		purple_shells[i].position = shells[i].position
+		yellow_shells[i].position = shells[i].position
+		pink_shells[i].position = shells[i].position
+	print(selected_shell_id)
 	# hide prev colors first!!
 	for item in purple_shells:
 		item.visible = false
@@ -337,23 +338,24 @@ func apply_color():
 		item.visible = false
 	for item in pink_shells:
 		item.visible = false
-
-
-	if selected_shell_id < 0 or selected_shell_id >= 3:
+		
+	if selected_shell_id < 0 or selected_shell_id >= shells.size():
 		return
-
+		
+	for shell in shells:
+		shell.visible = false
+		
 	if selected_color == "purple":
 		purple_shells[selected_shell_id].visible = true
-
 	elif selected_color == "yellow":
 		yellow_shells[selected_shell_id].visible = true
-
 	elif selected_color == "pink":
 		pink_shells[selected_shell_id].visible = true
+		
+
 
 	
 func check_order() -> void:
-	
 	if selected_shell_id < 0 or selected_shell_id >= shells.size():
 		return
 	
