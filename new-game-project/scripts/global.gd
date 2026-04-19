@@ -4,9 +4,9 @@ var upgrades = {
 	"purple": true,
 	"yellow": true,
 	"pink": true,
-	"starfish": false,
-	"barnacle": false,
-	"bow": false
+	"starfish": true,
+	"barnacle": true,
+	"bow": true
 }
 
 var day := 0

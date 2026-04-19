@@ -663,6 +663,52 @@ visible = false
 z_index = 1
 texture = ExtResource("21_pf7vy")
 
+[node name="Barnacle2" type="Sprite2D" parent="orderrequest"]
+visible = false
+z_index = 2
+position = Vector2(764, 310)
+rotation = -0.72664
+scale = Vector2(0.0903408, 0.0903408)
+texture = ExtResource("37_ms3bu")
+
+[node name="Barnacle" type="Sprite2D" parent="orderrequest"]
+visible = false
+z_index = 2
+position = Vector2(916, 286)
+rotation = 0.440032
+scale = Vector2(0.0734462, 0.0734462)
+texture = ExtResource("38_7ixpq")
+
+[node name="Star" type="Sprite2D" parent="orderrequest"]
+visible = false
+z_index = 1
+position = Vector2(923, 332)
+rotation = 0.514866
+scale = Vector2(0.084022, 0.084022)
+texture = ExtResource("24_05nbr")
+
+[node name="Star3" type="Sprite2D" parent="orderrequest"]
+visible = false
+z_index = 1
+position = Vector2(786, 357)
+rotation = -0.995454
+scale = Vector2(0.0901719, 0.0901719)
+texture = ExtResource("41_8ool0")
+
+[node name="Star2" type="Sprite2D" parent="orderrequest"]
+visible = false
+z_index = 2
+position = Vector2(777, 263)
+scale = Vector2(0.0937612, 0.0937612)
+texture = ExtResource("23_pr1ej")
+
+[node name="Ribbon" type="Sprite2D" parent="orderrequest"]
+visible = false
+z_index = 1
+position = Vector2(883, 253)
+scale = Vector2(0.0699734, 0.0699734)
+texture = ExtResource("20_7025r")
+
 [node name="face" type="Sprite2D" parent="orderrequest"]
 visible = false
 position = Vector2(846, 314)
@@ -681,6 +727,7 @@ theme_override_font_sizes/font_size = 68
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
+metadata/_edit_lock_ = true
 
 [node name="Pearl" type="Sprite2D" parent="orderrequest"]
 visible = false
@@ -707,7 +754,7 @@ position = Vector2(986, 155)
 scale = Vector2(0.200535, 0.200535)
 texture = ExtResource("20_7025r")
 
-[node name="Seashell(1)" type="Sprite2D" parent="stand"]
+[node name="Seashell2" type="Sprite2D" parent="stand"]
 position = Vector2(111, 440)
 rotation = -0.0383127
 scale = Vector2(0.0940494, 0.0940494)
@@ -731,7 +778,7 @@ rotation = 0.526214
 scale = Vector2(0.234459, 0.234459)
 texture = ExtResource("24_05nbr")
 
-[node name="Starfish(1)" type="Sprite2D" parent="stand"]
+[node name="Starfish2" type="Sprite2D" parent="stand"]
 position = Vector2(994, 271)
 scale = Vector2(0.157356, 0.157356)
 texture = ExtResource("26_oaba0")
@@ -765,7 +812,6 @@ scale = Vector2(1.64728, 1.64728)
 texture = ExtResource("8_bhx41")
 
 [node name="customizeshell1" type="Sprite2D" parent="stand/customizepanel/panel"]
-visible = false
 z_index = 1
 position = Vector2(-22.2222, -27.7776)
 scale = Vector2(0.607061, 0.607061)
@@ -785,7 +831,6 @@ scale = Vector2(1.64728, 1.64728)
 texture = ExtResource("8_bhx41")
 
 [node name="customizeshell2" type="Sprite2D" parent="stand/customizepanel/panel2"]
-visible = false
 z_index = 1
 position = Vector2(-16.668, -5.55518)
 scale = Vector2(0.665906, 0.665906)
@@ -805,7 +850,6 @@ scale = Vector2(1.64728, 1.64728)
 texture = ExtResource("8_bhx41")
 
 [node name="customizeshell3" type="Sprite2D" parent="stand/customizepanel/panel3"]
-visible = false
 z_index = 1
 position = Vector2(-44.4448, -5.55518)
 scale = Vector2(0.536989, 0.53699)
@@ -854,7 +898,26 @@ position = Vector2(6918.58, 45.7579)
 shape = SubResource("RectangleShape2D_gxtfn")
 disabled = true
 
+[node name="starcoll" type="CollisionShape2D" parent="stand/customizepanel"]
+z_index = 1
+position = Vector2(6918.58, 45.7579)
+shape = SubResource("RectangleShape2D_gxtfn")
+disabled = true
+
+[node name="barnaclecoll" type="CollisionShape2D" parent="stand/customizepanel"]
+z_index = 1
+position = Vector2(6918.58, 45.7579)
+shape = SubResource("RectangleShape2D_gxtfn")
+disabled = true
+
+[node name="bowcoll" type="CollisionShape2D" parent="stand/customizepanel"]
+z_index = 1
+position = Vector2(6918.58, 45.7579)
+shape = SubResource("RectangleShape2D_gxtfn")
+disabled = true
+
 [node name="Barnacle2" type="Sprite2D" parent="stand/customizepanel"]
+visible = false
 z_index = 2
 position = Vector2(-258.514, -57.8558)
 rotation = -0.348931
@@ -862,6 +925,7 @@ scale = Vector2(1.34538, 1.34538)
 texture = ExtResource("37_ms3bu")
 
 [node name="Barnacle" type="Sprite2D" parent="stand/customizepanel"]
+visible = false
 z_index = 2
 position = Vector2(317.28, 163.216)
 rotation = 0.440032
@@ -869,6 +933,7 @@ scale = Vector2(1.43536, 1.43536)
 texture = ExtResource("38_7ixpq")
 
 [node name="Star4" type="Sprite2D" parent="stand/customizepanel"]
+visible = false
 z_index = 1
 position = Vector2(3411.57, -232.04)
 rotation = 0.514866
@@ -876,6 +941,7 @@ scale = Vector2(1.31937, 1.31937)
 texture = ExtResource("24_05nbr")
 
 [node name="Star5" type="Sprite2D" parent="stand/customizepanel"]
+visible = false
 z_index = 1
 position = Vector2(3663.34, 163.215)
 rotation = -0.995454
@@ -883,12 +949,14 @@ scale = Vector2(1.56585, 1.56585)
 texture = ExtResource("41_8ool0")
 
 [node name="Star3" type="Sprite2D" parent="stand/customizepanel"]
+visible = false
 z_index = 2
 position = Vector2(3041.34, 199.368)
 scale = Vector2(2.01431, 2.01431)
 texture = ExtResource("23_pr1ej")
 
 [node name="Ribbon" type="Sprite2D" parent="stand/customizepanel"]
+visible = false
 z_index = 1
 position = Vector2(6926.3, 50.0686)
 scale = Vector2(1.96364, 1.96364)

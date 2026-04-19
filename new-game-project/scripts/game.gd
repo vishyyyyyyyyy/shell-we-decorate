@@ -12,6 +12,10 @@ var selected_shell_id := 0
 
 var selected_color = "none"
 
+var selected_stars := 0
+var selected_barnacle := 0
+var selected_bow := false
+
 @onready var timerlabel = $timerlabel
 
 @export var crab_textures: Array[Texture2D]
@@ -40,6 +44,7 @@ var current_order = {
 	"barnacle": -1
 }
 
+var selecting_extras := false
 
 @onready var purplepanel = $stand/customizepanel/panel/purple
 @onready var yellowpanel = $stand/customizepanel/panel2/yellow
@@ -60,6 +65,9 @@ func _ready() -> void:
 	$info/Area2D.start.connect(start)
 	$stand/customizepanel.shell_selected.connect(_on_shell_selected)
 	$stand/customizepanel.color_selected.connect(_on_color_selected)
+	$stand/customizepanel.stars_selected.connect(_on_stars_selected)
+	$stand/customizepanel.barnacle_selected.connect(_on_barnacle_selected)
+	$stand/customizepanel.bow_selected.connect(_on_bow_selected)
 
 
 func _process(delta: float) -> void:
@@ -223,6 +231,8 @@ func spawn_crab():
 	await $AnimationPlayer.animation_finished
 	crab_order()
 
+var stars = 0
+var barnacle = 0
 func crab_order():
 	$stand/customizepanel/CollisionShape2D2.disabled=false
 	$stand/customizepanel/CollisionShape2D.disabled=false
@@ -235,28 +245,33 @@ func crab_order():
 	var shapes = ["shell1", "shell2", "shell3"] 
 	current_order["shape"] = shapes.pick_random()
 	current_order["color"] = build_color_pool().pick_random()
+	current_order["stars"] = build_stars_pool().pick_random()
+	stars = current_order["stars"]
+	current_order["barnacle"] = build_barnacles_pool().pick_random()
+	barnacle = current_order["barnacle"]
+	current_order["bow"] = build_bow_pool().pick_random()
 
 	if current_order["shape"] == "shell1" :
 		$orderrequest/ordershell1.visible=true
 		#shell1 crab upgrade posiition
 		$Crab/Barnacle2.position = Vector2(352, 280) 
-		$Crab/Barnacle2.rotation = -60.2 
+		$Crab/Barnacle2.rotation_degrees = -60.2 
 		$Crab/Barnacle2.scale = Vector2(0.18, 0.18)
 		$Crab/Barnacle.position = Vector2(662.0, 270.0)
 		$Crab/Barnacle.scale = Vector2(0.24, 0.24)
-		$Crab/Barnacle.rotation = 28
+		$Crab/Barnacle.rotation_degrees = 28
 		$Crab/Ribbon.position = Vector2(403.0, 130.0)
 		$Crab/Ribbon.scale = Vector2(0.38, 0.38)
-		$Crab/Ribbon.rotation = 1.3
+		$Crab/Ribbon.rotation_degrees = 1.3
 		$Crab/Star3.position = Vector2(429, 360.0)
 		$Crab/Star3.scale = Vector2(0.31, 0.31)
-		$Crab/Star3.rotation = -106.9
+		$Crab/Star3.rotation_degrees = -106.9
 		$Crab/Star4.position = Vector2(476, 221.0)
 		$Crab/Star4.scale = Vector2(0.15, 0.15)
-		$Crab/Star4.rotation = 28.1
+		$Crab/Star4.rotation_degrees = 28.1
 		$Crab/Star5.position = Vector2(565.0,305.0)
 		$Crab/Star5.scale = Vector2(0.21,0.21)
-		$Crab/Star5.rotation = 0
+		$Crab/Star5.rotation_degrees = 0
 		if current_order["color"]== "purple":
 			$orderrequest/ordershell1/purple.visible=true
 		elif current_order["color"]== "yellow":
@@ -268,19 +283,19 @@ func crab_order():
 		#shell2 crab upgrade posiition
 		$Crab/Barnacle2.position = Vector2(302, 264.0) 
 		$Crab/Barnacle2.scale = Vector2(0.18, 0.18)
-		$Crab/Barnacle2.rotation = -60.2
+		$Crab/Barnacle2.rotation_degrees = -60.2
 		$Crab/Barnacle.position = Vector2(688.0, 138.0)
 		$Crab/Barnacle.scale = Vector2(0.24,0.24)
-		$Crab/Barnacle.rotation = 34
+		$Crab/Barnacle.rotation_degrees = 34
 		$Crab/Ribbon.position = Vector2(428.0, 156.0)
 		$Crab/Ribbon.scale = Vector2(0.45, 0.45)
-		$Crab/Ribbon.rotation = -16.2
+		$Crab/Ribbon.rotation_degrees = -16.2
 		$Crab/Star3.position = Vector2(706.0, 358.0)
 		$Crab/Star3.scale = Vector2(0.37, 0.37)
-		$Crab/Star3.rotation = -106.9
+		$Crab/Star3.rotation_degrees = -106.9
 		$Crab/Star4.position = Vector2(376, 325.0)
 		$Crab/Star4.scale = Vector2(0.25, 0.25)
-		$Crab/Star4.rotation = 28.1
+		$Crab/Star4.rotation_degrees = 28.1
 		$Crab/Star5.position = Vector2(596.0,191.0)
 		$Crab/Star5.scale = Vector2(0.21, 0.21)
 		$Crab/Star5.rotation = 0
@@ -295,21 +310,21 @@ func crab_order():
 		#shell3 crab upgrade posiition
 		$Crab/Barnacle2.position = Vector2(496.0,337) 
 		$Crab/Barnacle2.scale = Vector2(0.18, 0.18)
-		$Crab/Barnacle2.rotation =-51.4
+		$Crab/Barnacle2.rotation_degrees =-51.4
 		$Crab/Barnacle.position = Vector2(688.0, 99.0)
 		$Crab/Barnacle.scale = Vector2(0.24, 0.24)
-		$Crab/Barnacle.rotation = 38.8
+		$Crab/Barnacle.rotation_degrees = 38.8
 		$Crab/Ribbon.position = Vector2(408.0, 160.0)
 		$Crab/Ribbon.scale = Vector2(0.26, 0.26)
-		$Crab/Ribbon.rotation =11.9
+		$Crab/Ribbon.rotation_degrees =11.9
 		$Crab/Star3.position = Vector2(706.0, 358.0)
 		$Crab/Star3.scale = Vector2(0.2, 0.2)
-		$Crab/Star3.rotation = -38.4
+		$Crab/Star3.rotation_degrees = -38.4
 		$Crab/Star4.position = Vector2(408.0, 373.0)
 		$Crab/Star4.scale = Vector2(0.25,0.25)
-		$Crab/Star4.rotation = 14.8
+		$Crab/Star4.rotation_degrees = 14.8
 		$Crab/Star5.position = Vector2(595,178)
-		$Crab/Star5.rotation = 0
+		$Crab/Star5.rotation_degrees = 0
 		$Crab/Star5.scale = Vector2(0.1,0.1)
 		if current_order["color"]== "purple":
 			$orderrequest/ordershell3/purple.visible=true
@@ -317,6 +332,29 @@ func crab_order():
 			$orderrequest/ordershell3/yellow.visible=true
 		elif current_order["color"] == "pink":
 			$orderrequest/ordershell3/pink.visible=true
+	
+	if stars == 3:
+		$orderrequest/Star.visible = true
+		$orderrequest/Star3.visible = true
+		$orderrequest/Star2.visible = true
+	elif stars == 2:
+		$orderrequest/Star.visible = true
+		$orderrequest/Star2.visible = true
+	elif stars == 1:
+		$orderrequest/Star3.visible = true
+	else:
+		pass
+	
+	if barnacle == 2:
+		$orderrequest/Barnacle.visible = true
+		$orderrequest/Barnacle2.visible = true
+	elif barnacle == 1:
+		$orderrequest/Barnacle.visible = true
+	else:
+		pass
+	
+	if current_order["bow"] == "bow":
+		$orderrequest/Ribbon.visible=true
 	
 	print("New order:", current_order)
 
@@ -330,6 +368,31 @@ func build_color_pool() -> Array:
 	if Global.upgrades["pink"]:
 		pool.append("pink")
 
+	return pool
+	
+func build_stars_pool() -> Array:
+	var pool := [0,0]
+
+	if Global.upgrades["starfish"]:
+		pool.append(1)
+		pool.append(2)
+		pool.append(3)
+
+	return pool
+	
+func build_barnacles_pool() -> Array:
+	var pool := [0,0]
+
+	if Global.upgrades["barnacle"]:
+		pool.append(1)
+		pool.append(2)
+	return pool
+	
+func build_bow_pool() -> Array:
+	var pool := ["none", "none"]
+
+	if Global.upgrades["bow"]:
+		pool.append("bow")
 	return pool
 
 
@@ -346,35 +409,104 @@ func _on_shell_selected(shell_id):
 
 	var colors = $stand/customizepanel.get_unlocked_colors()
 
-	if current_order["color"] == "none" or colors.size() == 0:
+	if current_order["color"] == "none" and current_order["bow"] =="none" and stars == 0 and barnacle ==0:
 		check_order()
 	else:
-		$stand/customizepanel.selecting_color = true
-		
 		#enable colors
-		$stand/customizepanel/purplecoll.disabled = not Global.upgrades["purple"]
-		$stand/customizepanel/yellowcoll.disabled = not Global.upgrades["yellow"]
-		$stand/customizepanel/pinkcoll.disabled = not Global.upgrades["pink"]
+		if current_order["color"] == "none":
+			$stand/customizepanel.selecting_color = false
+			selecting_extras = true
+			$stand/customizepanel/starcoll.disabled = not Global.upgrades["starfish"]
+			$stand/customizepanel/barnaclecoll.disabled = not Global.upgrades["barnacle"]
+			$stand/customizepanel/bowcoll.disabled = not Global.upgrades["bow"]
+			$stand/customizepanel/panel/customizeshell1.visible=false
+			$stand/customizepanel/panel2/customizeshell2.visible=false
+			$stand/customizepanel/panel3/customizeshell3.visible=false
 		
-		
-		#reset_ui()
-		## show the color panlelll
-		
-		purplepanel.visible = Global.upgrades["purple"]
-		yellowpanel.visible = Global.upgrades["yellow"]
-		pinkpanel.visible = Global.upgrades["pink"]
+		else:
+			$stand/customizepanel.selecting_color = true
+			$stand/customizepanel/purplecoll.disabled = not Global.upgrades["purple"]
+			$stand/customizepanel/yellowcoll.disabled = not Global.upgrades["yellow"]
+			$stand/customizepanel/pinkcoll.disabled = not Global.upgrades["pink"]
+			
+			
+			#reset_ui()
+			#show the color panlelll
+			purplepanel.visible = Global.upgrades["purple"]
+			yellowpanel.visible = Global.upgrades["yellow"]
+			pinkpanel.visible = Global.upgrades["pink"]
 		
 func _on_color_selected(color):
 
 	$stand/customizepanel/purplecoll.disabled = true
 	$stand/customizepanel/yellowcoll.disabled = true
 	$stand/customizepanel/pinkcoll.disabled = true
+	
 
 	selected_color = color
 	apply_color()
 	$stand/customizepanel.selecting_color = false
-	check_order()
+	if current_order["bow"] =="none" and stars == 0 and barnacle ==0:
+		check_order()
+	else:
+		selecting_extras = true
+		$stand/customizepanel/panel/purple.visible=false
+		$stand/customizepanel/panel3/pink.visible=false
+		$stand/customizepanel/panel2/yellow.visible=false
+		$stand/customizepanel/panel3/customizeshell3.visible=false
+		$stand/customizepanel/panel2/customizeshell2.visible=false
+		$stand/customizepanel/panel/customizeshell1.visible=false
+		$stand/customizepanel/starcoll.disabled = not Global.upgrades["starfish"]
+		$stand/customizepanel/barnaclecoll.disabled = not Global.upgrades["barnacle"]
+		$stand/customizepanel/bowcoll.disabled = not Global.upgrades["bow"]
 
+func _on_stars_selected(count):
+	selected_stars += 1  
+	if selected_stars == 1:
+		$Crab/Star3.visible=true
+	
+	if selected_stars == 2:
+		$Crab/Star3.visible=true
+		$Crab/Star4.visible=true
+	
+	if selected_stars == 3:
+		$Crab/Star3.visible=true
+		$Crab/Star4.visible=true
+		$Crab/Star5.visible=true
+	apply_extras()
+
+	if selected_stars >= stars:
+		$stand/customizepanel/starcoll.disabled = true
+
+	if $stand/customizepanel/starcoll.disabled and $stand/customizepanel/barnaclecoll.disabled and $stand/customizepanel/bowcoll.disabled:
+		check_order()
+
+func _on_barnacle_selected(count):
+	selected_barnacle += 1
+	if selected_barnacle == 1:
+		$orderrequest/Barnacle.visible=true
+	
+	if selected_barnacle == 2:
+		$orderrequest/Barnacle.visible=true
+		$orderrequest/Barnacle2.visible=true
+		
+	apply_extras()
+
+	if selected_barnacle >= barnacle:
+		$stand/customizepanel/barnaclecoll.disabled = true
+
+	if $stand/customizepanel/starcoll.disabled and $stand/customizepanel/barnaclecoll.disabled and $stand/customizepanel/bowcoll.disabled:
+		check_order()
+
+func _on_bow_selected(enabled):
+	selected_bow = true
+	apply_extras()
+
+	$stand/customizepanel/bowcoll.disabled = true
+
+	if $stand/customizepanel/starcoll.disabled and $stand/customizepanel/barnaclecoll.disabled and $stand/customizepanel/bowcoll.disabled:
+		check_order()
+	
 func reset_ui():
 	# hide colors
 	purplepanel.visible = false
@@ -414,6 +546,33 @@ func apply_color():
 		yellow_shells[selected_shell_id].visible = true
 	elif selected_color == "pink":
 		pink_shells[selected_shell_id].visible = true
+		
+func apply_extras():
+	# reset all extras first
+	$Crab/Star3.visible = false
+	$Crab/Star4.visible = false
+	$Crab/Star5.visible = false
+	$Crab/Barnacle.visible = false
+	$Crab/Barnacle2.visible = false
+	$Crab/Ribbon.visible = false
+
+	# apply stars
+	if selected_stars >= 1:
+		$Crab/Star3.visible = true
+	if selected_stars >= 2:
+		$Crab/Star4.visible = true
+	if selected_stars >= 3:
+		$Crab/Star5.visible = true
+
+	# apply barnacles
+	if selected_barnacle >= 1:
+		$Crab/Barnacle.visible = true
+	if selected_barnacle == 2:
+		$Crab/Barnacle2.visible = true
+
+	# apply bow
+	if selected_bow:
+		$Crab/Ribbon.visible = true
 	
 func check_order() -> void:
 	if selected_shell_id < 0 or selected_shell_id >= shells.size():
@@ -430,7 +589,11 @@ func check_order() -> void:
 	var order_color = current_order["color"]
 	var color_match = (order_color == "none" or selected_color == order_color)
 
-	if selected_shell_shape == order_shape and color_match:
+	var stars_match = (stars == selected_stars)
+	var barnacle_match = (barnacle == selected_barnacle)
+	var bow_match = (current_order["bow"] == "none" and not selected_bow) or (current_order["bow"] == "bow" and selected_bow)
+
+	if selected_shell_shape == order_shape and color_match and stars_match and barnacle_match and bow_match:
 		print("happy")
 		if order_failed:
 			hide_customize_colors()

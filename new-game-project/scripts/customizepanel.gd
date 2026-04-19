@@ -8,6 +8,9 @@ func _ready() -> void:
 
 signal shell_selected(shell_id: int)
 signal color_selected(color: String)
+signal stars_selected(count: int)
+signal barnacle_selected(count: int)
+signal bow_selected(enabled: bool)
 
 var selected_shell := 0
 
@@ -31,20 +34,23 @@ func get_unlocked_colors():
 	return colors
 
 func _input_event(viewport, event, shape_idx):
-
-	if event is InputEventMouseButton \
-	and event.pressed \
-	and event.button_index == MOUSE_BUTTON_LEFT:
-
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		if selecting_color:
 			var colors = get_unlocked_colors()
-			var color_index = shape_idx - 3
-
+			var color_index = shape_idx - 3  # Color colliders start at index 3
 			if color_index >= 0 and color_index < colors.size():
-				print(color_index)
 				emit_signal("color_selected", colors[color_index])
-				
-
 		else:
-			if shape_idx >= 0 and shape_idx < 3:
+			# Shells
+			if shape_idx >= 0 and shape_idx <= 2:
 				emit_signal("shell_selected", shape_idx)
+
+			# Extras
+			elif shape_idx == 6:  # star
+				emit_signal("stars_selected", 1)  
+
+			elif shape_idx == 7:  # barnacle
+				emit_signal("barnacle_selected", 1)  
+
+			elif shape_idx == 8:  # bow
+				emit_signal("bow_selected", true)
