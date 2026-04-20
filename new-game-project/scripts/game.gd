@@ -46,6 +46,12 @@ var current_order = {
 
 var selecting_extras := false
 
+var stars = 0
+var barnacle = 0
+var bow = 0
+var total_extras = 0
+
+
 @onready var purplepanel = $stand/customizepanel/panel/purple
 @onready var yellowpanel = $stand/customizepanel/panel2/yellow
 @onready var pinkpanel = $stand/customizepanel/panel3/pink
@@ -59,6 +65,7 @@ func _ready() -> void:
 	$info.visible=true
 	$info/Area2D.visible=true
 	$Crab/Crab.visible = false
+	$Crab/Barnacle2.visible=true
 	#end_day()
 	$"end day/shop".shop.connect(shop)
 	$"end day/newday".newday.connect(new_day)
@@ -98,18 +105,29 @@ func start():
 
 
 func on_crab_finished():
+	hide_order_request()
 	current_order["shape"] = ""
 	current_order["color"] = "none"
 
 	selected_shell_id = -1
 	selected_color = "none"
+	selected_barnacle = 0
+	selected_bow = 0
+	selected_stars = 0
 	hide_customize_colors()
+	hide_customize_extras()
 	for item in purple_shells:
 		item.visible = false
 	for item in yellow_shells:
 		item.visible = false
 	for item in pink_shells:
 		item.visible = false
+	$Crab/Barnacle2.visible=false
+	$Crab/Barnacle.visible=false
+	$Crab/Ribbon.visible=false
+	$Crab/Star3.visible=false
+	$Crab/Star4.visible=false
+	$Crab/Star5.visible=false
 	reset_ui()
 	crab_present = false
 	order_completed = true
@@ -134,6 +152,7 @@ func end_day():
 	current_hour = 0
 	$AnimationPlayer.play("crableave")
 	$AnimationPlayer.play("fadeday")
+	hide_order_request()
 	await $AnimationPlayer.animation_finished
 	await get_tree().create_timer(1.0).timeout
 	$"end day/pearllabel".visible=true
@@ -218,6 +237,9 @@ func respawn_crab():
 func spawn_crab():	
 	selected_shell_id = -1
 	selected_color = "none" #reset the collors
+	selected_stars = 0
+	selected_barnacle = 0
+	selected_bow = false
 	$AnimationPlayer.play("crabenter")
 	print("SPAWNING CRAB")
 	if crab_textures.is_empty():
@@ -231,8 +253,8 @@ func spawn_crab():
 	await $AnimationPlayer.animation_finished
 	crab_order()
 
-var stars = 0
-var barnacle = 0
+var safelock_total_extras
+
 func crab_order():
 	$stand/customizepanel/CollisionShape2D2.disabled=false
 	$stand/customizepanel/CollisionShape2D.disabled=false
@@ -250,28 +272,16 @@ func crab_order():
 	current_order["barnacle"] = build_barnacles_pool().pick_random()
 	barnacle = current_order["barnacle"]
 	current_order["bow"] = build_bow_pool().pick_random()
+	bow = int(current_order["bow"] == "bow")
+	
+	#total extras add
+	total_extras = stars + barnacle + bow 
+	safelock_total_extras = total_extras
+	print("total extras: " + str(total_extras))
 
 	if current_order["shape"] == "shell1" :
 		$orderrequest/ordershell1.visible=true
 		#shell1 crab upgrade posiition
-		$Crab/Barnacle2.position = Vector2(352, 280) 
-		$Crab/Barnacle2.rotation_degrees = -60.2 
-		$Crab/Barnacle2.scale = Vector2(0.18, 0.18)
-		$Crab/Barnacle.position = Vector2(662.0, 270.0)
-		$Crab/Barnacle.scale = Vector2(0.24, 0.24)
-		$Crab/Barnacle.rotation_degrees = 28
-		$Crab/Ribbon.position = Vector2(403.0, 130.0)
-		$Crab/Ribbon.scale = Vector2(0.38, 0.38)
-		$Crab/Ribbon.rotation_degrees = 1.3
-		$Crab/Star3.position = Vector2(429, 360.0)
-		$Crab/Star3.scale = Vector2(0.31, 0.31)
-		$Crab/Star3.rotation_degrees = -106.9
-		$Crab/Star4.position = Vector2(476, 221.0)
-		$Crab/Star4.scale = Vector2(0.15, 0.15)
-		$Crab/Star4.rotation_degrees = 28.1
-		$Crab/Star5.position = Vector2(565.0,305.0)
-		$Crab/Star5.scale = Vector2(0.21,0.21)
-		$Crab/Star5.rotation_degrees = 0
 		if current_order["color"]== "purple":
 			$orderrequest/ordershell1/purple.visible=true
 		elif current_order["color"]== "yellow":
@@ -281,24 +291,6 @@ func crab_order():
 	if current_order["shape"] == "shell2":
 		$orderrequest/ordershell2.visible=true
 		#shell2 crab upgrade posiition
-		$Crab/Barnacle2.position = Vector2(302, 264.0) 
-		$Crab/Barnacle2.scale = Vector2(0.18, 0.18)
-		$Crab/Barnacle2.rotation_degrees = -60.2
-		$Crab/Barnacle.position = Vector2(688.0, 138.0)
-		$Crab/Barnacle.scale = Vector2(0.24,0.24)
-		$Crab/Barnacle.rotation_degrees = 34
-		$Crab/Ribbon.position = Vector2(428.0, 156.0)
-		$Crab/Ribbon.scale = Vector2(0.45, 0.45)
-		$Crab/Ribbon.rotation_degrees = -16.2
-		$Crab/Star3.position = Vector2(706.0, 358.0)
-		$Crab/Star3.scale = Vector2(0.37, 0.37)
-		$Crab/Star3.rotation_degrees = -106.9
-		$Crab/Star4.position = Vector2(376, 325.0)
-		$Crab/Star4.scale = Vector2(0.25, 0.25)
-		$Crab/Star4.rotation_degrees = 28.1
-		$Crab/Star5.position = Vector2(596.0,191.0)
-		$Crab/Star5.scale = Vector2(0.21, 0.21)
-		$Crab/Star5.rotation = 0
 		if current_order["color"]== "purple":
 			$orderrequest/ordershell2/purple.visible=true
 		elif current_order["color"]== "yellow":
@@ -308,24 +300,6 @@ func crab_order():
 	if current_order["shape"] == "shell3":
 		$orderrequest/ordershell3.visible=true
 		#shell3 crab upgrade posiition
-		$Crab/Barnacle2.position = Vector2(496.0,337) 
-		$Crab/Barnacle2.scale = Vector2(0.18, 0.18)
-		$Crab/Barnacle2.rotation_degrees =-51.4
-		$Crab/Barnacle.position = Vector2(688.0, 99.0)
-		$Crab/Barnacle.scale = Vector2(0.24, 0.24)
-		$Crab/Barnacle.rotation_degrees = 38.8
-		$Crab/Ribbon.position = Vector2(408.0, 160.0)
-		$Crab/Ribbon.scale = Vector2(0.26, 0.26)
-		$Crab/Ribbon.rotation_degrees =11.9
-		$Crab/Star3.position = Vector2(706.0, 358.0)
-		$Crab/Star3.scale = Vector2(0.2, 0.2)
-		$Crab/Star3.rotation_degrees = -38.4
-		$Crab/Star4.position = Vector2(408.0, 373.0)
-		$Crab/Star4.scale = Vector2(0.25,0.25)
-		$Crab/Star4.rotation_degrees = 14.8
-		$Crab/Star5.position = Vector2(595,178)
-		$Crab/Star5.rotation_degrees = 0
-		$Crab/Star5.scale = Vector2(0.1,0.1)
 		if current_order["color"]== "purple":
 			$orderrequest/ordershell3/purple.visible=true
 		elif current_order["color"]== "yellow":
@@ -422,8 +396,15 @@ func _on_shell_selected(shell_id):
 			$stand/customizepanel/panel/customizeshell1.visible=false
 			$stand/customizepanel/panel2/customizeshell2.visible=false
 			$stand/customizepanel/panel3/customizeshell3.visible=false
+			$stand/customizepanel/Star3.visible=Global.upgrades["starfish"]
+			$stand/customizepanel/Star4.visible=Global.upgrades["starfish"]
+			$stand/customizepanel/Star5.visible=Global.upgrades["starfish"]
+			$stand/customizepanel/Barnacle.visible = Global.upgrades["barnacle"]
+			$stand/customizepanel/Barnacle2.visible = Global.upgrades["barnacle"]
+			$stand/customizepanel/Ribbon.visible = Global.upgrades["bow"]
 		
 		else:
+			print("test 1")
 			$stand/customizepanel.selecting_color = true
 			$stand/customizepanel/purplecoll.disabled = not Global.upgrades["purple"]
 			$stand/customizepanel/yellowcoll.disabled = not Global.upgrades["yellow"]
@@ -450,17 +431,25 @@ func _on_color_selected(color):
 		check_order()
 	else:
 		selecting_extras = true
-		$stand/customizepanel/panel/purple.visible=false
-		$stand/customizepanel/panel3/pink.visible=false
-		$stand/customizepanel/panel2/yellow.visible=false
+		print("test2")
+		
+		hide_customize_colors()
 		$stand/customizepanel/panel3/customizeshell3.visible=false
 		$stand/customizepanel/panel2/customizeshell2.visible=false
 		$stand/customizepanel/panel/customizeshell1.visible=false
+		
 		$stand/customizepanel/starcoll.disabled = not Global.upgrades["starfish"]
 		$stand/customizepanel/barnaclecoll.disabled = not Global.upgrades["barnacle"]
 		$stand/customizepanel/bowcoll.disabled = not Global.upgrades["bow"]
+		$stand/customizepanel/Star3.visible=Global.upgrades["starfish"]
+		$stand/customizepanel/Star4.visible=Global.upgrades["starfish"]
+		$stand/customizepanel/Star5.visible=Global.upgrades["starfish"]
+		$stand/customizepanel/Barnacle.visible = Global.upgrades["barnacle"]
+		$stand/customizepanel/Barnacle2.visible = Global.upgrades["barnacle"]
+		$stand/customizepanel/Ribbon.visible = Global.upgrades["bow"]
 
 func _on_stars_selected(count):
+	total_extras -=1
 	selected_stars += 1  
 	if selected_stars == 1:
 		$Crab/Star3.visible=true
@@ -475,13 +464,20 @@ func _on_stars_selected(count):
 		$Crab/Star5.visible=true
 	apply_extras()
 
-	if selected_stars >= stars:
+	if selected_stars == 2:
 		$stand/customizepanel/starcoll.disabled = true
 
 	if $stand/customizepanel/starcoll.disabled and $stand/customizepanel/barnaclecoll.disabled and $stand/customizepanel/bowcoll.disabled:
 		check_order()
+	
+	if total_extras <=0:
+		print("checking order from stars")
+		check_order()
 
 func _on_barnacle_selected(count):
+	print("selected_barnacle: ", selected_barnacle)
+	print("barnacle available: ", barnacle)
+	total_extras -=1
 	selected_barnacle += 1
 	if selected_barnacle == 1:
 		$orderrequest/Barnacle.visible=true
@@ -497,8 +493,14 @@ func _on_barnacle_selected(count):
 
 	if $stand/customizepanel/starcoll.disabled and $stand/customizepanel/barnaclecoll.disabled and $stand/customizepanel/bowcoll.disabled:
 		check_order()
+	
+	if total_extras <=0:
+		print("checking order from banracles")
+		check_order()
+		
 
 func _on_bow_selected(enabled):
+	total_extras -=1
 	selected_bow = true
 	apply_extras()
 
@@ -506,8 +508,15 @@ func _on_bow_selected(enabled):
 
 	if $stand/customizepanel/starcoll.disabled and $stand/customizepanel/barnaclecoll.disabled and $stand/customizepanel/bowcoll.disabled:
 		check_order()
+		
+	if total_extras <=0:
+		print("checking order from bow")
+		check_order()
+		
 	
 func reset_ui():
+	#hide extras
+	hide_customize_extras()
 	# hide colors
 	purplepanel.visible = false
 	yellowpanel.visible = false
@@ -583,6 +592,9 @@ func check_order() -> void:
 	$stand/customizepanel/CollisionShape2D2.disabled=true
 	$stand/customizepanel/CollisionShape2D.disabled=true
 	$stand/customizepanel/CollisionShape2D3.disabled=true
+	$stand/customizepanel/barnaclecoll.disabled=true
+	$stand/customizepanel/starcoll.disabled=true
+	$stand/customizepanel/bowcoll.disabled=true
 	
 	var selected_shell_shape = shells[selected_shell_id].name
 	var order_shape = current_order["shape"]
@@ -597,6 +609,7 @@ func check_order() -> void:
 		print("happy")
 		if order_failed:
 			hide_customize_colors()
+			hide_customize_extras()
 			$orderrequest/pearls.visible=true
 			$orderrequest/Pearl.visible=true
 			Global.daily_pearls += 5
@@ -611,14 +624,19 @@ func check_order() -> void:
 			face.visible = false
 			Global.daily_pearls += 10
 			$orderrequest/pearls.text = "10"
+		selected_barnacle = 0
+		selected_bow = 0
+		selected_stars = 0
 		hide_order_request()
 		await get_tree().create_timer(2).timeout
 		hide_customize_colors()
+		hide_customize_extras()
 		$orderrequest/pearls.visible=false
 		$orderrequest/Pearl.visible=false
 		$orderrequest/orderbubble.visible=false
 		Global.daily_shells +=1
 		$AnimationPlayer.play("crableave")
+		play_leave_extra_anim()
 		hide_order_request()
 		await $AnimationPlayer.animation_finished
 		on_crab_finished()
@@ -630,8 +648,13 @@ func check_order() -> void:
 		# show sad face
 		face.visible = true
 		face.texture = sad
+		total_extras = safelock_total_extras
+		selected_barnacle = 0
+		selected_bow = 0
+		selected_stars = 0
 		await get_tree().create_timer(2).timeout
 		hide_customize_colors()
+		hide_customize_extras()
 		reset_ui()
 		hide_all_crab_upgrades()
 		face.visible = false
@@ -662,6 +685,29 @@ func check_order() -> void:
 		elif current_order["color"] == "pink":
 			$orderrequest/ordershell3/pink.visible=true
 	
+	if stars == 3:
+		$orderrequest/Star.visible = true
+		$orderrequest/Star3.visible = true
+		$orderrequest/Star2.visible = true
+	elif stars == 2:
+		$orderrequest/Star.visible = true
+		$orderrequest/Star2.visible = true
+	elif stars == 1:
+		$orderrequest/Star3.visible = true
+	else:
+		pass
+	
+	if barnacle == 2:
+		$orderrequest/Barnacle.visible = true
+		$orderrequest/Barnacle2.visible = true
+	elif barnacle == 1:
+		$orderrequest/Barnacle.visible = true
+	else:
+		pass
+	
+	if current_order["bow"] == "bow":
+		$orderrequest/Ribbon.visible=true
+	
 	$stand/customizepanel/CollisionShape2D2.disabled = false
 	$stand/customizepanel/CollisionShape2D.disabled = false
 	$stand/customizepanel/CollisionShape2D3.disabled = false
@@ -680,6 +726,12 @@ func hide_order_request():
 	$orderrequest/ordershell3/purple.visible=false
 	$orderrequest/ordershell3/yellow.visible=false
 	$orderrequest/ordershell3/pink.visible=false
+	$orderrequest/Barnacle2.visible=false
+	$orderrequest/Barnacle.visible=false
+	$orderrequest/Star.visible=false
+	$orderrequest/Star3.visible =false
+	$orderrequest/Star2.visible=false
+	$orderrequest/Ribbon.visible=false
 	
 func hide_all_crab_upgrades():
 	$Crab/shell1.visible=false
@@ -694,6 +746,12 @@ func hide_all_crab_upgrades():
 	$Crab/pink1.visible=false
 	$Crab/pink2.visible=false
 	$Crab/pink3.visible=false
+	$Crab/Barnacle2.visible=false
+	$Crab/Barnacle.visible=false
+	$Crab/Ribbon.visible=false
+	$Crab/Star3.visible=false
+	$Crab/Star4.visible=false
+	$Crab/Star5.visible=false
 	
 func hide_customize_colors():
 	$stand/customizepanel/panel/purple.visible=false
@@ -701,3 +759,18 @@ func hide_customize_colors():
 	$stand/customizepanel/panel3/pink.visible=false
 	
 	
+func hide_customize_extras():
+	$stand/customizepanel/Barnacle2.visible=false
+	$stand/customizepanel/Barnacle.visible=false
+	$stand/customizepanel/Star4.visible=false
+	$stand/customizepanel/Star5.visible=false
+	$stand/customizepanel/Star3.visible=false
+	$stand/customizepanel/Ribbon.visible=false
+
+func play_leave_extra_anim():
+	if current_order["shape"] == "shell1":
+		$AnimationPlayer2.play("extra_leave1")
+	elif current_order["shape"] == "shell2":
+		$AnimationPlayer2.play("extra_leave2")
+	else:
+		$AnimationPlayer2.play("extra_leave3")

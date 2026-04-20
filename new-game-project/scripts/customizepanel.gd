@@ -32,7 +32,7 @@ func get_unlocked_colors():
 		colors.append("pink")
 
 	return colors
-
+#
 func _input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		if selecting_color:
@@ -43,14 +43,20 @@ func _input_event(viewport, event, shape_idx):
 		else:
 			# Shells
 			if shape_idx >= 0 and shape_idx <= 2:
+				print(shape_idx)
 				emit_signal("shell_selected", shape_idx)
+				
 
 			# Extras
-			elif shape_idx == 6:  # star
-				emit_signal("stars_selected", 1)  
+			elif shape_idx == 6:  # barnacle
+				print(shape_idx)
+				emit_signal("barnacle_selected", 1)
 
-			elif shape_idx == 7:  # barnacle
-				emit_signal("barnacle_selected", 1)  
+			elif shape_idx == 7:  # star
+				print(shape_idx)
+				emit_signal("stars_selected", 1)   
+				
 
 			elif shape_idx == 8:  # bow
+				print(shape_idx)
 				emit_signal("bow_selected", true)
