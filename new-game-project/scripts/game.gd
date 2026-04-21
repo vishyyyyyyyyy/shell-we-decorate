@@ -113,6 +113,8 @@ func on_crab_finished():
 	selected_barnacle = 0
 	selected_bow = 0
 	selected_stars = 0
+	#stars = 0
+	#barnacle = 0
 	hide_customize_colors()
 	hide_customize_extras()
 	for item in purple_shells:
@@ -233,7 +235,11 @@ func respawn_crab():
 	await get_tree().create_timer(1.0).timeout
 	spawn_crab()
 
-func spawn_crab():	
+func spawn_crab():
+	bow = 0
+	barnacle= 0
+	stars =0
+	hide_order_request()
 	selected_shell_id = -1
 	selected_color = "none" #reset the collors
 	selected_stars = 0
@@ -255,6 +261,7 @@ func spawn_crab():
 var safelock_total_extras
 
 func crab_order():
+	hide_order_request()
 	$stand/customizepanel/CollisionShape2D2.disabled=false
 	$stand/customizepanel/CollisionShape2D.disabled=false
 	$stand/customizepanel/CollisionShape2D3.disabled=false
@@ -535,7 +542,7 @@ func _on_stars_selected(count):
 		$Crab/Star5.visible=true
 	apply_extras()
 
-	if selected_stars == 2:
+	if selected_stars == 3:
 		$stand/customizepanel/starcoll.disabled = true
 
 	if $stand/customizepanel/starcoll.disabled and $stand/customizepanel/barnaclecoll.disabled and $stand/customizepanel/bowcoll.disabled:
@@ -705,6 +712,9 @@ func check_order() -> void:
 		$orderrequest/pearls.visible=false
 		$orderrequest/Pearl.visible=false
 		$orderrequest/orderbubble.visible=false
+		stars = 0
+		bow = 0
+		barnacle = 0
 		Global.daily_shells +=1
 		$AnimationPlayer.play("crableave")
 		play_leave_extra_anim()
@@ -723,6 +733,8 @@ func check_order() -> void:
 		selected_barnacle = 0
 		selected_bow = 0
 		selected_stars = 0
+		#stars = 0
+		#barnacle = 0
 		await get_tree().create_timer(2).timeout
 		hide_customize_colors()
 		hide_customize_extras()
