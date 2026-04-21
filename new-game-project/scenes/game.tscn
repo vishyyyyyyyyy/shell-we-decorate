@@ -346,6 +346,9 @@ _data = {
 &"fadeinday": SubResource("Animation_pr1ej")
 }
 
+[sub_resource type="Animation" id="Animation_3hbvx"]
+length = 0.001
+
 [sub_resource type="Animation" id="Animation_o8ni1"]
 resource_name = "extra_leave1"
 length = 0.5
@@ -565,9 +568,6 @@ tracks/17/keys = {
 "update": 0,
 "values": [Vector2(0.2651, 0.2651)]
 }
-
-[sub_resource type="Animation" id="Animation_3hbvx"]
-length = 0.001
 
 [sub_resource type="Animation" id="Animation_q8j3a"]
 resource_name = "extra_leave2"
@@ -1129,44 +1129,44 @@ texture = ExtResource("21_pf7vy")
 
 [node name="Barnacle2" type="Sprite2D" parent="Crab"]
 visible = false
-position = Vector2(308, 317)
-rotation = -1.12826
+position = Vector2(657.365, 326.197)
+rotation = 0.715015
 scale = Vector2(0.229093, 0.229093)
 texture = ExtResource("37_ms3bu")
 
 [node name="Barnacle" type="Sprite2D" parent="Crab"]
 visible = false
-position = Vector2(727, 197)
-rotation = 0.434868
-scale = Vector2(0.266034, 0.266034)
+position = Vector2(620, 61)
+rotation = -0.81417
+scale = Vector2(0.133299, 0.133299)
 texture = ExtResource("38_7ixpq")
 
 [node name="Ribbon" type="Sprite2D" parent="Crab"]
 visible = false
-position = Vector2(411, 169)
-rotation = -0.252081
-scale = Vector2(0.385301, 0.385301)
+position = Vector2(509, 318)
+rotation = 0.167006
+scale = Vector2(0.305973, 0.305973)
 texture = ExtResource("20_7025r")
 
 [node name="Star3" type="Sprite2D" parent="Crab"]
 visible = false
-position = Vector2(397, 367)
+position = Vector2(556, 230)
 rotation = -1.86552
 scale = Vector2(0.187317, 0.187317)
 texture = ExtResource("23_pr1ej")
 
 [node name="Star4" type="Sprite2D" parent="Crab"]
 visible = false
-position = Vector2(714, 342)
+position = Vector2(646, 261)
 rotation = 0.490134
-scale = Vector2(0.2651, 0.2651)
+scale = Vector2(0.157792, 0.157792)
 texture = ExtResource("24_05nbr")
 
 [node name="Star5" type="Sprite2D" parent="Crab"]
 visible = false
-position = Vector2(598, 248)
+position = Vector2(658, 139)
 rotation = 0.677935
-scale = Vector2(0.288499, 0.288499)
+scale = Vector2(0.209282, 0.209282)
 texture = ExtResource("41_8ool0")
 
 [node name="Crab" type="Sprite2D" parent="Crab"]

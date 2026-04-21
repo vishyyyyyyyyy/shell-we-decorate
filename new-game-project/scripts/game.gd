@@ -65,7 +65,6 @@ func _ready() -> void:
 	$info.visible=true
 	$info/Area2D.visible=true
 	$Crab/Crab.visible = false
-	$Crab/Barnacle2.visible=true
 	#end_day()
 	$"end day/shop".shop.connect(shop)
 	$"end day/newday".newday.connect(new_day)
@@ -288,6 +287,30 @@ func crab_order():
 			$orderrequest/ordershell1/yellow.visible=true
 		elif current_order["color"] == "pink":
 			$orderrequest/ordershell1/pink.visible=true
+		$Crab/Barnacle2.position = Vector2(308, 317) 
+		$Crab/Barnacle2.rotation_degrees = -64.6
+		$Crab/Barnacle2.scale = Vector2(0.299, 0.299)
+		
+		$Crab/Barnacle.position = Vector2(727, 197)
+		$Crab/Barnacle.scale = Vector2(0.266, 0.266)
+		$Crab/Barnacle.rotation_degrees = 24.9
+		
+		$Crab/Ribbon.position = Vector2(411.0, 169.0)
+		$Crab/Ribbon.scale = Vector2(0.385, 0.385)
+		$Crab/Ribbon.rotation_degrees = -14.0
+		
+		$Crab/Star3.position = Vector2(397, 367.0)
+		$Crab/Star3.scale = Vector2(0.187, 0.187)
+		$Crab/Star3.rotation_degrees = -106.9
+		
+		$Crab/Star4.position = Vector2(714, 342.0)
+		$Crab/Star4.scale = Vector2(0.265, 0.265)
+		$Crab/Star4.rotation_degrees = 28.1
+		
+		$Crab/Star5.position = Vector2(598.0,248.0)
+		$Crab/Star5.scale = Vector2(0.288,0.288)
+		$Crab/Star5.rotation_degrees = 38.8
+		
 	if current_order["shape"] == "shell2":
 		$orderrequest/ordershell2.visible=true
 		#shell2 crab upgrade posiition
@@ -297,6 +320,30 @@ func crab_order():
 			$orderrequest/ordershell2/yellow.visible=true
 		elif current_order["color"] == "pink":
 			$orderrequest/ordershell2/pink.visible=true
+		
+		$Crab/Barnacle2.position = Vector2(337, 385) 
+		$Crab/Barnacle2.rotation_degrees = -64.6
+		$Crab/Barnacle2.scale = Vector2(0.299, 0.299)
+		
+		$Crab/Barnacle.position = Vector2(438, 108)
+		$Crab/Barnacle.scale = Vector2(0.266, 0.266)
+		$Crab/Barnacle.rotation_degrees = -20.3
+		
+		$Crab/Ribbon.position = Vector2(717, 237.0)
+		$Crab/Ribbon.scale = Vector2(0.385, 0.385)
+		$Crab/Ribbon.rotation_degrees = 9.6
+		
+		$Crab/Star3.position = Vector2(554, 235.0)
+		$Crab/Star3.scale = Vector2(0.187, 0.187)
+		$Crab/Star3.rotation_degrees = -106.9
+		
+		$Crab/Star4.position = Vector2(367, 273.0)
+		$Crab/Star4.scale = Vector2(0.265, 0.265)
+		$Crab/Star4.rotation_degrees = 28.1
+		
+		$Crab/Star5.position = Vector2(676.0,347.0)
+		$Crab/Star5.scale = Vector2(0.161,0.161)
+		$Crab/Star5.rotation_degrees = 38.8
 	if current_order["shape"] == "shell3":
 		$orderrequest/ordershell3.visible=true
 		#shell3 crab upgrade posiition
@@ -306,6 +353,30 @@ func crab_order():
 			$orderrequest/ordershell3/yellow.visible=true
 		elif current_order["color"] == "pink":
 			$orderrequest/ordershell3/pink.visible=true
+			
+		$Crab/Barnacle2.position = Vector2(657.365, 326.197) 
+		$Crab/Barnacle2.rotation_degrees = 41
+		$Crab/Barnacle2.scale = Vector2(0.299, 0.299)
+		
+		$Crab/Barnacle.position = Vector2(620, 61)
+		$Crab/Barnacle.scale = Vector2(0.133, 0.133)
+		$Crab/Barnacle.rotation_degrees = -46.6
+		
+		$Crab/Ribbon.position = Vector2(509, 318)
+		$Crab/Ribbon.scale = Vector2(0.306, 0.306)
+		$Crab/Ribbon.rotation_degrees = 9.6
+		
+		$Crab/Star3.position = Vector2(556, 230)
+		$Crab/Star3.scale = Vector2(0.187, 0.187)
+		$Crab/Star3.rotation_degrees = -106.9
+		
+		$Crab/Star4.position = Vector2(646, 261.0)
+		$Crab/Star4.scale = Vector2(0.158, 0.158)
+		$Crab/Star4.rotation_degrees = 28.1
+		
+		$Crab/Star5.position = Vector2(658.0, 139.0)
+		$Crab/Star5.scale = Vector2(0.209,0.209)
+		$Crab/Star5.rotation_degrees = 38.8
 	
 	if stars == 3:
 		$orderrequest/Star.visible = true
