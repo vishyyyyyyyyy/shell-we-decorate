@@ -362,7 +362,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(308, 317), Vector2(366, 761)]
+"values": [Vector2(343, 286), Vector2(343, 822)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -374,7 +374,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(727, 197), Vector2(700, 821)]
+"values": [Vector2(670, 274), Vector2(670, 810)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -386,7 +386,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(411, 169), Vector2(492, 666)]
+"values": [Vector2(411, 169), Vector2(411, 705)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -398,7 +398,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(397, 367), Vector2(476, 789)]
+"values": [Vector2(397, 367), Vector2(397, 903)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -410,7 +410,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(714, 342), Vector2(616, 785)]
+"values": [Vector2(579, 330), Vector2(579, 866)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -422,7 +422,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(598, 248), Vector2(372, 661)]
+"values": [Vector2(475, 267), Vector2(475, 803)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -1129,44 +1129,50 @@ texture = ExtResource("21_pf7vy")
 
 [node name="Barnacle2" type="Sprite2D" parent="Crab"]
 visible = false
-position = Vector2(657.365, 326.197)
-rotation = 0.715015
+z_index = 1
+position = Vector2(343, 286)
+rotation = -1.12826
 scale = Vector2(0.229093, 0.229093)
 texture = ExtResource("37_ms3bu")
 
 [node name="Barnacle" type="Sprite2D" parent="Crab"]
 visible = false
-position = Vector2(620, 61)
-rotation = -0.81417
-scale = Vector2(0.133299, 0.133299)
+z_index = 1
+position = Vector2(670, 274)
+rotation = 0.434868
+scale = Vector2(0.266034, 0.266034)
 texture = ExtResource("38_7ixpq")
 
 [node name="Ribbon" type="Sprite2D" parent="Crab"]
 visible = false
-position = Vector2(509, 318)
-rotation = 0.167006
-scale = Vector2(0.305973, 0.305973)
+z_index = 1
+position = Vector2(411, 169)
+rotation = -0.252081
+scale = Vector2(0.385301, 0.385301)
 texture = ExtResource("20_7025r")
 
 [node name="Star3" type="Sprite2D" parent="Crab"]
 visible = false
-position = Vector2(556, 230)
+z_index = 1
+position = Vector2(397, 367)
 rotation = -1.86552
 scale = Vector2(0.187317, 0.187317)
 texture = ExtResource("23_pr1ej")
 
 [node name="Star4" type="Sprite2D" parent="Crab"]
 visible = false
-position = Vector2(646, 261)
+z_index = 1
+position = Vector2(579, 330)
 rotation = 0.490134
-scale = Vector2(0.157792, 0.157792)
+scale = Vector2(0.2651, 0.2651)
 texture = ExtResource("24_05nbr")
 
 [node name="Star5" type="Sprite2D" parent="Crab"]
 visible = false
-position = Vector2(658, 139)
+z_index = 1
+position = Vector2(475, 267)
 rotation = 0.677935
-scale = Vector2(0.209282, 0.209282)
+scale = Vector2(0.288499, 0.288499)
 texture = ExtResource("41_8ool0")
 
 [node name="Crab" type="Sprite2D" parent="Crab"]
@@ -1681,6 +1687,88 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(565.5, 560.5)
 shape = SubResource("RectangleShape2D_js0lu")
 
+[node name="last day" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Infobox" type="Sprite2D" parent="last day"]
+z_index = 1
+position = Vector2(581, 335)
+scale = Vector2(0.197853, 0.197853)
+texture = ExtResource("30_qouja")
+
+[node name="Crab" type="Sprite2D" parent="last day"]
+z_index = 1
+position = Vector2(809, 493)
+scale = Vector2(0.102251, 0.102251)
+texture = ExtResource("5_bt5mj")
+
+[node name="Crab2" type="Sprite2D" parent="last day"]
+z_index = 1
+position = Vector2(342, 184)
+scale = Vector2(0.102251, 0.102251)
+texture = ExtResource("4_37s47")
+
+[node name="label2" type="Label" parent="last day"]
+z_index = 2
+offset_left = 387.0
+offset_top = 206.0
+offset_right = 780.0
+offset_bottom = 491.0
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
+theme_override_fonts/font = ExtResource("29_sgl2t")
+theme_override_font_sizes/font_size = 28
+text = "Dear, little shell artist, for 10 whole days, you brought color and joy to the ocean. Every shell you decorated made a crab smile.
+The ocean is brighter because of you."
+vertical_alignment = 1
+autowrap_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="label" type="Label" parent="last day"]
+z_index = 2
+offset_left = 303.0
+offset_top = 104.0
+offset_right = 863.0
+offset_bottom = 218.0
+theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
+theme_override_fonts/font = ExtResource("29_sgl2t")
+theme_override_font_sizes/font_size = 68
+text = "CONGRATS"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Area2D" type="Area2D" parent="last day"]
+z_index = 1
+position = Vector2(-8, -40)
+script = ExtResource("31_wljb1")
+hover = ExtResource("32_js0lu")
+normal = ExtResource("32_v2yb1")
+
+[node name="Button" type="Sprite2D" parent="last day/Area2D"]
+position = Vector2(565, 561)
+scale = Vector2(0.208204, 0.208204)
+texture = ExtResource("32_v2yb1")
+
+[node name="Label" type="Label" parent="last day/Area2D/Button"]
+offset_left = -442.332
+offset_top = -143.788
+offset_right = 436.668
+offset_bottom = 170.212
+theme_override_colors/font_color = Color(0.996078, 0.996078, 0.839216, 1)
+theme_override_fonts/font = ExtResource("29_sgl2t")
+theme_override_font_sizes/font_size = 200
+text = "Play Again"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="last day/Area2D"]
+position = Vector2(565.5, 560.5)
+shape = SubResource("RectangleShape2D_js0lu")
+disabled = true
+
 [node name="end day" type="CanvasLayer" parent="."]
 visible = false
 
@@ -2096,6 +2184,9 @@ texture = ExtResource("10_sww3w")
 [connection signal="input_event" from="info/Area2D" to="info/Area2D" method="_on_input_event"]
 [connection signal="mouse_entered" from="info/Area2D" to="info/Area2D" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="info/Area2D" to="info/Area2D" method="_on_mouse_exited"]
+[connection signal="input_event" from="last day/Area2D" to="last day/Area2D" method="_on_input_event"]
+[connection signal="mouse_entered" from="last day/Area2D" to="last day/Area2D" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="last day/Area2D" to="last day/Area2D" method="_on_mouse_exited"]
 [connection signal="input_event" from="end day/newday" to="end day/newday" method="_on_input_event"]
 [connection signal="mouse_entered" from="end day/newday" to="end day/newday" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="end day/newday" to="end day/newday" method="_on_mouse_exited"]

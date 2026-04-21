@@ -294,11 +294,11 @@ func crab_order():
 			$orderrequest/ordershell1/yellow.visible=true
 		elif current_order["color"] == "pink":
 			$orderrequest/ordershell1/pink.visible=true
-		$Crab/Barnacle2.position = Vector2(308, 317) 
+		$Crab/Barnacle2.position = Vector2(343, 286) 
 		$Crab/Barnacle2.rotation_degrees = -64.6
 		$Crab/Barnacle2.scale = Vector2(0.299, 0.299)
 		
-		$Crab/Barnacle.position = Vector2(727, 197)
+		$Crab/Barnacle.position = Vector2(670, 274)
 		$Crab/Barnacle.scale = Vector2(0.266, 0.266)
 		$Crab/Barnacle.rotation_degrees = 24.9
 		
@@ -310,11 +310,11 @@ func crab_order():
 		$Crab/Star3.scale = Vector2(0.187, 0.187)
 		$Crab/Star3.rotation_degrees = -106.9
 		
-		$Crab/Star4.position = Vector2(714, 342.0)
+		$Crab/Star4.position = Vector2(579, 330.0)
 		$Crab/Star4.scale = Vector2(0.265, 0.265)
 		$Crab/Star4.rotation_degrees = 28.1
 		
-		$Crab/Star5.position = Vector2(598.0,248.0)
+		$Crab/Star5.position = Vector2(476.0,267.0)
 		$Crab/Star5.scale = Vector2(0.288,0.288)
 		$Crab/Star5.rotation_degrees = 38.8
 		
@@ -694,6 +694,7 @@ func check_order() -> void:
 			$orderrequest/pearls.text = "5"
 			order_failed = false
 		else:
+			Global.streak +=1
 			face.visible = true
 			face.texture = happy
 			await get_tree().create_timer(2).timeout
@@ -702,6 +703,7 @@ func check_order() -> void:
 			face.visible = false
 			Global.daily_pearls += 10
 			$orderrequest/pearls.text = "10"
+		Global.crabsales +=1 
 		selected_barnacle = 0
 		selected_bow = 0
 		selected_stars = 0
@@ -725,6 +727,7 @@ func check_order() -> void:
 		
 	else:
 		print("sad")
+		Global.streak = 0
 		order_failed = true
 		# show sad face
 		face.visible = true
