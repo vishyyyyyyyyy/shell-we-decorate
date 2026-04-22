@@ -1,6 +1,7 @@
-[gd_scene load_steps=21 format=3 uid="uid://bvn4ip4vc63yj"]
+[gd_scene load_steps=22 format=3 uid="uid://bvn4ip4vc63yj"]
 
 [ext_resource type="Texture2D" uid="uid://m5atieeely02" path="res://images/Rectangle 2.png" id="1_g3eks"]
+[ext_resource type="Script" uid="uid://c6rv1h8lbsre5" path="res://scripts/menu.gd" id="1_g6gyw"]
 [ext_resource type="Texture2D" uid="uid://c1py1bsflsno2" path="res://images/Group 2.png" id="2_v86rl"]
 [ext_resource type="Texture2D" uid="uid://bj7nefsh1y23u" path="res://images/fih.png" id="3_13sgg"]
 [ext_resource type="Texture2D" uid="uid://ujkvsyg634t1" path="res://images/Vector 11.png" id="3_ufwb2"]
@@ -95,6 +96,7 @@ _data = {
 size = Vector2(197, 65)
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_g6gyw")
 
 [node name="background" type="Sprite2D" parent="."]
 position = Vector2(576.54, 346)

@@ -1,12 +1,12 @@
 extends Node
 
 var upgrades = {
-	"purple": true,
-	"yellow": true,
-	"pink": true,
-	"starfish": true,
-	"barnacle": true,
-	"bow": true
+	"purple": false,
+	"yellow": false,
+	"pink": false,
+	"starfish": false,
+	"barnacle": false,
+	"bow": false
 }
 
 var day := 0

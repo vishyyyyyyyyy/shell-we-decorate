@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://cv2qwtrm4jmin"]
+[gd_scene load_steps=77 format=3 uid="uid://cv2qwtrm4jmin"]
 
 [ext_resource type="Script" uid="uid://buswxx3owarpg" path="res://scripts/game.gd" id="1_264po"]
 [ext_resource type="Texture2D" uid="uid://m5atieeely02" path="res://images/Rectangle 2.png" id="2_1kice"]
@@ -53,6 +53,11 @@
 [ext_resource type="Script" uid="uid://cjp35adygf3ne" path="res://scripts/music.gd" id="41_pf7vy"]
 [ext_resource type="Script" uid="uid://g5pr4ib1nmnt" path="res://scripts/pause.gd" id="42_i4re6"]
 [ext_resource type="Texture2D" uid="uid://snfxdiciemub" path="res://images/nomusic.png" id="42_o8ni1"]
+[ext_resource type="Texture2D" uid="uid://b27u33y7icq2y" path="res://images/pinkcrabdance.png" id="51_7ixpq"]
+[ext_resource type="Texture2D" uid="uid://cnwvuxncdpkbo" path="res://images/pinkcrabdance2.png" id="52_bk1p3"]
+[ext_resource type="Texture2D" uid="uid://bgpwhvhjd13pk" path="res://images/crabdance2.png" id="53_n8ral"]
+[ext_resource type="Texture2D" uid="uid://c1tpj35icscfe" path="res://images/crabdance.png" id="54_yd4ix"]
+[ext_resource type="Script" uid="uid://mpwbppiy6awx" path="res://scripts/playagain.gd" id="55_bk1p3"]
 
 [sub_resource type="Animation" id="Animation_gxtfn"]
 length = 0.001
@@ -1026,6 +1031,67 @@ size = Vector2(633.332, 626.667)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_js0lu"]
 size = Vector2(197, 65)
 
+[sub_resource type="Animation" id="Animation_66xif"]
+resource_name = "yay"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Crab:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.025531, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Crab3:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Crab2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Crab4:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.5, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_bnuda"]
+length = 0.001
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0rmfi"]
+_data = {
+&"RESET": SubResource("Animation_bnuda"),
+&"yay": SubResource("Animation_66xif")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ool0"]
 size = Vector2(149, 122)
 
@@ -1472,7 +1538,6 @@ texture = ExtResource("38_m4url")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="stand/customizepanel"]
 z_index = 1
 position = Vector2(32.0304, 41.1807)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_gxtfn")
 disabled = true
 
@@ -1698,33 +1763,30 @@ scale = Vector2(0.197853, 0.197853)
 texture = ExtResource("30_qouja")
 
 [node name="Crab" type="Sprite2D" parent="last day"]
+visible = false
 z_index = 1
-position = Vector2(809, 493)
+position = Vector2(807.366, 493)
 scale = Vector2(0.102251, 0.102251)
-texture = ExtResource("5_bt5mj")
+texture = ExtResource("51_7ixpq")
+
+[node name="Crab3" type="Sprite2D" parent="last day"]
+z_index = 1
+position = Vector2(807.366, 493)
+scale = Vector2(0.102251, 0.102251)
+texture = ExtResource("52_bk1p3")
 
 [node name="Crab2" type="Sprite2D" parent="last day"]
+visible = false
 z_index = 1
-position = Vector2(342, 184)
+position = Vector2(343.634, 184)
 scale = Vector2(0.102251, 0.102251)
-texture = ExtResource("4_37s47")
+texture = ExtResource("53_n8ral")
 
-[node name="label2" type="Label" parent="last day"]
-z_index = 2
-offset_left = 387.0
-offset_top = 206.0
-offset_right = 780.0
-offset_bottom = 491.0
-size_flags_vertical = 1
-size_flags_stretch_ratio = 0.0
-theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
-theme_override_fonts/font = ExtResource("29_sgl2t")
-theme_override_font_sizes/font_size = 28
-text = "Dear, little shell artist, for 10 whole days, you brought color and joy to the ocean. Every shell you decorated made a crab smile.
-The ocean is brighter because of you."
-vertical_alignment = 1
-autowrap_mode = 2
-metadata/_edit_use_anchors_ = true
+[node name="Crab4" type="Sprite2D" parent="last day"]
+z_index = 1
+position = Vector2(343.634, 184)
+scale = Vector2(0.102251, 0.102251)
+texture = ExtResource("54_yd4ix")
 
 [node name="label" type="Label" parent="last day"]
 z_index = 2
@@ -1739,13 +1801,14 @@ text = "CONGRATS"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
 
 [node name="Area2D" type="Area2D" parent="last day"]
 z_index = 1
 position = Vector2(-8, -40)
-script = ExtResource("31_wljb1")
-hover = ExtResource("32_js0lu")
-normal = ExtResource("32_v2yb1")
+script = ExtResource("55_bk1p3")
+hover = ExtResource("32_v2yb1")
+normal = ExtResource("32_js0lu")
 
 [node name="Button" type="Sprite2D" parent="last day/Area2D"]
 position = Vector2(565, 561)
@@ -1769,6 +1832,94 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(565.5, 560.5)
 shape = SubResource("RectangleShape2D_js0lu")
 disabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="last day"]
+libraries = {
+&"": SubResource("AnimationLibrary_0rmfi")
+}
+
+[node name="label2" type="Label" parent="last day"]
+z_index = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -281.0
+offset_top = -111.0
+offset_right = 291.0
+offset_bottom = 78.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
+theme_override_fonts/font = ExtResource("29_sgl2t")
+theme_override_font_sizes/font_size = 28
+text = "For 10 whole days, you brought color and joy to the ocean. Every shell you decorated made a crab smile. The ocean is brighter because of you."
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="pearllabel" type="Label" parent="last day"]
+z_index = 2
+anchors_preset = -1
+anchor_left = 0.251736
+anchor_top = 0.580247
+anchor_right = 0.439236
+anchor_bottom = 0.649691
+offset_top = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
+theme_override_fonts/font = ExtResource("29_sgl2t")
+theme_override_font_sizes/font_size = 28
+text = "Total Pearls: "
+vertical_alignment = 1
+autowrap_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="shellssoldlabel" type="Label" parent="last day"]
+z_index = 2
+anchors_preset = -1
+anchor_left = 0.550347
+anchor_top = 0.580247
+anchor_right = 0.756944
+anchor_bottom = 0.649691
+offset_top = 8.0
+offset_bottom = 8.0
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
+theme_override_fonts/font = ExtResource("29_sgl2t")
+theme_override_font_sizes/font_size = 28
+text = "Total Shells Sold:"
+vertical_alignment = 1
+autowrap_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="streaklabel" type="Label" parent="last day"]
+z_index = 2
+anchors_preset = -1
+anchor_left = 0.252604
+anchor_top = 0.648148
+anchor_right = 0.467014
+anchor_bottom = 0.717593
+offset_top = 8.00003
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
+theme_override_fonts/font = ExtResource("29_sgl2t")
+theme_override_font_sizes/font_size = 28
+text = "Longest Streak: "
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="end day" type="CanvasLayer" parent="."]
 visible = false
@@ -2163,7 +2314,6 @@ scale = Vector2(1.23156, 1.23156)
 texture = ExtResource("20_7025r")
 
 [node name="pearllabel" type="Label" parent="end day"]
-visible = false
 offset_left = 92.0
 offset_top = 27.0
 offset_right = 190.0

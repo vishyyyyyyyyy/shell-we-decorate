@@ -155,26 +155,34 @@ func end_day():
 	hide_order_request()
 	await $AnimationPlayer.animation_finished
 	await get_tree().create_timer(1.0).timeout
-	$"end day/pearllabel".visible=true
-	Global.pearls_earned = Global.pearls_earned + Global.daily_pearls
-	$"end day/pearllabel".text = str(Global.pearls_earned)
-	$"end day/Pearl".visible=true
-	$timerlabel.visible=false
-	$"end day/newday".visible=true
-	$"end day/shop".visible=true
-	$"end day/label2".visible=true
-	$"end day/label3".visible=true
-	$"end day/label".visible=true
-	$"end day/newday".visible=true
-	$"end day/shop".visible=true
-	$"end day/newday/CollisionShape2D".disabled=false
-	$"end day/shop/CollisionShape2D".disabled=false
-	$"end day".visible=true
-	$info.visible=true
-	$"end day/label2".text = "Shells Sold: " + str(Global.daily_shells)
-	$"end day/label".text = "Day: " + str(Global.day)
-	$"end day/label3".text = "Pearls Earned: " + str(Global.daily_pearls)
-	timerlabel.text = "00:00"
+	if Global.day == 10:
+		$"last day".visible=true
+		$"last day/AnimationPlayer".play("yay")
+		$"last day/pearllabel".text = "Total Pearls: " + str(Global.pearls_earned)
+		$"last day/shellssoldlabel". text= "Total Shells Sold: " + str(Global.shells_sold)
+		$"last day/streaklabel".text = "Longest Streak: " + str(Global.streak)
+		$"last day/Area2D/CollisionShape2D".disabled=false
+	else:	
+		$"end day/pearllabel".visible=true
+		Global.pearls_earned = Global.pearls_earned + Global.daily_pearls
+		$"end day/pearllabel".text = str(Global.pearls_earned)
+		$"end day/Pearl".visible=true
+		$timerlabel.visible=false
+		$"end day/newday".visible=true
+		$"end day/shop".visible=true
+		$"end day/label2".visible=true
+		$"end day/label3".visible=true
+		$"end day/label".visible=true
+		$"end day/newday".visible=true
+		$"end day/shop".visible=true
+		$"end day/newday/CollisionShape2D".disabled=false
+		$"end day/shop/CollisionShape2D".disabled=false
+		$"end day".visible=true
+		$info.visible=true
+		$"end day/label2".text = "Shells Sold: " + str(Global.daily_shells)
+		$"end day/label".text = "Day: " + str(Global.day)
+		$"end day/label3".text = "Pearls Earned: " + str(Global.daily_pearls)
+		timerlabel.text = "00:00"
 	
 	
 func shop():
