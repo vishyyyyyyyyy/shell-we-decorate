@@ -14,7 +14,7 @@ var selected_color = "none"
 
 var selected_stars := 0
 var selected_barnacle := 0
-var selected_bow := false
+var selected_bow := 0
 
 @onready var timerlabel = $timerlabel
 
@@ -40,7 +40,7 @@ var current_order = {
 	"shape": "", 
 	"color": "",
 	"stars": -1,
-	"bow": false,
+	"bow": -1,
 	"barnacle": -1
 }
 
@@ -104,7 +104,6 @@ func start():
 
 
 func on_crab_finished():
-	hide_order_request()
 	current_order["shape"] = ""
 	current_order["color"] = "none"
 
@@ -113,8 +112,9 @@ func on_crab_finished():
 	selected_barnacle = 0
 	selected_bow = 0
 	selected_stars = 0
-	#stars = 0
-	#barnacle = 0
+	stars = 0
+	barnacle = 0
+	bow= 0
 	hide_customize_colors()
 	hide_customize_extras()
 	for item in purple_shells:
@@ -129,7 +129,6 @@ func on_crab_finished():
 	$Crab/Star3.visible=false
 	$Crab/Star4.visible=false
 	$Crab/Star5.visible=false
-	reset_ui()
 	crab_present = false
 	order_completed = true
 
@@ -224,7 +223,6 @@ func new_day():
 	
 	
 func respawn_crab():
-	hide_order_request()
 	crab_present = false
 	order_completed = true
 
@@ -244,13 +242,12 @@ func spawn_crab():
 	selected_color = "none" #reset the collors
 	selected_stars = 0
 	selected_barnacle = 0
-	selected_bow = false
+	selected_bow = 0
 	$AnimationPlayer.play("crabenter")
 	print("SPAWNING CRAB")
 	if crab_textures.is_empty():
 		push_error("No crab textures assigned!")
 		return
-
 	crab_present = true 
 	order_completed = false
 	$Crab/Crab.visible = true
@@ -262,9 +259,7 @@ var safelock_total_extras
 
 func crab_order():
 	hide_order_request()
-	$stand/customizepanel/CollisionShape2D2.disabled=false
-	$stand/customizepanel/CollisionShape2D.disabled=false
-	$stand/customizepanel/CollisionShape2D3.disabled=false
+	reset_ui()
 	
 	$Crab/shell1.position = Vector2(543.0,341)
 	$Crab/shell2.position = Vector2(551, 345)
@@ -278,7 +273,7 @@ func crab_order():
 	current_order["barnacle"] = build_barnacles_pool().pick_random()
 	barnacle = current_order["barnacle"]
 	current_order["bow"] = build_bow_pool().pick_random()
-	bow = int(current_order["bow"] == "bow")
+	bow = current_order["bow"]
 	
 	#total extras add
 	total_extras = stars + barnacle + bow 
@@ -405,10 +400,16 @@ func crab_order():
 	else:
 		pass
 	
-	if current_order["bow"] == "bow":
+	if bow == 1:
 		$orderrequest/Ribbon.visible=true
+	else:
+		pass
 	
 	print("New order:", current_order)
+	if crab_present:
+		$stand/customizepanel/CollisionShape2D2.disabled=false
+		$stand/customizepanel/CollisionShape2D.disabled=false
+		$stand/customizepanel/CollisionShape2D3.disabled=false
 
 func build_color_pool() -> Array:
 	var pool := ["none", "none"]
@@ -441,15 +442,14 @@ func build_barnacles_pool() -> Array:
 	return pool
 	
 func build_bow_pool() -> Array:
-	var pool := ["none", "none"]
+	var pool := [1,1,0 ]
 
 	if Global.upgrades["bow"]:
-		pool.append("bow")
+		pool.append(1)
 	return pool
 
 
 func _on_shell_selected(shell_id):
-	
 	$stand/customizepanel/CollisionShape2D.disabled = true
 	$stand/customizepanel/CollisionShape2D2.disabled = true
 	$stand/customizepanel/CollisionShape2D3.disabled = true
@@ -461,7 +461,7 @@ func _on_shell_selected(shell_id):
 
 	var colors = $stand/customizepanel.get_unlocked_colors()
 
-	if current_order["color"] == "none" and current_order["bow"] =="none" and stars == 0 and barnacle ==0:
+	if current_order["color"] == "none" and bow == 0 and stars == 0 and barnacle ==0:
 		check_order()
 	else:
 		#enable colors
@@ -505,7 +505,7 @@ func _on_color_selected(color):
 	selected_color = color
 	apply_color()
 	$stand/customizepanel.selecting_color = false
-	if current_order["bow"] =="none" and stars == 0 and barnacle ==0:
+	if current_order["bow"] == 0 and stars == 0 and barnacle ==0:
 		check_order()
 	else:
 		selecting_extras = true
@@ -670,6 +670,9 @@ func check_order() -> void:
 	$stand/customizepanel/CollisionShape2D2.disabled=true
 	$stand/customizepanel/CollisionShape2D.disabled=true
 	$stand/customizepanel/CollisionShape2D3.disabled=true
+	$stand/customizepanel/purplecoll.disabled=true
+	$stand/customizepanel/yellowcoll.disabled=true
+	$stand/customizepanel/pinkcoll.disabled=true
 	$stand/customizepanel/barnaclecoll.disabled=true
 	$stand/customizepanel/starcoll.disabled=true
 	$stand/customizepanel/bowcoll.disabled=true
@@ -681,8 +684,8 @@ func check_order() -> void:
 
 	var stars_match = (stars == selected_stars)
 	var barnacle_match = (barnacle == selected_barnacle)
-	var bow_match = (current_order["bow"] == "none" and not selected_bow) or (current_order["bow"] == "bow" and selected_bow)
-
+	var bow_match = (bow == selected_bow)
+	
 	if selected_shell_shape == order_shape and color_match and stars_match and barnacle_match and bow_match:
 		print("happy")
 		if order_failed:
@@ -707,21 +710,20 @@ func check_order() -> void:
 		selected_barnacle = 0
 		selected_bow = 0
 		selected_stars = 0
-		hide_order_request()
+		stars = 0
+		bow = 0
+		barnacle = 0
 		await get_tree().create_timer(2).timeout
 		hide_customize_colors()
 		hide_customize_extras()
 		$orderrequest/pearls.visible=false
 		$orderrequest/Pearl.visible=false
 		$orderrequest/orderbubble.visible=false
-		stars = 0
-		bow = 0
-		barnacle = 0
 		Global.daily_shells +=1
 		$AnimationPlayer.play("crableave")
 		play_leave_extra_anim()
-		hide_order_request()
 		await $AnimationPlayer.animation_finished
+		await $AnimationPlayer2.animation_finished
 		on_crab_finished()
 
 		
@@ -745,6 +747,9 @@ func check_order() -> void:
 		hide_all_crab_upgrades()
 		face.visible = false
 		$orderrequest/orderbubble.visible = true
+		$stand/customizepanel/CollisionShape2D2.disabled = false
+		$stand/customizepanel/CollisionShape2D.disabled = false
+		$stand/customizepanel/CollisionShape2D3.disabled = false
 
 	if current_order["shape"] == "shell1" :
 			$orderrequest/ordershell1.visible=true
@@ -791,12 +796,11 @@ func check_order() -> void:
 	else:
 		pass
 	
-	if current_order["bow"] == "bow":
+	if bow == 1:
 		$orderrequest/Ribbon.visible=true
-	
-	$stand/customizepanel/CollisionShape2D2.disabled = false
-	$stand/customizepanel/CollisionShape2D.disabled = false
-	$stand/customizepanel/CollisionShape2D3.disabled = false
+	else:
+		pass
+
 
 
 func hide_order_request():

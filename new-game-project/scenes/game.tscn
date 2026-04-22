@@ -1471,7 +1471,8 @@ texture = ExtResource("38_m4url")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="stand/customizepanel"]
 z_index = 1
-position = Vector2(32.0304, 41.1812)
+position = Vector2(32.0304, 41.1807)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_gxtfn")
 disabled = true
 
