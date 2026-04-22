@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=3 uid="uid://cv2qwtrm4jmin"]
+[gd_scene load_steps=78 format=3 uid="uid://cv2qwtrm4jmin"]
 
 [ext_resource type="Script" uid="uid://buswxx3owarpg" path="res://scripts/game.gd" id="1_264po"]
 [ext_resource type="Texture2D" uid="uid://m5atieeely02" path="res://images/Rectangle 2.png" id="2_1kice"]
@@ -58,6 +58,7 @@
 [ext_resource type="Texture2D" uid="uid://bgpwhvhjd13pk" path="res://images/crabdance2.png" id="53_n8ral"]
 [ext_resource type="Texture2D" uid="uid://c1tpj35icscfe" path="res://images/crabdance.png" id="54_yd4ix"]
 [ext_resource type="Script" uid="uid://mpwbppiy6awx" path="res://scripts/playagain.gd" id="55_bk1p3"]
+[ext_resource type="AudioStream" uid="uid://cb1b1a2glkk5u" path="res://music.mp3" id="59_n8ral"]
 
 [sub_resource type="Animation" id="Animation_gxtfn"]
 length = 0.001
@@ -2329,6 +2330,8 @@ scale = Vector2(0.137302, 0.137302)
 texture = ExtResource("10_sww3w")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("59_n8ral")
+volume_db = -10.0
 
 [connection signal="input_event" from="music" to="music" method="_on_input_event"]
 [connection signal="input_event" from="pause" to="pause" method="_on_input_event"]

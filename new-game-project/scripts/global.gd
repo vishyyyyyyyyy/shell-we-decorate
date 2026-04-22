@@ -18,8 +18,25 @@ var daily_pearls := 0
 var streak = 0
 var crabsales =0 
 
-func _ready() -> void:
-	pass 
+var music_on := true
+var music_player: AudioStreamPlayer
 
-func _process(delta: float) -> void:
-	pass
+func _ready() -> void:
+	music_player = AudioStreamPlayer.new()
+	add_child(music_player)
+
+	var music = preload("res://music.mp3")
+	music.loop = true
+	
+	music_player.stream = music
+	
+	if music_on:
+		music_player.play()
+
+func toggle_music():
+	music_on = !music_on
+	
+	if music_on:
+		music_player.play()
+	else:
+		music_player.stop()

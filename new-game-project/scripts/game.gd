@@ -99,8 +99,8 @@ func start():
 	$stand/customizepanel/CollisionShape2D2.disabled=false
 	$stand/customizepanel/CollisionShape2D.disabled=false
 	$stand/customizepanel/CollisionShape2D3.disabled=false
-	if Global.day == 0:
-		spawn_crab()
+	#if Global.day == 0:
+	spawn_crab()
 
 
 func on_crab_finished():
@@ -450,7 +450,7 @@ func build_barnacles_pool() -> Array:
 	return pool
 	
 func build_bow_pool() -> Array:
-	var pool := [1,1,0 ]
+	var pool := [0,0 ]
 
 	if Global.upgrades["bow"]:
 		pool.append(1)
