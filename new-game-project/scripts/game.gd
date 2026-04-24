@@ -162,7 +162,8 @@ func end_day():
 		$"last day/shellssoldlabel". text= "Total Shells Sold: " + str(Global.shells_sold)
 		$"last day/streaklabel".text = "Longest Streak: " + str(Global.streak)
 		$"last day/Area2D/CollisionShape2D".disabled=false
-	else:	
+	else:
+		$"end day/Infobox".visible=true
 		$"end day/pearllabel".visible=true
 		Global.pearls_earned = Global.pearls_earned + Global.daily_pearls
 		$"end day/pearllabel".text = str(Global.pearls_earned)
@@ -178,7 +179,6 @@ func end_day():
 		$"end day/newday/CollisionShape2D".disabled=false
 		$"end day/shop/CollisionShape2D".disabled=false
 		$"end day".visible=true
-		$info.visible=true
 		$"end day/label2".text = "Shells Sold: " + str(Global.daily_shells)
 		$"end day/label".text = "Day: " + str(Global.day)
 		$"end day/label3".text = "Pearls Earned: " + str(Global.daily_pearls)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=3 uid="uid://cv2qwtrm4jmin"]
+[gd_scene load_steps=82 format=3 uid="uid://cv2qwtrm4jmin"]
 
 [ext_resource type="Script" uid="uid://buswxx3owarpg" path="res://scripts/game.gd" id="1_264po"]
 [ext_resource type="Texture2D" uid="uid://m5atieeely02" path="res://images/Rectangle 2.png" id="2_1kice"]
@@ -53,6 +53,10 @@
 [ext_resource type="Script" uid="uid://cjp35adygf3ne" path="res://scripts/music.gd" id="41_pf7vy"]
 [ext_resource type="Script" uid="uid://g5pr4ib1nmnt" path="res://scripts/pause.gd" id="42_i4re6"]
 [ext_resource type="Texture2D" uid="uid://snfxdiciemub" path="res://images/nomusic.png" id="42_o8ni1"]
+[ext_resource type="Texture2D" uid="uid://c161dgk27xein" path="res://images/nomusic hover.png" id="43_0rmfi"]
+[ext_resource type="Texture2D" uid="uid://ngpymum41kfu" path="res://images/music hover.png" id="45_xbak0"]
+[ext_resource type="Texture2D" uid="uid://c05s6cncgbre5" path="res://images/play hover.png" id="46_66xif"]
+[ext_resource type="Texture2D" uid="uid://577wtbyqgxcl" path="res://images/pause hover.png" id="48_bnuda"]
 [ext_resource type="Texture2D" uid="uid://b27u33y7icq2y" path="res://images/pinkcrabdance.png" id="51_7ixpq"]
 [ext_resource type="Texture2D" uid="uid://cnwvuxncdpkbo" path="res://images/pinkcrabdance2.png" id="52_bk1p3"]
 [ext_resource type="Texture2D" uid="uid://bgpwhvhjd13pk" path="res://images/crabdance2.png" id="53_n8ral"]
@@ -1032,6 +1036,9 @@ size = Vector2(633.332, 626.667)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_js0lu"]
 size = Vector2(197, 65)
 
+[sub_resource type="Animation" id="Animation_bnuda"]
+length = 0.001
+
 [sub_resource type="Animation" id="Animation_66xif"]
 resource_name = "yay"
 loop_mode = 1
@@ -1083,9 +1090,6 @@ tracks/3/keys = {
 "update": 1,
 "values": [true, false]
 }
-
-[sub_resource type="Animation" id="Animation_bnuda"]
-length = 0.001
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0rmfi"]
 _data = {
@@ -1647,7 +1651,9 @@ position = Vector2(981, 61)
 scale = Vector2(0.15, 0.15)
 script = ExtResource("41_pf7vy")
 mute = ExtResource("42_o8ni1")
+mute_hover = ExtResource("43_0rmfi")
 music = ExtResource("14_wljb1")
+music_hover = ExtResource("45_xbak0")
 
 [node name="Sprite2D" type="Sprite2D" parent="music"]
 texture = ExtResource("14_wljb1")
@@ -1663,7 +1669,9 @@ position = Vector2(981, 61)
 scale = Vector2(0.15, 0.15)
 script = ExtResource("42_i4re6")
 paused = ExtResource("11_suyxu")
+paused_hover = ExtResource("46_66xif")
 normal = ExtResource("12_sgl2t")
+normal_hover = ExtResource("48_bnuda")
 
 [node name="Sprite2D" type="Sprite2D" parent="pause"]
 position = Vector2(753.333, 0)
@@ -2103,7 +2111,7 @@ offset_bottom = 988.852
 theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
 theme_override_fonts/font = ExtResource("29_sgl2t")
 theme_override_font_sizes/font_size = 130
-text = "150"
+text = "100"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
@@ -2135,7 +2143,7 @@ offset_bottom = 988.852
 theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
 theme_override_fonts/font = ExtResource("29_sgl2t")
 theme_override_font_sizes/font_size = 130
-text = "150"
+text = "200"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
@@ -2167,7 +2175,7 @@ offset_bottom = 988.852
 theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
 theme_override_fonts/font = ExtResource("29_sgl2t")
 theme_override_font_sizes/font_size = 130
-text = "150"
+text = "300"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
@@ -2199,7 +2207,7 @@ offset_bottom = 988.852
 theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
 theme_override_fonts/font = ExtResource("29_sgl2t")
 theme_override_font_sizes/font_size = 130
-text = "200"
+text = "400"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
@@ -2245,7 +2253,7 @@ offset_bottom = 988.852
 theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
 theme_override_fonts/font = ExtResource("29_sgl2t")
 theme_override_font_sizes/font_size = 130
-text = "300"
+text = "500"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
@@ -2297,7 +2305,7 @@ offset_bottom = 988.852
 theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
 theme_override_fonts/font = ExtResource("29_sgl2t")
 theme_override_font_sizes/font_size = 130
-text = "500"
+text = "600"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
@@ -2334,7 +2342,11 @@ stream = ExtResource("59_n8ral")
 volume_db = -10.0
 
 [connection signal="input_event" from="music" to="music" method="_on_input_event"]
+[connection signal="mouse_entered" from="music" to="music" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="music" to="music" method="_on_mouse_exited"]
 [connection signal="input_event" from="pause" to="pause" method="_on_input_event"]
+[connection signal="mouse_exited" from="pause" to="pause" method="_on_mouse_exited"]
+[connection signal="mouse_shape_entered" from="pause" to="pause" method="_on_mouse_shape_entered"]
 [connection signal="input_event" from="info/Area2D" to="info/Area2D" method="_on_input_event"]
 [connection signal="mouse_entered" from="info/Area2D" to="info/Area2D" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="info/Area2D" to="info/Area2D" method="_on_mouse_exited"]
