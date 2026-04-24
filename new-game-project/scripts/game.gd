@@ -51,7 +51,6 @@ var barnacle = 0
 var bow = 0
 var total_extras = 0
 
-
 @onready var purplepanel = $stand/customizepanel/panel/purple
 @onready var yellowpanel = $stand/customizepanel/panel2/yellow
 @onready var pinkpanel = $stand/customizepanel/panel3/pink

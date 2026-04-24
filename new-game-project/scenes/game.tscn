@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=3 uid="uid://cv2qwtrm4jmin"]
+[gd_scene load_steps=87 format=3 uid="uid://cv2qwtrm4jmin"]
 
 [ext_resource type="Script" uid="uid://buswxx3owarpg" path="res://scripts/game.gd" id="1_264po"]
 [ext_resource type="Texture2D" uid="uid://m5atieeely02" path="res://images/Rectangle 2.png" id="2_1kice"]
@@ -57,11 +57,15 @@
 [ext_resource type="Texture2D" uid="uid://ngpymum41kfu" path="res://images/music hover.png" id="45_xbak0"]
 [ext_resource type="Texture2D" uid="uid://c05s6cncgbre5" path="res://images/play hover.png" id="46_66xif"]
 [ext_resource type="Texture2D" uid="uid://577wtbyqgxcl" path="res://images/pause hover.png" id="48_bnuda"]
+[ext_resource type="Script" uid="uid://cfrq8t1xj6sil" path="res://scripts/achievments.gd" id="49_xbak0"]
+[ext_resource type="Texture2D" uid="uid://djymxhu4l4jax" path="res://images/achievment.png" id="50_3x28f"]
 [ext_resource type="Texture2D" uid="uid://b27u33y7icq2y" path="res://images/pinkcrabdance.png" id="51_7ixpq"]
 [ext_resource type="Texture2D" uid="uid://cnwvuxncdpkbo" path="res://images/pinkcrabdance2.png" id="52_bk1p3"]
 [ext_resource type="Texture2D" uid="uid://bgpwhvhjd13pk" path="res://images/crabdance2.png" id="53_n8ral"]
 [ext_resource type="Texture2D" uid="uid://c1tpj35icscfe" path="res://images/crabdance.png" id="54_yd4ix"]
 [ext_resource type="Script" uid="uid://mpwbppiy6awx" path="res://scripts/playagain.gd" id="55_bk1p3"]
+[ext_resource type="Texture2D" uid="uid://d1uvl6ue6h4pj" path="res://images/trophy.png" id="56_weeiq"]
+[ext_resource type="Texture2D" uid="uid://wg6xjhh3ikx8" path="res://images/achievment popup.png" id="58_weeiq"]
 [ext_resource type="AudioStream" uid="uid://cb1b1a2glkk5u" path="res://music.mp3" id="59_n8ral"]
 
 [sub_resource type="Animation" id="Animation_gxtfn"]
@@ -1033,6 +1037,29 @@ size = Vector2(1363.58, 1107.34)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pr1ej"]
 size = Vector2(633.332, 626.667)
 
+[sub_resource type="GDScript" id="GDScript_mmvbu"]
+script/source = "class_name AchievementData
+
+var name: String
+var desc: String
+var reward: int
+var unlocked: bool = false
+
+func _init(_name: String, _desc: String, _reward: int):
+	name = _name
+	desc = _desc
+	reward = _reward
+
+func get_display_name() -> String:
+	if unlocked:
+		return name
+	return \"???\"
+
+func get_display_desc() -> String:
+	if unlocked:
+		return desc
+	return \"???\""
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_js0lu"]
 size = Vector2(197, 65)
 
@@ -1682,6 +1709,22 @@ z_index = 1
 position = Vector2(756.665, 6.10352e-05)
 shape = SubResource("RectangleShape2D_pr1ej")
 
+[node name="achievement2" type="Area2D" parent="."]
+process_mode = 3
+position = Vector2(749, 61)
+scale = Vector2(0.15, 0.15)
+script = ExtResource("49_xbak0")
+normal = ExtResource("50_3x28f")
+
+[node name="Sprite2D" type="Sprite2D" parent="achievement2"]
+position = Vector2(753.333, 0)
+texture = ExtResource("50_3x28f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="achievement2"]
+z_index = 1
+position = Vector2(756.665, 6.10352e-05)
+shape = SubResource("RectangleShape2D_pr1ej")
+
 [node name="timerlabel" type="Label" parent="."]
 offset_left = 60.0
 offset_top = 27.0
@@ -1693,6 +1736,498 @@ theme_override_font_sizes/font_size = 50
 text = "0:00"
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="achievement" type="CanvasLayer" parent="."]
+script = SubResource("GDScript_mmvbu")
+
+[node name="Infobox" type="Sprite2D" parent="achievement"]
+z_index = 1
+position = Vector2(581, 335)
+scale = Vector2(0.197853, 0.197853)
+texture = ExtResource("30_qouja")
+
+[node name="AchievmentPopup" type="Sprite2D" parent="achievement"]
+z_index = 1
+position = Vector2(427, 238)
+scale = Vector2(0.112318, 0.112318)
+texture = ExtResource("58_weeiq")
+
+[node name="Pearl" type="Sprite2D" parent="achievement"]
+z_index = 1
+position = Vector2(543, 237)
+scale = Vector2(0.0666985, 0.0666985)
+texture = ExtResource("10_sww3w")
+
+[node name="Trophy" type="Sprite2D" parent="achievement"]
+z_index = 1
+position = Vector2(313.531, 240.531)
+scale = Vector2(0.127297, 0.127297)
+texture = ExtResource("56_weeiq")
+
+[node name="achievementtitle" type="Label" parent="achievement"]
+z_index = 2
+anchors_preset = -1
+anchor_left = 0.289931
+anchor_top = 0.319444
+anchor_right = 0.430486
+anchor_bottom = 0.380556
+offset_left = 7.99997
+offset_top = 5.0
+offset_right = 30.08
+offset_bottom = 10.4
+scale = Vector2(0.88, 0.88)
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
+theme_override_fonts/font = ExtResource("29_sgl2t")
+theme_override_font_sizes/font_size = 28
+text = "???"
+vertical_alignment = 1
+autowrap_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="pearlsadded" type="Label" parent="achievement"]
+z_index = 2
+offset_left = 492.0
+offset_top = 221.0
+offset_right = 535.0
+offset_bottom = 261.0
+scale = Vector2(0.88, 0.88)
+theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
+theme_override_fonts/font = ExtResource("29_sgl2t")
+theme_override_font_sizes/font_size = 25
+text = "+ 10"
+
+[node name="desc" type="Label" parent="achievement"]
+z_index = 2
+anchors_preset = -1
+anchor_left = 0.318576
+anchor_top = 0.175926
+anchor_right = 0.46441
+anchor_bottom = 0.212963
+offset_left = -24.0001
+offset_top = 130.0
+offset_right = -24.0001
+offset_bottom = 130.0
+scale = Vector2(0.88, 0.88)
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
+theme_override_fonts/font = ExtResource("29_sgl2t")
+theme_override_font_sizes/font_size = 15
+text = "Achievement Locked"
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="AchievmentPopup2" type="Sprite2D" parent="achievement"]
+z_index = 1
+position = Vector2(732, 238)
+scale = Vector2(0.112318, 0.112318)
+texture = ExtResource("58_weeiq")
+
+[node name="Pearl2" type="Sprite2D" parent="achievement"]
+z_index = 1
+position = Vector2(848, 237)
+scale = Vector2(0.0666985, 0.0666985)
+texture = ExtResource("10_sww3w")
+
+[node name="Trophy2" type="Sprite2D" parent="achievement"]
+z_index = 1
+position = Vector2(618.531, 240.531)
+scale = Vector2(0.127297, 0.127297)
+texture = ExtResource("56_weeiq")
+
+[node name="achievementtitle2" type="Label" parent="achievement"]
+z_index = 2
+anchors_preset = -1
+anchor_left = 0.289931
+anchor_top = 0.319444
+anchor_right = 0.430486
+anchor_bottom = 0.380556
+offset_left = 313.0
+offset_top = 5.0
+offset_right = 335.08
+offset_bottom = 10.4
+scale = Vector2(0.88, 0.88)
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
+theme_override_fonts/font = ExtResource("29_sgl2t")
+theme_override_font_sizes/font_size = 28
+text = "???"
+vertical_alignment = 1
+autowrap_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="pearlsadded2" type="Label" parent="achievement"]
+z_index = 2
+offset_left = 797.0
+offset_top = 221.0
+offset_right = 840.0
+offset_bottom = 261.0
+scale = Vector2(0.88, 0.88)
+theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
+theme_override_fonts/font = ExtResource("29_sgl2t")
+theme_override_font_sizes/font_size = 25
+text = "+ 10"
+
+[node name="desc2" type="Label" parent="achievement"]
+z_index = 2
+anchors_preset = -1
+anchor_left = 0.318576
+anchor_top = 0.175926
+anchor_right = 0.46441
+anchor_bottom = 0.212963
+offset_left = 281.0
+offset_top = 130.0
+offset_right = 281.0
+offset_bottom = 130.0
+scale = Vector2(0.88, 0.88)
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
+theme_override_fonts/font = ExtResource("29_sgl2t")
+theme_override_font_sizes/font_size = 15
+text = "Achievement Locked"
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="AchievmentPopup3" type="Sprite2D" parent="achievement"]
+z_index = 1
+position = Vector2(427, 334)
+scale = Vector2(0.112318, 0.112318)
+texture = ExtResource("58_weeiq")
+
+[node name="Pearl3" type="Sprite2D" parent="achievement"]
+z_index = 1
+position = Vector2(543, 333)
+scale = Vector2(0.0666985, 0.0666985)
+texture = ExtResource("10_sww3w")
+
+[node name="Trophy3" type="Sprite2D" parent="achievement"]
+z_index = 1
+position = Vector2(313.531, 336.531)
+scale = Vector2(0.127297, 0.127297)
+texture = ExtResource("56_weeiq")
+
+[node name="achievementtitle3" type="Label" parent="achievement"]
+z_index = 2
+anchors_preset = -1
+anchor_left = 0.289931
+anchor_top = 0.319444
+anchor_right = 0.430486
+anchor_bottom = 0.380556
+offset_left = 7.99997
+offset_top = 101.0
+offset_right = 30.08
+offset_bottom = 106.4
+scale = Vector2(0.88, 0.88)
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
+theme_override_fonts/font = ExtResource("29_sgl2t")
+theme_override_font_sizes/font_size = 28
+text = "???"
+vertical_alignment = 1
+autowrap_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="pearlsadded3" type="Label" parent="achievement"]
+z_index = 2
+offset_left = 492.0
+offset_top = 317.0
+offset_right = 535.0
+offset_bottom = 357.0
+scale = Vector2(0.88, 0.88)
+theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
+theme_override_fonts/font = ExtResource("29_sgl2t")
+theme_override_font_sizes/font_size = 25
+text = "+ 10"
+
+[node name="desc3" type="Label" parent="achievement"]
+z_index = 2
+anchors_preset = -1
+anchor_left = 0.318576
+anchor_top = 0.175926
+anchor_right = 0.46441
+anchor_bottom = 0.212963
+offset_left = -24.0001
+offset_top = 226.0
+offset_right = -24.0001
+offset_bottom = 226.0
+scale = Vector2(0.88, 0.88)
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
+theme_override_fonts/font = ExtResource("29_sgl2t")
+theme_override_font_sizes/font_size = 15
+text = "Achievement Locked"
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="AchievmentPopup4" type="Sprite2D" parent="achievement"]
+z_index = 1
+position = Vector2(732, 334)
+scale = Vector2(0.112318, 0.112318)
+texture = ExtResource("58_weeiq")
+
+[node name="Pearl4" type="Sprite2D" parent="achievement"]
+z_index = 1
+position = Vector2(848, 333)
+scale = Vector2(0.0666985, 0.0666985)
+texture = ExtResource("10_sww3w")
+
+[node name="Trophy4" type="Sprite2D" parent="achievement"]
+z_index = 1
+position = Vector2(618.531, 336.531)
+scale = Vector2(0.127297, 0.127297)
+texture = ExtResource("56_weeiq")
+
+[node name="achievementtitle4" type="Label" parent="achievement"]
+z_index = 2
+anchors_preset = -1
+anchor_left = 0.289931
+anchor_top = 0.319444
+anchor_right = 0.430486
+anchor_bottom = 0.380556
+offset_left = 313.0
+offset_top = 101.0
+offset_right = 335.08
+offset_bottom = 106.4
+scale = Vector2(0.88, 0.88)
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
+theme_override_fonts/font = ExtResource("29_sgl2t")
+theme_override_font_sizes/font_size = 28
+text = "???"
+vertical_alignment = 1
+autowrap_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="pearlsadded4" type="Label" parent="achievement"]
+z_index = 2
+offset_left = 797.0
+offset_top = 317.0
+offset_right = 840.0
+offset_bottom = 357.0
+scale = Vector2(0.88, 0.88)
+theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
+theme_override_fonts/font = ExtResource("29_sgl2t")
+theme_override_font_sizes/font_size = 25
+text = "+ 10"
+
+[node name="desc4" type="Label" parent="achievement"]
+z_index = 2
+anchors_preset = -1
+anchor_left = 0.318576
+anchor_top = 0.175926
+anchor_right = 0.46441
+anchor_bottom = 0.212963
+offset_left = 281.0
+offset_top = 226.0
+offset_right = 281.0
+offset_bottom = 226.0
+scale = Vector2(0.88, 0.88)
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
+theme_override_fonts/font = ExtResource("29_sgl2t")
+theme_override_font_sizes/font_size = 15
+text = "Achievement Locked"
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="AchievmentPopup5" type="Sprite2D" parent="achievement"]
+z_index = 1
+position = Vector2(427, 430)
+scale = Vector2(0.112318, 0.112318)
+texture = ExtResource("58_weeiq")
+
+[node name="Pearl5" type="Sprite2D" parent="achievement"]
+z_index = 1
+position = Vector2(543, 429)
+scale = Vector2(0.0666985, 0.0666985)
+texture = ExtResource("10_sww3w")
+
+[node name="Trophy5" type="Sprite2D" parent="achievement"]
+z_index = 1
+position = Vector2(313.531, 432.531)
+scale = Vector2(0.127297, 0.127297)
+texture = ExtResource("56_weeiq")
+
+[node name="achievementtitle5" type="Label" parent="achievement"]
+z_index = 2
+anchors_preset = -1
+anchor_left = 0.289931
+anchor_top = 0.319444
+anchor_right = 0.430486
+anchor_bottom = 0.380556
+offset_left = 7.99997
+offset_top = 197.0
+offset_right = 30.08
+offset_bottom = 202.4
+scale = Vector2(0.88, 0.88)
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
+theme_override_fonts/font = ExtResource("29_sgl2t")
+theme_override_font_sizes/font_size = 28
+text = "???"
+vertical_alignment = 1
+autowrap_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="pearlsadded5" type="Label" parent="achievement"]
+z_index = 2
+offset_left = 492.0
+offset_top = 413.0
+offset_right = 535.0
+offset_bottom = 453.0
+scale = Vector2(0.88, 0.88)
+theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
+theme_override_fonts/font = ExtResource("29_sgl2t")
+theme_override_font_sizes/font_size = 25
+text = "+ 10"
+
+[node name="desc5" type="Label" parent="achievement"]
+z_index = 2
+anchors_preset = -1
+anchor_left = 0.318576
+anchor_top = 0.175926
+anchor_right = 0.46441
+anchor_bottom = 0.212963
+offset_left = -24.0001
+offset_top = 322.0
+offset_right = -24.0001
+offset_bottom = 322.0
+scale = Vector2(0.88, 0.88)
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
+theme_override_fonts/font = ExtResource("29_sgl2t")
+theme_override_font_sizes/font_size = 15
+text = "Achievement Locked"
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="AchievmentPopup6" type="Sprite2D" parent="achievement"]
+z_index = 1
+position = Vector2(732, 430)
+scale = Vector2(0.112318, 0.112318)
+texture = ExtResource("58_weeiq")
+
+[node name="Pearl6" type="Sprite2D" parent="achievement"]
+z_index = 1
+position = Vector2(848, 429)
+scale = Vector2(0.0666985, 0.0666985)
+texture = ExtResource("10_sww3w")
+
+[node name="Trophy6" type="Sprite2D" parent="achievement"]
+z_index = 1
+position = Vector2(618.531, 432.531)
+scale = Vector2(0.127297, 0.127297)
+texture = ExtResource("56_weeiq")
+
+[node name="achievementtitle6" type="Label" parent="achievement"]
+z_index = 2
+anchors_preset = -1
+anchor_left = 0.289931
+anchor_top = 0.319444
+anchor_right = 0.430486
+anchor_bottom = 0.380556
+offset_left = 313.0
+offset_top = 197.0
+offset_right = 335.08
+offset_bottom = 202.4
+scale = Vector2(0.88, 0.88)
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
+theme_override_fonts/font = ExtResource("29_sgl2t")
+theme_override_font_sizes/font_size = 28
+text = "???"
+vertical_alignment = 1
+autowrap_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="pearlsadded6" type="Label" parent="achievement"]
+z_index = 2
+offset_left = 797.0
+offset_top = 413.0
+offset_right = 840.0
+offset_bottom = 453.0
+scale = Vector2(0.88, 0.88)
+theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
+theme_override_fonts/font = ExtResource("29_sgl2t")
+theme_override_font_sizes/font_size = 25
+text = "+ 10"
+
+[node name="desc6" type="Label" parent="achievement"]
+z_index = 2
+anchors_preset = -1
+anchor_left = 0.318576
+anchor_top = 0.175926
+anchor_right = 0.46441
+anchor_bottom = 0.212963
+offset_left = 281.0
+offset_top = 322.0
+offset_right = 281.0
+offset_bottom = 322.0
+scale = Vector2(0.88, 0.88)
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
+theme_override_fonts/font = ExtResource("29_sgl2t")
+theme_override_font_sizes/font_size = 15
+text = "Achievement Locked"
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="title" type="Label" parent="achievement"]
+z_index = 2
+anchors_preset = -1
+anchor_left = 0.323351
+anchor_top = 0.160494
+anchor_right = 0.676649
+anchor_bottom = 0.33642
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
+theme_override_fonts/font = ExtResource("29_sgl2t")
+theme_override_font_sizes/font_size = 68
+text = "Achievements"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="Area2D" type="Area2D" parent="achievement"]
+z_index = 1
+position = Vector2(-8, -40)
+script = ExtResource("31_wljb1")
+hover = ExtResource("32_js0lu")
+normal = ExtResource("32_v2yb1")
+
+[node name="Button" type="Sprite2D" parent="achievement/Area2D"]
+position = Vector2(565, 561)
+scale = Vector2(0.208204, 0.208204)
+texture = ExtResource("32_v2yb1")
+
+[node name="Label" type="Label" parent="achievement/Area2D/Button"]
+offset_left = -231.0
+offset_top = -143.788
+offset_right = 201.0
+offset_bottom = 170.212
+theme_override_colors/font_color = Color(0.996078, 0.996078, 0.839216, 1)
+theme_override_fonts/font = ExtResource("29_sgl2t")
+theme_override_font_sizes/font_size = 200
+text = "Start"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="achievement/Area2D"]
+position = Vector2(565.5, 560.5)
+shape = SubResource("RectangleShape2D_js0lu")
 
 [node name="info" type="CanvasLayer" parent="."]
 visible = false
@@ -2347,6 +2882,12 @@ volume_db = -10.0
 [connection signal="input_event" from="pause" to="pause" method="_on_input_event"]
 [connection signal="mouse_exited" from="pause" to="pause" method="_on_mouse_exited"]
 [connection signal="mouse_shape_entered" from="pause" to="pause" method="_on_mouse_shape_entered"]
+[connection signal="input_event" from="achievement2" to="achievement2" method="_on_input_event"]
+[connection signal="mouse_exited" from="achievement2" to="achievement2" method="_on_mouse_exited"]
+[connection signal="mouse_shape_entered" from="achievement2" to="achievement2" method="_on_mouse_shape_entered"]
+[connection signal="input_event" from="achievement/Area2D" to="achievement/Area2D" method="_on_input_event"]
+[connection signal="mouse_entered" from="achievement/Area2D" to="achievement/Area2D" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="achievement/Area2D" to="achievement/Area2D" method="_on_mouse_exited"]
 [connection signal="input_event" from="info/Area2D" to="info/Area2D" method="_on_input_event"]
 [connection signal="mouse_entered" from="info/Area2D" to="info/Area2D" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="info/Area2D" to="info/Area2D" method="_on_mouse_exited"]
