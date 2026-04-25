@@ -24,14 +24,14 @@ var music_player: AudioStreamPlayer
 var achievements = {
 	"flawless_day": {
 		"name": "Flawless Day",
-		"desc": "Serve all orders perfectly in one day",
+		"desc": "Serve 10x perfect orders",
 		"reward": 10,
 		"unlocked": false
 	},
 
 	"maxed_out": {
 		"name": "Maxed Out",
-		"desc": "Complete and order with all extras",
+		"desc": "Complete an order with all extras",
 		"reward": 30,
 		"unlocked": false
 	},
@@ -49,9 +49,9 @@ var achievements = {
 		"reward": 1,
 		"unlocked": false
 	},
-	"combo_master": {
-		"name": "Combo Master",
-		"desc": "Reach 10x perfext streak",
+	"???": {
+		"name": "???",
+		"desc": "Achievement Locked",
 		"reward": 60,
 		"unlocked": false
 	},

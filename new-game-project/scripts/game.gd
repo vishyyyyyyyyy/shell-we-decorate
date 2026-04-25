@@ -59,10 +59,13 @@ var total_extras = 0
 @onready var yellow_shells = [$Crab/yellow1, $Crab/yellow2, $Crab/yellow3]
 @onready var pink_shells = [$Crab/pink1, $Crab/pink2, $Crab/pink3]
 
+var fail_counter = 0
+
+
+
 func _ready() -> void:
 	#purplepanel.visible = Global.upgrades["purple"]
 	$info.visible=true
-	$info/Area2D.visible=true
 	$Crab/Crab.visible = false
 	#end_day()
 	$"end day/shop".shop.connect(shop)
@@ -92,6 +95,7 @@ func _process(delta: float) -> void:
 
 
 func start():
+	$info/Area2D/CollisionShape2D.disabled=true
 	$AnimationPlayer.play("fadeinday")
 	await $AnimationPlayer.animation_finished
 	day_active = true
@@ -223,6 +227,13 @@ func new_day():
 	$"end day/panelselect/CollisionShape2D5".disabled=true
 	$"end day/panelselect/CollisionShape2D6".disabled=true
 	Global.day +=1 
+	if Global.day == 10: #reach day 10
+		$stand/AnimationPlayer/achievementtitle.text = Global.achievements["shell_legend"]["name"]
+		$stand/AnimationPlayer/pearlsadded.text = "+" +  str(Global.achievements["shell_legend"]["reward"])
+		$stand/AnimationPlayer/desc.text = Global.achievements["shell_legend"]["desc"]
+		Global.achievements["shell_legend"]["unlocked"] =true
+		Global.daily_pearls += 40
+		$stand/AnimationPlayer.play("new_achievement")
 	$AnimationPlayer.play("fadeinday")
 	await $AnimationPlayer.animation_finished
 	day_active = true
@@ -413,6 +424,7 @@ func crab_order():
 		pass
 	
 	print("New order:", current_order)
+	
 	if crab_present:
 		$stand/customizepanel/CollisionShape2D2.disabled=false
 		$stand/customizepanel/CollisionShape2D.disabled=false
@@ -698,6 +710,15 @@ func check_order() -> void:
 		if order_failed:
 			hide_customize_colors()
 			hide_customize_extras()
+			fail_counter +=1
+			if fail_counter == 3:
+				$stand/AnimationPlayer/achievementtitle.text = Global.achievements["chaos_mode"]["name"]
+				$stand/AnimationPlayer/pearlsadded.text = "+" +  str(Global.achievements["chaos_mode"]["reward"])
+				$stand/AnimationPlayer/desc.text = Global.achievements["chaos_mode"]["desc"]
+				Global.achievements["chaos_mode"]["unlocked"] =true
+				Global.daily_pearls += 1
+				$stand/AnimationPlayer.play("new_achievement")
+				
 			$orderrequest/pearls.visible=true
 			$orderrequest/Pearl.visible=true
 			Global.daily_pearls += 5
@@ -705,6 +726,28 @@ func check_order() -> void:
 			order_failed = false
 		else:
 			Global.streak +=1
+			
+			if Global.streak == 10: #10x streak orders
+				var ach = Global.achievements["flawless_day"]
+				ach["unlocked"] = true
+				$stand/AnimationPlayer/achievementtitle.text = ach["name"]
+				$stand/AnimationPlayer/pearlsadded.text = "+" +  str(ach["reward"])
+				$stand/AnimationPlayer/desc.text = ach["desc"]
+				Global.daily_pearls += 10
+				$stand/AnimationPlayer.play("new_achievement")
+				
+				#all extras on order
+			if Global.achievements["maxed_out"]["unlocked"] == false and current_order["shape"]!=""and \
+				current_order["color"] != "" and current_order["stars"] and current_order["bow"] ==1 and \
+				current_order["barnacle"] != 0:
+					
+				$stand/AnimationPlayer/achievementtitle.text = Global.achievements["maxed_out"]["name"]
+				$stand/AnimationPlayer/pearlsadded.text = "+" +  str(Global.achievements["maxed_out"]["reward"])
+				$stand/AnimationPlayer/desc.text = Global.achievements["maxed_out"]["desc"]
+				Global.achievements["shell_legend"]["unlocked"] =true
+				Global.daily_pearls += 30
+				$stand/AnimationPlayer.play("new_achievement")
+				
 			face.visible = true
 			face.texture = happy
 			await get_tree().create_timer(2).timeout

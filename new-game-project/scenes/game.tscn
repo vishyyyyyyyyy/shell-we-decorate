@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=3 uid="uid://cv2qwtrm4jmin"]
+[gd_scene load_steps=91 format=3 uid="uid://cv2qwtrm4jmin"]
 
 [ext_resource type="Script" uid="uid://buswxx3owarpg" path="res://scripts/game.gd" id="1_264po"]
 [ext_resource type="Texture2D" uid="uid://m5atieeely02" path="res://images/Rectangle 2.png" id="2_1kice"]
@@ -64,7 +64,9 @@
 [ext_resource type="Texture2D" uid="uid://bgpwhvhjd13pk" path="res://images/crabdance2.png" id="53_n8ral"]
 [ext_resource type="Texture2D" uid="uid://c1tpj35icscfe" path="res://images/crabdance.png" id="54_yd4ix"]
 [ext_resource type="Script" uid="uid://mpwbppiy6awx" path="res://scripts/playagain.gd" id="55_bk1p3"]
+[ext_resource type="Texture2D" uid="uid://u17ymbw8r08u" path="res://images/achievment hover.png" id="55_weeiq"]
 [ext_resource type="Texture2D" uid="uid://d1uvl6ue6h4pj" path="res://images/trophy.png" id="56_weeiq"]
+[ext_resource type="Script" uid="uid://cahiivv1cwelr" path="res://scripts/close_achievement.gd" id="57_uxocx"]
 [ext_resource type="Texture2D" uid="uid://wg6xjhh3ikx8" path="res://images/achievment popup.png" id="58_weeiq"]
 [ext_resource type="AudioStream" uid="uid://cb1b1a2glkk5u" path="res://music.mp3" id="59_n8ral"]
 
@@ -1034,31 +1036,165 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gxtfn"]
 size = Vector2(1363.58, 1107.34)
 
+[sub_resource type="Animation" id="Animation_weeiq"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_mmvbu"]
+resource_name = "new_achievement"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/AchievmentPopup:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.06667, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer/Pearl:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.06667, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimationPlayer/Trophy:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.06667, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimationPlayer/achievementtitle:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.06667, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AnimationPlayer/pearlsadded:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.06667, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AnimationPlayer/desc:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.06667, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AnimationPlayer/Trophy:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.416667, 0.6667),
+"transitions": PackedFloat32Array(1, 1, 0.732045, 1),
+"update": 0,
+"values": [Vector2(50.2546, 154.181), Vector2(50.2546, 154.181), Vector2(50.2546, 162.181), Vector2(50.2546, 154.181)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("AnimationPlayer/AchievmentPopup:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.416667, 0.666667),
+"transitions": PackedFloat32Array(1, 1, 0.732045, 1),
+"update": 0,
+"values": [Vector2(163.724, 151.65), Vector2(163.724, 151.65), Vector2(163.724, 159.65), Vector2(163.724, 151.65)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("AnimationPlayer/Pearl:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.416667, 0.666667),
+"transitions": PackedFloat32Array(1, 1, 0.732045, 1),
+"update": 0,
+"values": [Vector2(279.724, 150.65), Vector2(279.724, 150.65), Vector2(279.724, 158.65), Vector2(279.724, 150.65)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("AnimationPlayer/achievementtitle:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.416667, 0.6667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(80, 126), Vector2(80, 126), Vector2(80, 134), Vector2(80, 126)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("AnimationPlayer/pearlsadded:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.416667, 0.666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(228.724, 134.65), Vector2(228.724, 134.65), Vector2(228.724, 142.65), Vector2(228.724, 134.65)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("AnimationPlayer/desc:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.416667, 0.666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(79, 131), Vector2(79, 131), Vector2(79, 139), Vector2(79, 131)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uxocx"]
+_data = {
+&"RESET": SubResource("Animation_weeiq"),
+&"new_achievement": SubResource("Animation_mmvbu")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pr1ej"]
 size = Vector2(633.332, 626.667)
-
-[sub_resource type="GDScript" id="GDScript_mmvbu"]
-script/source = "class_name AchievementData
-
-var name: String
-var desc: String
-var reward: int
-var unlocked: bool = false
-
-func _init(_name: String, _desc: String, _reward: int):
-	name = _name
-	desc = _desc
-	reward = _reward
-
-func get_display_name() -> String:
-	if unlocked:
-		return name
-	return \"???\"
-
-func get_display_desc() -> String:
-	if unlocked:
-		return desc
-	return \"???\""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_js0lu"]
 size = Vector2(197, 65)
@@ -1667,6 +1803,84 @@ position = Vector2(6926.3, 50.0686)
 scale = Vector2(1.96364, 1.96364)
 texture = ExtResource("20_7025r")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="stand"]
+libraries = {
+&"": SubResource("AnimationLibrary_uxocx")
+}
+
+[node name="AchievmentPopup" type="Sprite2D" parent="stand/AnimationPlayer"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(163.724, 151.65)
+scale = Vector2(0.112318, 0.112318)
+texture = ExtResource("58_weeiq")
+
+[node name="Pearl" type="Sprite2D" parent="stand/AnimationPlayer"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(279.724, 150.65)
+scale = Vector2(0.0666985, 0.0666985)
+texture = ExtResource("10_sww3w")
+
+[node name="Trophy" type="Sprite2D" parent="stand/AnimationPlayer"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(50.2546, 154.181)
+scale = Vector2(0.127297, 0.127297)
+texture = ExtResource("56_weeiq")
+
+[node name="achievementtitle" type="Label" parent="stand/AnimationPlayer"]
+modulate = Color(1, 1, 1, 0)
+z_index = 2
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -496.0
+offset_top = 126.0
+offset_right = -323.0
+offset_bottom = 171.0
+grow_horizontal = 2
+scale = Vector2(0.88, 0.88)
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
+theme_override_fonts/font = ExtResource("29_sgl2t")
+theme_override_font_sizes/font_size = 28
+text = "Flawless Day"
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="pearlsadded" type="Label" parent="stand/AnimationPlayer"]
+modulate = Color(1, 1, 1, 0)
+offset_left = 228.724
+offset_top = 134.65
+offset_right = 271.724
+offset_bottom = 174.65
+scale = Vector2(0.88, 0.88)
+theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
+theme_override_fonts/font = ExtResource("29_sgl2t")
+theme_override_font_sizes/font_size = 25
+text = "+ 10"
+
+[node name="desc" type="Label" parent="stand/AnimationPlayer"]
+modulate = Color(1, 1, 1, 0)
+z_index = 2
+anchors_preset = -1
+anchor_left = 0.318576
+anchor_top = 0.175926
+anchor_right = 0.46441
+anchor_bottom = 0.212963
+offset_left = -288.0
+offset_top = 17.0
+offset_right = -287.0
+offset_bottom = 68.0
+scale = Vector2(0.88, 0.88)
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
+theme_override_fonts/font = ExtResource("29_sgl2t")
+theme_override_font_sizes/font_size = 15
+text = "Achievement Locked"
+vertical_alignment = 1
+autowrap_mode = 2
+
 [node name="Rectangle8" type="Sprite2D" parent="."]
 position = Vector2(118, 64)
 scale = Vector2(0.14491, 0.14491)
@@ -1715,6 +1929,7 @@ position = Vector2(749, 61)
 scale = Vector2(0.15, 0.15)
 script = ExtResource("49_xbak0")
 normal = ExtResource("50_3x28f")
+hover = ExtResource("55_weeiq")
 
 [node name="Sprite2D" type="Sprite2D" parent="achievement2"]
 position = Vector2(753.333, 0)
@@ -1738,7 +1953,7 @@ text = "0:00"
 [node name="Timer" type="Timer" parent="."]
 
 [node name="achievement" type="CanvasLayer" parent="."]
-script = SubResource("GDScript_mmvbu")
+visible = false
 
 [node name="Infobox" type="Sprite2D" parent="achievement"]
 z_index = 1
@@ -1767,14 +1982,13 @@ texture = ExtResource("56_weeiq")
 [node name="achievementtitle" type="Label" parent="achievement"]
 z_index = 2
 anchors_preset = -1
-anchor_left = 0.289931
-anchor_top = 0.319444
-anchor_right = 0.430486
-anchor_bottom = 0.380556
-offset_left = 7.99997
-offset_top = 5.0
-offset_right = 30.08
-offset_bottom = 10.4
+anchor_left = 0.296875
+anchor_top = 0.32716
+anchor_right = 0.437431
+anchor_bottom = 0.44205
+offset_top = -1.52588e-05
+offset_right = 3.07947
+offset_bottom = -29.4487
 scale = Vector2(0.88, 0.88)
 size_flags_vertical = 1
 size_flags_stretch_ratio = 0.0
@@ -1784,7 +1998,6 @@ theme_override_font_sizes/font_size = 28
 text = "???"
 vertical_alignment = 1
 autowrap_mode = 2
-metadata/_edit_use_anchors_ = true
 
 [node name="pearlsadded" type="Label" parent="achievement"]
 z_index = 2
@@ -1806,9 +2019,9 @@ anchor_top = 0.175926
 anchor_right = 0.46441
 anchor_bottom = 0.212963
 offset_left = -24.0001
-offset_top = 130.0
-offset_right = -24.0001
-offset_bottom = 130.0
+offset_top = 106.0
+offset_right = -23.0001
+offset_bottom = 157.0
 scale = Vector2(0.88, 0.88)
 size_flags_vertical = 1
 size_flags_stretch_ratio = 0.0
@@ -1869,7 +2082,7 @@ scale = Vector2(0.88, 0.88)
 theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
 theme_override_fonts/font = ExtResource("29_sgl2t")
 theme_override_font_sizes/font_size = 25
-text = "+ 10"
+text = "+ 30"
 
 [node name="desc2" type="Label" parent="achievement"]
 z_index = 2
@@ -1942,7 +2155,7 @@ scale = Vector2(0.88, 0.88)
 theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
 theme_override_fonts/font = ExtResource("29_sgl2t")
 theme_override_font_sizes/font_size = 25
-text = "+ 10"
+text = "+ 40"
 
 [node name="desc3" type="Label" parent="achievement"]
 z_index = 2
@@ -1978,7 +2191,7 @@ scale = Vector2(0.0666985, 0.0666985)
 texture = ExtResource("10_sww3w")
 
 [node name="Trophy4" type="Sprite2D" parent="achievement"]
-z_index = 1
+z_index = 2
 position = Vector2(618.531, 336.531)
 scale = Vector2(0.127297, 0.127297)
 texture = ExtResource("56_weeiq")
@@ -2007,15 +2220,15 @@ metadata/_edit_use_anchors_ = true
 
 [node name="pearlsadded4" type="Label" parent="achievement"]
 z_index = 2
-offset_left = 797.0
+offset_left = 816.0
 offset_top = 317.0
-offset_right = 840.0
+offset_right = 859.0
 offset_bottom = 357.0
 scale = Vector2(0.88, 0.88)
 theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
 theme_override_fonts/font = ExtResource("29_sgl2t")
 theme_override_font_sizes/font_size = 25
-text = "+ 10"
+text = "+1"
 
 [node name="desc4" type="Label" parent="achievement"]
 z_index = 2
@@ -2039,19 +2252,19 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="AchievmentPopup5" type="Sprite2D" parent="achievement"]
-z_index = 1
+z_index = 2
 position = Vector2(427, 430)
 scale = Vector2(0.112318, 0.112318)
 texture = ExtResource("58_weeiq")
 
 [node name="Pearl5" type="Sprite2D" parent="achievement"]
-z_index = 1
+z_index = 2
 position = Vector2(543, 429)
 scale = Vector2(0.0666985, 0.0666985)
 texture = ExtResource("10_sww3w")
 
 [node name="Trophy5" type="Sprite2D" parent="achievement"]
-z_index = 1
+z_index = 2
 position = Vector2(313.531, 432.531)
 scale = Vector2(0.127297, 0.127297)
 texture = ExtResource("56_weeiq")
@@ -2088,7 +2301,7 @@ scale = Vector2(0.88, 0.88)
 theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
 theme_override_fonts/font = ExtResource("29_sgl2t")
 theme_override_font_sizes/font_size = 25
-text = "+ 10"
+text = "+ 60"
 
 [node name="desc5" type="Label" parent="achievement"]
 z_index = 2
@@ -2112,19 +2325,19 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="AchievmentPopup6" type="Sprite2D" parent="achievement"]
-z_index = 1
+z_index = 2
 position = Vector2(732, 430)
 scale = Vector2(0.112318, 0.112318)
 texture = ExtResource("58_weeiq")
 
 [node name="Pearl6" type="Sprite2D" parent="achievement"]
-z_index = 1
+z_index = 2
 position = Vector2(848, 429)
 scale = Vector2(0.0666985, 0.0666985)
 texture = ExtResource("10_sww3w")
 
 [node name="Trophy6" type="Sprite2D" parent="achievement"]
-z_index = 1
+z_index = 2
 position = Vector2(618.531, 432.531)
 scale = Vector2(0.127297, 0.127297)
 texture = ExtResource("56_weeiq")
@@ -2153,15 +2366,15 @@ metadata/_edit_use_anchors_ = true
 
 [node name="pearlsadded6" type="Label" parent="achievement"]
 z_index = 2
-offset_left = 797.0
+offset_left = 786.0
 offset_top = 413.0
-offset_right = 840.0
+offset_right = 844.0
 offset_bottom = 453.0
 scale = Vector2(0.88, 0.88)
 theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
 theme_override_fonts/font = ExtResource("29_sgl2t")
 theme_override_font_sizes/font_size = 25
-text = "+ 10"
+text = "+ 100 "
 
 [node name="desc6" type="Label" parent="achievement"]
 z_index = 2
@@ -2201,33 +2414,38 @@ metadata/_edit_use_anchors_ = true
 metadata/_edit_lock_ = true
 
 [node name="Area2D" type="Area2D" parent="achievement"]
+process_mode = 3
 z_index = 1
 position = Vector2(-8, -40)
-script = ExtResource("31_wljb1")
+script = ExtResource("57_uxocx")
 hover = ExtResource("32_js0lu")
 normal = ExtResource("32_v2yb1")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="achievement/Area2D"]
+process_mode = 3
+z_index = 2
+position = Vector2(565.5, 560.5)
+shape = SubResource("RectangleShape2D_js0lu")
+disabled = true
+
 [node name="Button" type="Sprite2D" parent="achievement/Area2D"]
+z_index = 1
 position = Vector2(565, 561)
 scale = Vector2(0.208204, 0.208204)
 texture = ExtResource("32_v2yb1")
 
 [node name="Label" type="Label" parent="achievement/Area2D/Button"]
-offset_left = -231.0
+offset_left = -370.287
 offset_top = -143.788
-offset_right = 201.0
+offset_right = 387.713
 offset_bottom = 170.212
 theme_override_colors/font_color = Color(0.996078, 0.996078, 0.839216, 1)
 theme_override_fonts/font = ExtResource("29_sgl2t")
 theme_override_font_sizes/font_size = 200
-text = "Start"
+text = "Continue"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="achievement/Area2D"]
-position = Vector2(565.5, 560.5)
-shape = SubResource("RectangleShape2D_js0lu")
 
 [node name="info" type="CanvasLayer" parent="."]
 visible = false
