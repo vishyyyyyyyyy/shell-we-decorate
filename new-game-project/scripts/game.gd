@@ -156,7 +156,7 @@ func end_day():
 	$AnimationPlayer.play("fadeday")
 	hide_order_request()
 	await $AnimationPlayer.animation_finished
-	await get_tree().create_timer(1.0).timeout
+	#await get_tree().create_timer(1.0).timeout
 	if Global.day == 10:
 		$"last day".visible=true
 		$"last day/AnimationPlayer".play("yay")
@@ -291,7 +291,7 @@ func robber_crab_shenanigans():
 	if actions.pick_random() == "steal pearls":
 		$orderrequest/pearls.visible= true
 		$orderrequest/Pearl.visible= true
-		Global.daily_shells -= 25
+		Global.daily_pearls -= 25
 		$orderrequest/pearls.text = "-25"
 		await get_tree().create_timer(2).timeout
 	#else: 
