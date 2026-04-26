@@ -671,7 +671,7 @@ func _on_bow_selected(enabled):
 		print("checking order from bow")
 		check_order()
 
-	
+
 func reset_ui():
 	#hide extras
 	hide_customize_extras()

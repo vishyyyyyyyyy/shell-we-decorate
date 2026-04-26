@@ -1,4 +1,4 @@
-[gd_scene load_steps=97 format=3 uid="uid://cv2qwtrm4jmin"]
+[gd_scene load_steps=100 format=3 uid="uid://cv2qwtrm4jmin"]
 
 [ext_resource type="Script" uid="uid://buswxx3owarpg" path="res://scripts/game.gd" id="1_264po"]
 [ext_resource type="Texture2D" uid="uid://m5atieeely02" path="res://images/Rectangle 2.png" id="2_1kice"]
@@ -1044,7 +1044,7 @@ length = 0.001
 
 [sub_resource type="Animation" id="Animation_mmvbu"]
 resource_name = "new_achievement"
-length = 1.5
+length = 2.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1052,7 +1052,7 @@ tracks/0/path = NodePath("AnimationPlayer/AchievmentPopup:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1.06667, 1.5),
+"times": PackedFloat32Array(0, 0.5, 2.1, 2.53333),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -1064,7 +1064,7 @@ tracks/1/path = NodePath("AnimationPlayer/Pearl:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 1.06667, 1.5),
+"times": PackedFloat32Array(0, 0.5, 2.1, 2.53333),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -1076,7 +1076,7 @@ tracks/2/path = NodePath("AnimationPlayer/Trophy:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5, 1.06667, 1.5),
+"times": PackedFloat32Array(0, 0.5, 2.1, 2.53333),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -1088,7 +1088,7 @@ tracks/3/path = NodePath("AnimationPlayer/achievementtitle:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.5, 1.06667, 1.5),
+"times": PackedFloat32Array(0, 0.5, 2.1, 2.53333),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -1100,7 +1100,7 @@ tracks/4/path = NodePath("AnimationPlayer/pearlsadded:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.5, 1.06667, 1.5),
+"times": PackedFloat32Array(0, 0.5, 2.1, 2.53333),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -1112,7 +1112,7 @@ tracks/5/path = NodePath("AnimationPlayer/desc:modulate")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.5, 1.06667, 1.5),
+"times": PackedFloat32Array(0, 0.5, 2.1, 2.53333),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -1398,6 +1398,44 @@ tracks/4/keys = {
 _data = {
 &"RESET": SubResource("Animation_2iuns"),
 &"float": SubResource("Animation_7gkqi")
+}
+
+[sub_resource type="Animation" id="Animation_g6gyw"]
+resource_name = "wave"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(558, -88), Vector2(590, -88), Vector2(558, -88)]
+}
+
+[sub_resource type="Animation" id="Animation_3dmrc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(558, -88)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_81l6r"]
+_data = {
+&"RESET": SubResource("Animation_3dmrc"),
+&"wave": SubResource("Animation_g6gyw")
 }
 
 [node name="Node2D" type="Node2D"]
@@ -2833,6 +2871,7 @@ texture = ExtResource("30_qouja")
 metadata/_edit_lock_ = true
 
 [node name="label2" type="Label" parent="end day"]
+visible = false
 z_index = 2
 anchors_preset = -1
 anchor_right = 0.250868
@@ -2851,6 +2890,7 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="label3" type="Label" parent="end day"]
+visible = false
 z_index = 2
 anchors_preset = -1
 anchor_right = 0.309896
@@ -2869,6 +2909,7 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="label" type="Label" parent="end day"]
+visible = false
 z_index = 2
 anchors_preset = -1
 anchor_left = -0.135417
@@ -2884,6 +2925,7 @@ text = "Day: "
 metadata/_edit_use_anchors_ = true
 
 [node name="newday" type="Area2D" parent="end day"]
+visible = false
 z_index = 1
 position = Vector2(184, -48)
 script = ExtResource("33_twgab")
@@ -2914,6 +2956,7 @@ shape = SubResource("RectangleShape2D_js0lu")
 disabled = true
 
 [node name="shop" type="Area2D" parent="end day"]
+visible = false
 z_index = 1
 position = Vector2(-152, -48)
 script = ExtResource("37_02fa5")
@@ -2944,6 +2987,7 @@ shape = SubResource("RectangleShape2D_js0lu")
 disabled = true
 
 [node name="panelselect" type="Area2D" parent="end day"]
+visible = false
 script = ExtResource("38_pr1ej")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="end day/panelselect"]
@@ -3003,7 +3047,7 @@ offset_bottom = 988.852
 theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
 theme_override_fonts/font = ExtResource("29_sgl2t")
 theme_override_font_sizes/font_size = 130
-text = "100"
+text = "150"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
@@ -3035,7 +3079,7 @@ offset_bottom = 988.852
 theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
 theme_override_fonts/font = ExtResource("29_sgl2t")
 theme_override_font_sizes/font_size = 130
-text = "200"
+text = "300"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
@@ -3067,7 +3111,7 @@ offset_bottom = 988.852
 theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
 theme_override_fonts/font = ExtResource("29_sgl2t")
 theme_override_font_sizes/font_size = 130
-text = "300"
+text = "600"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
@@ -3099,7 +3143,7 @@ offset_bottom = 988.852
 theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
 theme_override_fonts/font = ExtResource("29_sgl2t")
 theme_override_font_sizes/font_size = 130
-text = "400"
+text = "800"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
@@ -3145,7 +3189,7 @@ offset_bottom = 988.852
 theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
 theme_override_fonts/font = ExtResource("29_sgl2t")
 theme_override_font_sizes/font_size = 130
-text = "500"
+text = "1200"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
@@ -3197,7 +3241,7 @@ offset_bottom = 988.852
 theme_override_colors/font_color = Color(0.847059, 0.415686, 0.415686, 1)
 theme_override_fonts/font = ExtResource("29_sgl2t")
 theme_override_font_sizes/font_size = 130
-text = "600"
+text = "1800"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
@@ -3263,6 +3307,14 @@ texture = ExtResource("72_sxt1d")
 position = Vector2(952, 408)
 scale = Vector2(0.155312, 0.155312)
 texture = ExtResource("72_sxt1d")
+
+[node name="AnimationPlayer3" type="AnimationPlayer" parent="."]
+root_node = NodePath("../wave")
+libraries = {
+&"": SubResource("AnimationLibrary_81l6r")
+}
+autoplay = "wave"
+speed_scale = 0.5
 
 [connection signal="input_event" from="music" to="music" method="_on_input_event"]
 [connection signal="mouse_entered" from="music" to="music" method="_on_mouse_entered"]

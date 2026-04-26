@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bvn4ip4vc63yj"]
+[gd_scene load_steps=25 format=3 uid="uid://bvn4ip4vc63yj"]
 
 [ext_resource type="Texture2D" uid="uid://m5atieeely02" path="res://images/Rectangle 2.png" id="1_g3eks"]
 [ext_resource type="Script" uid="uid://c6rv1h8lbsre5" path="res://scripts/menu.gd" id="1_g6gyw"]
@@ -17,6 +17,44 @@
 [ext_resource type="Texture2D" uid="uid://8w5gmg87an5p" path="res://images/Vector 17.png" id="12_g6gyw"]
 [ext_resource type="Texture2D" uid="uid://bfuxgc6ua45yu" path="res://images/Vector 10.png" id="13_i42df"]
 [ext_resource type="Texture2D" uid="uid://qyptooa6c08a" path="res://images/crab (2).png" id="14_7jp70"]
+
+[sub_resource type="Animation" id="Animation_g6gyw"]
+resource_name = "wave"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(558, -88), Vector2(590, -88), Vector2(558, -88)]
+}
+
+[sub_resource type="Animation" id="Animation_3dmrc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(558, -88)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_81l6r"]
+_data = {
+&"RESET": SubResource("Animation_3dmrc"),
+&"wave": SubResource("Animation_g6gyw")
+}
 
 [sub_resource type="Animation" id="Animation_7jp70"]
 length = 0.001
@@ -104,12 +142,19 @@ scale = Vector2(0.586491, 0.586491)
 texture = ExtResource("1_g3eks")
 metadata/_edit_lock_ = true
 
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+root_node = NodePath("../wave")
+libraries = {
+&"": SubResource("AnimationLibrary_81l6r")
+}
+autoplay = "wave"
+speed_scale = 0.5
+
 [node name="wave" type="Sprite2D" parent="."]
 modulate = Color(0.113725, 0.678431, 0.815686, 1)
 position = Vector2(558, -88)
 scale = Vector2(0.631846, 0.631846)
 texture = ExtResource("2_v86rl")
-metadata/_edit_lock_ = true
 
 [node name="Vector11" type="Sprite2D" parent="."]
 position = Vector2(1081, 578)
