@@ -14,9 +14,6 @@ signal bow_selected(enabled: bool)
 
 var selected_shell := 0
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 func get_unlocked_colors():
 
@@ -33,7 +30,7 @@ func get_unlocked_colors():
 
 	return colors
 #
-func _input_event(viewport, event, shape_idx):
+func _input_event(_viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		if selecting_color:
 			var colors = get_unlocked_colors()

@@ -5,11 +5,10 @@ extends Area2D
 
 @onready var sprite: Sprite2D = $Sprite2D
 
-func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton \
 	and event.pressed \
 	and event.button_index == MOUSE_BUTTON_LEFT:
-		get_tree().paused = !get_tree().paused
 		$"../achievement/Area2D/CollisionShape2D".disabled=false
 		$"../achievement".visible=true
 		if Global.achievements["flawless_day"]["unlocked"] == true:
@@ -27,11 +26,9 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 		if Global.achievements["chaos_mode"]["unlocked"] == true:
 			$"../achievement/achievementtitle".text = Global.achievements["chaos_mode"]["name"]
 			$"../achievement/desc".text = Global.achievements["chaos_mode"]["desc"]
-	
-		
 
 
-func _on_mouse_shape_entered(shape_idx: int) -> void:
+func _on_mouse_entered() -> void:
 	if sprite.texture == normal:
 		sprite.texture = hover
 		

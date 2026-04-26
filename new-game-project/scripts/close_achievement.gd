@@ -12,19 +12,14 @@ func _ready() -> void:
 
 func _on_mouse_entered() -> void:
 	sprite.texture = hover
-	print("HIO")
 
 func _on_mouse_exited() -> void:
 	sprite.texture = normal
 
-func _input_event(viewport, event, shape_idx):
+func _input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton \
 	and event.pressed \
 	and event.button_index == MOUSE_BUTTON_LEFT:
 		#$"../../info/Area2D/CollisionShape2D".disabled=true
 		$"..".visible=false
 		
-
-
-func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	pass # Replace with function body.
