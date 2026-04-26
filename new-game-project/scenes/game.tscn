@@ -1,11 +1,13 @@
-[gd_scene load_steps=91 format=3 uid="uid://cv2qwtrm4jmin"]
+[gd_scene load_steps=97 format=3 uid="uid://cv2qwtrm4jmin"]
 
 [ext_resource type="Script" uid="uid://buswxx3owarpg" path="res://scripts/game.gd" id="1_264po"]
 [ext_resource type="Texture2D" uid="uid://m5atieeely02" path="res://images/Rectangle 2.png" id="2_1kice"]
 [ext_resource type="Texture2D" uid="uid://cmgo0k8381xke" path="res://images/crab (1).png" id="3_5newe"]
 [ext_resource type="Texture2D" uid="uid://qyptooa6c08a" path="res://images/crab (2).png" id="4_37s47"]
 [ext_resource type="Texture2D" uid="uid://c1pa2pjeot1vw" path="res://images/crab.png" id="5_bt5mj"]
+[ext_resource type="Texture2D" uid="uid://cv1yr7pv1n0nm" path="res://images/rich crab.png" id="5_o8oq8"]
 [ext_resource type="Texture2D" uid="uid://c1py1bsflsno2" path="res://images/Group 2.png" id="6_e1j6l"]
+[ext_resource type="Texture2D" uid="uid://b3ok4hjqy5t8a" path="res://images/robber crab.png" id="6_sxt1d"]
 [ext_resource type="Texture2D" uid="uid://ch5mqt77wkcfi" path="res://images/sad.png" id="6_twgab"]
 [ext_resource type="Texture2D" uid="uid://c2vtkocc826il" path="res://images/Group 3 (2).png" id="7_pl11u"]
 [ext_resource type="Texture2D" uid="uid://coxf5g15x4osl" path="res://images/Rectangle 14.png" id="8_bhx41"]
@@ -69,6 +71,7 @@
 [ext_resource type="Script" uid="uid://cahiivv1cwelr" path="res://scripts/close_achievement.gd" id="57_uxocx"]
 [ext_resource type="Texture2D" uid="uid://wg6xjhh3ikx8" path="res://images/achievment popup.png" id="58_weeiq"]
 [ext_resource type="AudioStream" uid="uid://cb1b1a2glkk5u" path="res://music.mp3" id="59_n8ral"]
+[ext_resource type="Texture2D" uid="uid://dk0024h6o14ms" path="res://images/bubble.png" id="72_sxt1d"]
 
 [sub_resource type="Animation" id="Animation_gxtfn"]
 length = 0.001
@@ -1263,16 +1266,152 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ool0"]
 size = Vector2(149, 122)
 
+[sub_resource type="Animation" id="Animation_2iuns"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("bubbles/Bubble:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(216, 440)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("bubbles/Bubble3:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(272, 384)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("bubbles/Bubble2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(226, 300)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("bubbles/Bubble5:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(928, 473)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("bubbles/Bubble4:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(952, 408)]
+}
+
+[sub_resource type="Animation" id="Animation_7gkqi"]
+resource_name = "float"
+length = 8.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("bubbles/Bubble:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4, 6, 8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(216, 440), Vector2(216, 371), Vector2(240, 428.322), Vector2(216, 371), Vector2(216, 440)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("bubbles/Bubble2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2, 4, 6, 8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(226, 300), Vector2(198, 276), Vector2(223.004, 316.034), Vector2(222, 268), Vector2(226, 300)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("bubbles/Bubble3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2, 4, 6, 8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(272, 384), Vector2(236, 424), Vector2(261.004, 368.067), Vector2(292, 304), Vector2(272, 384)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("bubbles/Bubble4:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2, 4, 6, 8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(952, 408), Vector2(950.978, 478.031), Vector2(951.235, 460.45), Vector2(950.978, 478.031), Vector2(952, 408)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("bubbles/Bubble5:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2, 4, 6, 8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(928, 473), Vector2(940, 427), Vector2(912.987, 414.548), Vector2(940, 427), Vector2(928, 473)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_753oq"]
+_data = {
+&"RESET": SubResource("Animation_2iuns"),
+&"float": SubResource("Animation_7gkqi")
+}
+
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_264po")
 crab_textures = Array[Texture2D]([ExtResource("4_37s47"), ExtResource("5_bt5mj"), ExtResource("3_5newe")])
+special_crab_textures = Array[Texture2D]([ExtResource("5_o8oq8"), ExtResource("6_sxt1d")])
 happy = ExtResource("35_gxtfn")
 sad = ExtResource("6_twgab")
 
 [node name="background" type="Sprite2D" parent="."]
-position = Vector2(574, 339)
+position = Vector2(577, 339)
 scale = Vector2(0.586491, 0.586491)
 texture = ExtResource("2_1kice")
+metadata/_edit_lock_ = true
 
 [node name="wave" type="Sprite2D" parent="."]
 modulate = Color(0.121569, 0.678431, 0.819608, 1)
@@ -3093,6 +3232,37 @@ texture = ExtResource("10_sww3w")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("59_n8ral")
 volume_db = -10.0
+
+[node name="bubbles" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_753oq")
+}
+autoplay = "float"
+
+[node name="Bubble" type="Sprite2D" parent="bubbles"]
+position = Vector2(216, 440)
+scale = Vector2(0.178144, 0.178144)
+texture = ExtResource("72_sxt1d")
+
+[node name="Bubble3" type="Sprite2D" parent="bubbles"]
+position = Vector2(272, 384)
+scale = Vector2(0.323511, 0.323512)
+texture = ExtResource("72_sxt1d")
+
+[node name="Bubble2" type="Sprite2D" parent="bubbles"]
+position = Vector2(226, 300)
+scale = Vector2(0.250745, 0.250745)
+texture = ExtResource("72_sxt1d")
+
+[node name="Bubble5" type="Sprite2D" parent="bubbles"]
+position = Vector2(928, 473)
+scale = Vector2(0.134744, 0.134744)
+texture = ExtResource("72_sxt1d")
+
+[node name="Bubble4" type="Sprite2D" parent="bubbles"]
+position = Vector2(952, 408)
+scale = Vector2(0.155312, 0.155312)
+texture = ExtResource("72_sxt1d")
 
 [connection signal="input_event" from="music" to="music" method="_on_input_event"]
 [connection signal="mouse_entered" from="music" to="music" method="_on_mouse_entered"]

@@ -9,9 +9,7 @@ var day_active := false
 var order_failed := false
 
 var selected_shell_id := 0
-
 var selected_color = "none"
-
 var selected_stars := 0
 var selected_barnacle := 0
 var selected_bow := 0
@@ -19,6 +17,7 @@ var selected_bow := 0
 @onready var timerlabel = $timerlabel
 
 @export var crab_textures: Array[Texture2D]
+@export var special_crab_textures: Array[Texture2D]
 @onready var crab_sprite: Sprite2D = $Crab/Crab
 
 @onready var face: Sprite2D = $orderrequest/face
@@ -45,7 +44,6 @@ var current_order = {
 }
 
 var selecting_extras := false
-
 var stars = 0
 var barnacle = 0
 var bow = 0
@@ -61,6 +59,8 @@ var total_extras = 0
 
 var fail_counter = 0
 
+var rich_crab = false
+var robber_crab = false
 
 
 func _ready() -> void:
@@ -76,7 +76,6 @@ func _ready() -> void:
 	$stand/customizepanel.stars_selected.connect(_on_stars_selected)
 	$stand/customizepanel.barnacle_selected.connect(_on_barnacle_selected)
 	$stand/customizepanel.bow_selected.connect(_on_bow_selected)
-
 
 func _process(delta: float) -> void:
 	if not day_active:
@@ -107,9 +106,10 @@ func start():
 
 
 func on_crab_finished():
+	rich_crab = false
+	robber_crab = false
 	current_order["shape"] = ""
 	current_order["color"] = "none"
-
 	selected_shell_id = -1
 	selected_color = "none"
 	selected_barnacle = 0
@@ -144,7 +144,6 @@ func on_crab_finished():
 	# ONLY spawn another crab if the day is still going
 	if day_active:
 		spawn_crab()
-
 
 
 func end_day():
@@ -186,8 +185,8 @@ func end_day():
 		$"end day/label".text = "Day: " + str(Global.day)
 		$"end day/label3".text = "Pearls Earned: " + str(Global.daily_pearls)
 		timerlabel.text = "00:00"
-	
-	
+
+
 func shop():
 	$"end day/shop".visible=false
 	$"end day/label2".visible=false
@@ -207,8 +206,7 @@ func shop():
 	$"end day/panelselect/CollisionShape2D4".disabled=false
 	$"end day/panelselect/CollisionShape2D5".disabled=false
 	$"end day/panelselect/CollisionShape2D6".disabled=false
-	
-	
+
 	#shop upgrades disable/enable!
 	$"end day/panelselect/CollisionShape2D".disabled = Global.upgrades["purple"]
 	$"end day/panelselect/CollisionShape2D2".disabled = Global.upgrades["yellow"]
@@ -217,7 +215,6 @@ func shop():
 	$"end day/panelselect/CollisionShape2D5".disabled = Global.upgrades["starfish"]
 	$"end day/panelselect/CollisionShape2D6".disabled = Global.upgrades["bow"]
 
-	
 
 func new_day():
 	$"end day/panelselect/CollisionShape2D".disabled=true
@@ -238,8 +235,8 @@ func new_day():
 	await $AnimationPlayer.animation_finished
 	day_active = true
 	respawn_crab()
-	
-	
+
+
 func respawn_crab():
 	crab_present = false
 	order_completed = true
@@ -269,9 +266,48 @@ func spawn_crab():
 	crab_present = true 
 	order_completed = false
 	$Crab/Crab.visible = true
-	crab_sprite.texture = crab_textures.pick_random()
+	var crab_event = [0,0,0,0,0,0,1]
+	if crab_event.pick_random() == 0:
+		crab_sprite.texture = crab_textures.pick_random()
+		await $AnimationPlayer.animation_finished
+		crab_order()
+	else:
+		var index = randi() % special_crab_textures.size()
+		crab_sprite.texture = special_crab_textures[index]
+		if index == 0:
+			print("rich crab")
+			rich_crab = true
+			await $AnimationPlayer.animation_finished
+			crab_order()
+		else:
+			print("robber crab")
+			robber_crab = true
+			robber_crab_shenanigans()
+			#steal few pearls
+
+func robber_crab_shenanigans():
+	var actions = ["steal pearls"] #["steal pearls", "steal extras"]
+	$orderrequest/orderbubble.visible= true
+	if actions.pick_random() == "steal pearls":
+		$orderrequest/pearls.visible= true
+		$orderrequest/Pearl.visible= true
+		Global.daily_shells -= 25
+		$orderrequest/pearls.text = "-25"
+		await get_tree().create_timer(2).timeout
+	#else: 
+		#var extra = ["color", "star", "barnacle", "bow"]
+		#if extra.pick_random() == "color":
+			#var color = build_color_pool().pick_random()
+			#if color != "none":
+				#		
+	$orderrequest/pearls.visible= false
+	$orderrequest/Pearl.visible= false
+	$orderrequest/orderbubble.visible= false
+	$AnimationPlayer.play("crableave")
+	play_leave_extra_anim()
 	await $AnimationPlayer.animation_finished
-	crab_order()
+	await $AnimationPlayer2.animation_finished
+	on_crab_finished()
 
 var safelock_total_extras
 
@@ -501,26 +537,22 @@ func _on_shell_selected(shell_id):
 			$stand/customizepanel/Ribbon.visible = Global.upgrades["bow"]
 		
 		else:
-			print("test 1")
 			$stand/customizepanel.selecting_color = true
 			$stand/customizepanel/purplecoll.disabled = not Global.upgrades["purple"]
 			$stand/customizepanel/yellowcoll.disabled = not Global.upgrades["yellow"]
 			$stand/customizepanel/pinkcoll.disabled = not Global.upgrades["pink"]
 			
-			
-			#reset_ui()
 			#show the color panlelll
 			purplepanel.visible = Global.upgrades["purple"]
 			yellowpanel.visible = Global.upgrades["yellow"]
 			pinkpanel.visible = Global.upgrades["pink"]
-		
+
 func _on_color_selected(color):
 
 	$stand/customizepanel/purplecoll.disabled = true
 	$stand/customizepanel/yellowcoll.disabled = true
 	$stand/customizepanel/pinkcoll.disabled = true
 	
-
 	selected_color = color
 	apply_color()
 	$stand/customizepanel.selecting_color = false
@@ -594,7 +626,6 @@ func _on_barnacle_selected(count):
 	if total_extras <=0:
 		print("checking order from banracles")
 		check_order()
-		
 
 func _on_bow_selected(enabled):
 	total_extras -=1
@@ -609,7 +640,7 @@ func _on_bow_selected(enabled):
 	if total_extras <=0:
 		print("checking order from bow")
 		check_order()
-		
+
 	
 func reset_ui():
 	#hide extras
@@ -624,7 +655,6 @@ func reset_ui():
 	$stand/customizepanel/panel2/customizeshell2.visible = true
 	$stand/customizepanel/panel3/customizeshell3.visible = true
 
-	
 func apply_color():
 	for i in range(shells.size()):
 		purple_shells[i].position = shells[i].position
@@ -721,8 +751,12 @@ func check_order() -> void:
 				
 			$orderrequest/pearls.visible=true
 			$orderrequest/Pearl.visible=true
-			Global.daily_pearls += 5
-			$orderrequest/pearls.text = "5"
+			if rich_crab == true:
+				Global.daily_pearls += 30
+				$orderrequest/pearls.text = "30"
+			else:
+				Global.daily_pearls += 5
+				$orderrequest/pearls.text = "5"
 			order_failed = false
 		else:
 			Global.streak +=1
@@ -754,8 +788,12 @@ func check_order() -> void:
 			$orderrequest/pearls.visible=true
 			$orderrequest/Pearl.visible=true
 			face.visible = false
-			Global.daily_pearls += 10
-			$orderrequest/pearls.text = "10"
+			if rich_crab == true:
+				Global.daily_pearls += 60
+				$orderrequest/pearls.text = "60"
+			else:
+				Global.daily_pearls += 10
+				$orderrequest/pearls.text = "10"
 		Global.crabsales +=1 
 		selected_barnacle = 0
 		selected_bow = 0
@@ -852,7 +890,6 @@ func check_order() -> void:
 		pass
 
 
-
 func hide_order_request():
 	$orderrequest/ordershell3.visible=false
 	$orderrequest/ordershell2.visible=false
@@ -897,8 +934,8 @@ func hide_customize_colors():
 	$stand/customizepanel/panel/purple.visible=false
 	$stand/customizepanel/panel2/yellow.visible=false
 	$stand/customizepanel/panel3/pink.visible=false
-	
-	
+
+
 func hide_customize_extras():
 	$stand/customizepanel/Barnacle2.visible=false
 	$stand/customizepanel/Barnacle.visible=false
