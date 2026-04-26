@@ -266,7 +266,7 @@ func spawn_crab():
 	crab_present = true 
 	order_completed = false
 	$Crab/Crab.visible = true
-	var crab_event = [0,0,0,0,0,0,1]
+	var crab_event = [0,0,0,0,0,0,1] #[1]
 	if crab_event.pick_random() == 0:
 		crab_sprite.texture = crab_textures.pick_random()
 		await $AnimationPlayer.animation_finished
@@ -282,8 +282,8 @@ func spawn_crab():
 		else:
 			print("robber crab")
 			robber_crab = true
+			await $AnimationPlayer.animation_finished
 			robber_crab_shenanigans()
-			#steal few pearls
 
 func robber_crab_shenanigans():
 	var actions = ["steal pearls"] #["steal pearls", "steal extras"]
@@ -467,7 +467,13 @@ func crab_order():
 		$stand/customizepanel/CollisionShape2D3.disabled=false
 
 func build_color_pool() -> Array:
-	var pool := ["none", "none"]
+	var pool: Array = []
+	if Global.day >= 7:
+		pool = ["none"]
+	elif Global.day >=4:
+		pool = ["none", "none"]
+	else:
+		pool = ["none", "none", "none"]
 
 	if Global.upgrades["purple"]:
 		pool.append("purple")
@@ -479,26 +485,48 @@ func build_color_pool() -> Array:
 	return pool
 	
 func build_stars_pool() -> Array:
-	var pool := [0,0]
+	var pool: Array = []
+	if Global.day >= 7:
+		pool = [0]
+	elif Global.day >=4:
+		pool = [0,0]
+	else:
+		pool = [0,0,0]
 
 	if Global.upgrades["starfish"]:
 		pool.append(1)
+		pool.append(1)
+		pool.append(1)
+		pool.append(2)
 		pool.append(2)
 		pool.append(3)
 
 	return pool
 	
 func build_barnacles_pool() -> Array:
-	var pool := [0,0]
-
+	var pool: Array = []
+	if Global.day >= 7:
+		pool = [0]
+	elif Global.day >=4:
+		pool = [0,0]
+	else:
+		pool = [0,0,0]
+		
 	if Global.upgrades["barnacle"]:
+		pool.append(1)
 		pool.append(1)
 		pool.append(2)
 	return pool
 	
 func build_bow_pool() -> Array:
-	var pool := [0,0 ]
-
+	var pool: Array = []
+	if Global.day >= 7:
+		pool = [0]
+	elif Global.day >=4:
+		pool = [0,0]
+	else:
+		pool = [0,0,0]
+		
 	if Global.upgrades["bow"]:
 		pool.append(1)
 	return pool
@@ -541,7 +569,9 @@ func _on_shell_selected(shell_id):
 			$stand/customizepanel/purplecoll.disabled = not Global.upgrades["purple"]
 			$stand/customizepanel/yellowcoll.disabled = not Global.upgrades["yellow"]
 			$stand/customizepanel/pinkcoll.disabled = not Global.upgrades["pink"]
-			
+			$stand/customizepanel/panel/customizeshell1.visible=false
+			$stand/customizepanel/panel2/customizeshell2.visible=false
+			$stand/customizepanel/panel3/customizeshell3.visible=false
 			#show the color panlelll
 			purplepanel.visible = Global.upgrades["purple"]
 			yellowpanel.visible = Global.upgrades["yellow"]
@@ -735,6 +765,8 @@ func check_order() -> void:
 	var barnacle_match = (barnacle == selected_barnacle)
 	var bow_match = (bow == selected_bow)
 	
+	var bonus = 0
+	
 	if selected_shell_shape == order_shape and color_match and stars_match and barnacle_match and bow_match:
 		print("happy")
 		if order_failed:
@@ -751,7 +783,7 @@ func check_order() -> void:
 				
 			$orderrequest/pearls.visible=true
 			$orderrequest/Pearl.visible=true
-			if rich_crab == true:
+			if rich_crab:
 				Global.daily_pearls += 30
 				$orderrequest/pearls.text = "30"
 			else:
@@ -771,29 +803,46 @@ func check_order() -> void:
 				$stand/AnimationPlayer.play("new_achievement")
 				
 				#all extras on order
-			if Global.achievements["maxed_out"]["unlocked"] == false and current_order["shape"]!=""and \
-				current_order["color"] != "" and current_order["stars"] and current_order["bow"] ==1 and \
+			if Global.achievements["maxed_out"]["unlocked"] == false and current_order["color"] != "" \
+				and current_order["stars"] != 0 and current_order["bow"] ==1 and \
 				current_order["barnacle"] != 0:
-					
+
 				$stand/AnimationPlayer/achievementtitle.text = Global.achievements["maxed_out"]["name"]
 				$stand/AnimationPlayer/pearlsadded.text = "+" +  str(Global.achievements["maxed_out"]["reward"])
 				$stand/AnimationPlayer/desc.text = Global.achievements["maxed_out"]["desc"]
-				Global.achievements["shell_legend"]["unlocked"] =true
+				Global.achievements["maxed_out"]["unlocked"] =true
 				Global.daily_pearls += 30
 				$stand/AnimationPlayer.play("new_achievement")
 				
+			#calc bonus for addons #color
+			if current_order["color"] != "none" and selected_color == current_order["color"]:
+				bonus += 2
+
+			# stars bonus
+			if selected_stars == current_order["stars"] and selected_stars > 0:
+				bonus += 2 * selected_stars
+
+			# barnacle bonus
+			if selected_barnacle == current_order["barnacle"] and selected_barnacle > 0:
+				bonus += 3 * selected_barnacle
+
+			# bow bonus
+			if selected_bow == current_order["bow"] and selected_bow == 1:
+				bonus += 5
+
 			face.visible = true
 			face.texture = happy
 			await get_tree().create_timer(2).timeout
+			
 			$orderrequest/pearls.visible=true
 			$orderrequest/Pearl.visible=true
 			face.visible = false
-			if rich_crab == true:
-				Global.daily_pearls += 60
-				$orderrequest/pearls.text = "60"
+			if rich_crab:
+				Global.daily_pearls += 60 + bonus
+				$orderrequest/pearls.text = str(60 + bonus)
 			else:
-				Global.daily_pearls += 10
-				$orderrequest/pearls.text = "10"
+				Global.daily_pearls += 10 + bonus
+				$orderrequest/pearls.text = str(10 + bonus)
 		Global.crabsales +=1 
 		selected_barnacle = 0
 		selected_bow = 0
