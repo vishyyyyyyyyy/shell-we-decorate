@@ -1466,6 +1466,7 @@ metadata/_edit_lock_ = true
 [node name="Crab" type="CanvasLayer" parent="."]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Crab"]
+color = Color(0.2757, 0.2757, 0.2757, 1)
 
 [node name="shell1" type="Sprite2D" parent="Crab"]
 visible = false
@@ -1592,9 +1593,8 @@ scale = Vector2(0.288499, 0.288499)
 texture = ExtResource("41_8ool0")
 
 [node name="Crab" type="Sprite2D" parent="Crab"]
-visible = false
 z_index = 2
-position = Vector2(566.621, 552.937)
+position = Vector2(566.621, 792.937)
 scale = Vector2(0.660176, 0.660176)
 texture = ExtResource("4_37s47")
 
@@ -1614,6 +1614,7 @@ libraries = {
 
 [node name="CanvasModulate" type="CanvasModulate" parent="orderrequest"]
 visible = false
+color = Color(0.27451, 0.27451, 0.27451, 1)
 
 [node name="orderbubble" type="Sprite2D" parent="orderrequest"]
 visible = false
@@ -1761,6 +1762,7 @@ texture = ExtResource("10_sww3w")
 [node name="stand" type="CanvasLayer" parent="."]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="stand"]
+color = Color(0.27451, 0.27451, 0.27451, 1)
 
 [node name="stand" type="Sprite2D" parent="stand"]
 position = Vector2(584.969, 410.875)
