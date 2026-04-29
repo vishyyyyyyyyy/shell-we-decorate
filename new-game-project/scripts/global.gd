@@ -18,7 +18,7 @@ var daily_pearls := 0
 var streak = 0
 var crabsales =0 
 
-var music_on := false
+var music_on := true
 var music_player: AudioStreamPlayer
 
 var achievements = {

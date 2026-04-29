@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=3 uid="uid://cv2qwtrm4jmin"]
+[gd_scene load_steps=103 format=3 uid="uid://cv2qwtrm4jmin"]
 
 [ext_resource type="Script" uid="uid://buswxx3owarpg" path="res://scripts/game.gd" id="1_264po"]
 [ext_resource type="Texture2D" uid="uid://m5atieeely02" path="res://images/Rectangle 2.png" id="2_1kice"]
@@ -56,7 +56,9 @@
 [ext_resource type="Script" uid="uid://g5pr4ib1nmnt" path="res://scripts/pause.gd" id="42_i4re6"]
 [ext_resource type="Texture2D" uid="uid://snfxdiciemub" path="res://images/nomusic.png" id="42_o8ni1"]
 [ext_resource type="Texture2D" uid="uid://c161dgk27xein" path="res://images/nomusic hover.png" id="43_0rmfi"]
+[ext_resource type="Script" uid="uid://b2r4bj21lgjrc" path="res://scripts/home.gd" id="44_2iuns"]
 [ext_resource type="Texture2D" uid="uid://ngpymum41kfu" path="res://images/music hover.png" id="45_xbak0"]
+[ext_resource type="Script" uid="uid://g850c6qmgs5j" path="res://scripts/credits.gd" id="46_7gkqi"]
 [ext_resource type="Texture2D" uid="uid://c05s6cncgbre5" path="res://images/play hover.png" id="46_66xif"]
 [ext_resource type="Texture2D" uid="uid://577wtbyqgxcl" path="res://images/pause hover.png" id="48_bnuda"]
 [ext_resource type="Script" uid="uid://cfrq8t1xj6sil" path="res://scripts/achievments.gd" id="49_xbak0"]
@@ -1196,6 +1198,9 @@ _data = {
 &"new_achievement": SubResource("Animation_mmvbu")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7gkqi"]
+size = Vector2(2560, 853.333)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pr1ej"]
 size = Vector2(633.332, 626.667)
 
@@ -2058,13 +2063,82 @@ text = "Achievement Locked"
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="Rectangle8" type="Sprite2D" parent="."]
-position = Vector2(118, 64)
-scale = Vector2(0.14491, 0.14491)
-texture = ExtResource("9_qnb83")
+[node name="ColorRect" type="ColorRect" parent="stand"]
+visible = false
+z_index = 2
+offset_right = 1159.0
+offset_bottom = 688.0
+mouse_filter = 2
+color = Color(0.0064853, 0.0667014, 0.0868991, 0.588235)
 
-[node name="music" type="Area2D" parent="."]
+[node name="home" type="Area2D" parent="stand"]
+process_mode = 2
+visible = false
+position = Vector2(981, 61)
+scale = Vector2(0.15, 0.15)
+script = ExtResource("44_2iuns")
+normal = ExtResource("32_v2yb1")
+hover = ExtResource("32_js0lu")
+
+[node name="Sprite2D" type="Sprite2D" parent="stand/home"]
+z_index = 2
+position = Vector2(-2700, 1033.33)
+scale = Vector2(2.67286, 2.67286)
+texture = ExtResource("32_v2yb1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="stand/home"]
+z_index = 2
+position = Vector2(-2700, 1033.33)
+shape = SubResource("RectangleShape2D_7gkqi")
+disabled = true
+
+[node name="timerlabel" type="Label" parent="stand/home"]
+z_index = 2
+offset_left = -3186.67
+offset_top = 733.333
+offset_right = -2204.67
+offset_bottom = 1361.33
+theme_override_colors/font_color = Color(0.996078, 0.992157, 0.835294, 1)
+theme_override_fonts/font = ExtResource("29_sgl2t")
+theme_override_font_sizes/font_size = 400
+text = "Home"
+
+[node name="credits" type="Area2D" parent="stand"]
+process_mode = 2
+visible = false
+z_index = 3
+position = Vector2(981, 61)
+scale = Vector2(0.15, 0.15)
+script = ExtResource("46_7gkqi")
+normal = ExtResource("32_v2yb1")
+hover = ExtResource("32_js0lu")
+
+[node name="Sprite2D" type="Sprite2D" parent="stand/credits"]
+z_index = 2
+position = Vector2(-2700, 2100)
+scale = Vector2(2.67286, 2.67286)
+texture = ExtResource("32_v2yb1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="stand/credits"]
+z_index = 2
+position = Vector2(-2700, 2100)
+shape = SubResource("RectangleShape2D_7gkqi")
+disabled = true
+
+[node name="timerlabel2" type="Label" parent="stand/credits"]
+z_index = 2
+offset_left = -3293.33
+offset_top = 1800.0
+offset_right = -2101.33
+offset_bottom = 2428.0
+theme_override_colors/font_color = Color(0.996078, 0.992157, 0.835294, 1)
+theme_override_fonts/font = ExtResource("29_sgl2t")
+theme_override_font_sizes/font_size = 400
+text = "Credits"
+
+[node name="music" type="Area2D" parent="stand"]
 process_mode = 3
+z_index = 1
 position = Vector2(981, 61)
 scale = Vector2(0.15, 0.15)
 script = ExtResource("41_pf7vy")
@@ -2073,16 +2147,18 @@ mute_hover = ExtResource("43_0rmfi")
 music = ExtResource("14_wljb1")
 music_hover = ExtResource("45_xbak0")
 
-[node name="Sprite2D" type="Sprite2D" parent="music"]
+[node name="Sprite2D" type="Sprite2D" parent="stand/music"]
+z_index = 1
 texture = ExtResource("14_wljb1")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="music"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="stand/music"]
 z_index = 1
 position = Vector2(-3.33447, 6.10352e-05)
 shape = SubResource("RectangleShape2D_pr1ej")
 
-[node name="pause" type="Area2D" parent="."]
+[node name="pause" type="Area2D" parent="stand"]
 process_mode = 3
+z_index = 2
 position = Vector2(981, 61)
 scale = Vector2(0.15, 0.15)
 script = ExtResource("42_i4re6")
@@ -2091,31 +2167,37 @@ paused_hover = ExtResource("46_66xif")
 normal = ExtResource("12_sgl2t")
 normal_hover = ExtResource("48_bnuda")
 
-[node name="Sprite2D" type="Sprite2D" parent="pause"]
+[node name="Sprite2D" type="Sprite2D" parent="stand/pause"]
 position = Vector2(753.333, 0)
 texture = ExtResource("12_sgl2t")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="pause"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="stand/pause"]
 z_index = 1
 position = Vector2(756.665, 6.10352e-05)
 shape = SubResource("RectangleShape2D_pr1ej")
 
-[node name="achievement2" type="Area2D" parent="."]
+[node name="achievement2" type="Area2D" parent="stand"]
 process_mode = 3
+z_index = 2
 position = Vector2(749, 61)
 scale = Vector2(0.15, 0.15)
 script = ExtResource("49_xbak0")
 normal = ExtResource("50_3x28f")
 hover = ExtResource("55_weeiq")
 
-[node name="Sprite2D" type="Sprite2D" parent="achievement2"]
+[node name="Sprite2D" type="Sprite2D" parent="stand/achievement2"]
 position = Vector2(753.333, 0)
 texture = ExtResource("50_3x28f")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="achievement2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="stand/achievement2"]
 z_index = 1
 position = Vector2(756.665, 6.10352e-05)
 shape = SubResource("RectangleShape2D_pr1ej")
+
+[node name="Rectangle8" type="Sprite2D" parent="."]
+position = Vector2(118, 64)
+scale = Vector2(0.14491, 0.14491)
+texture = ExtResource("9_qnb83")
 
 [node name="timerlabel" type="Label" parent="."]
 offset_left = 60.0
@@ -3310,15 +3392,21 @@ libraries = {
 autoplay = "wave"
 speed_scale = 0.5
 
-[connection signal="input_event" from="music" to="music" method="_on_input_event"]
-[connection signal="mouse_entered" from="music" to="music" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="music" to="music" method="_on_mouse_exited"]
-[connection signal="input_event" from="pause" to="pause" method="_on_input_event"]
-[connection signal="mouse_entered" from="pause" to="pause" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="pause" to="pause" method="_on_mouse_exited"]
-[connection signal="input_event" from="achievement2" to="achievement2" method="_on_input_event"]
-[connection signal="mouse_entered" from="achievement2" to="achievement2" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="achievement2" to="achievement2" method="_on_mouse_exited"]
+[connection signal="input_event" from="stand/home" to="stand/home" method="_on_input_event"]
+[connection signal="mouse_entered" from="stand/home" to="stand/home" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="stand/home" to="stand/home" method="_on_mouse_exited"]
+[connection signal="input_event" from="stand/credits" to="stand/credits" method="_on_input_event"]
+[connection signal="mouse_entered" from="stand/credits" to="stand/credits" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="stand/credits" to="stand/credits" method="_on_mouse_exited"]
+[connection signal="input_event" from="stand/music" to="stand/music" method="_on_input_event"]
+[connection signal="mouse_entered" from="stand/music" to="stand/music" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="stand/music" to="stand/music" method="_on_mouse_exited"]
+[connection signal="input_event" from="stand/pause" to="stand/pause" method="_on_input_event"]
+[connection signal="mouse_entered" from="stand/pause" to="stand/pause" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="stand/pause" to="stand/pause" method="_on_mouse_exited"]
+[connection signal="input_event" from="stand/achievement2" to="stand/achievement2" method="_on_input_event"]
+[connection signal="mouse_entered" from="stand/achievement2" to="stand/achievement2" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="stand/achievement2" to="stand/achievement2" method="_on_mouse_exited"]
 [connection signal="input_event" from="achievement/Area2D" to="achievement/Area2D" method="_on_input_event"]
 [connection signal="mouse_entered" from="achievement/Area2D" to="achievement/Area2D" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="achievement/Area2D" to="achievement/Area2D" method="_on_mouse_exited"]
