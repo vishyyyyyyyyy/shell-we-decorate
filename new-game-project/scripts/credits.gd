@@ -8,7 +8,6 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 	if event is InputEventMouseButton \
 	and event.pressed \
 	and event.button_index == MOUSE_BUTTON_LEFT:
-		$"../ColorRect".visible=false
 		get_tree().paused = !get_tree().paused
 		get_tree().change_scene_to_file("res://scenes/credits.tscn")
 
